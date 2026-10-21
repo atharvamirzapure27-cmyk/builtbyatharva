@@ -1,0 +1,25 @@
+{
+  "name": "builtbyatharva",
+  "version": "6.0.0",
+  "description": "BuiltByAtharva — Futuristic Creative Technology & Software Studio",
+  "type": "module",
+  "main": "config.js",
+  "scripts": {
+    "dev": "node dev-server.js",
+    "start": "node dev-server.js",
+    "test-api": "node test-api.js"
+  },
+  "keywords": [
+    "portfolio",
+    "software-engineering",
+    "web-development",
+    "ai",
+    "threejs",
+    "gsap"
+  ],
+  "author": "Atharva Mirzapure <builtbyatharva27@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "resend": "^6.34.1"
+  }
+}
