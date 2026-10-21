@@ -1271,7 +1271,8 @@ document.addEventListener('DOMContentLoaded', () => {
       };
 
       try {
-        const response = await fetch('/api/submit-project', {
+        const endpoint = window.APP_CONFIG?.BACKEND?.endpoint || '/api/submit-project';
+        const response = await fetch(endpoint, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -1280,7 +1281,7 @@ document.addEventListener('DOMContentLoaded', () => {
           body: JSON.stringify(payload)
         });
 
-        const result = await response.json();
+        const result = await response.json().catch(() => ({}));
 
         if (response.ok && result.success) {
           openModal(successModal);
@@ -1288,10 +1289,12 @@ document.addEventListener('DOMContentLoaded', () => {
           currentStep = 1;
           updateWizardUI();
         } else if (result.isConfigError) {
-          // Honest configuration warning (RESEND_API_KEY pending)
-          alert(`Configuration Notice: ${result.error}\n\nAtharva will configure RESEND_API_KEY in Vercel settings for production email delivery. You can also connect via WhatsApp (+91 8626074035) or direct email (builtbyatharva27@gmail.com).`);
+          // Configuration notice when RESEND_API_KEY is not yet added in Netlify
+          alert(`Configuration Notice: ${result.error}\n\nAtharva will configure RESEND_API_KEY in Netlify Site Configuration > Environment Variables. You can also connect directly via WhatsApp (+91 8626074035) or email (builtbyatharva27@gmail.com).`);
+        } else if (result.validationErrors && result.validationErrors.length > 0) {
+          alert(`Please check the following details:\n\n• ${result.validationErrors.join('\n• ')}`);
         } else {
-          alert(`Submission error: ${result.error || 'Unable to submit at this time.'}\n\nPlease reach out directly to builtbyatharva27@gmail.com or WhatsApp +91 8626074035.`);
+          alert(`Submission Notice: ${result.error || 'Unable to submit at this time.'}\n\nPlease reach out directly to builtbyatharva27@gmail.com or WhatsApp +91 8626074035.`);
         }
       } catch (networkErr) {
         console.error("Submission Network Error:", networkErr);

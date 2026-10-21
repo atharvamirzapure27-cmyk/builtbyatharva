@@ -80,12 +80,13 @@ BuiltByAtharva V6 transforms the personal studio website into an advanced, futur
   4. **Review**: Comprehensive summary with printable brief download and 50% advance notice.
 - Anti-spam honeypot field (`website_hp`).
 
-### 8. Lightweight Vercel Serverless Backend (`/api/submit-project`)
-- Node.js serverless function running on Vercel Edge/Serverless.
-- Server-side request sanitization & validation (email format, character length limits, anti-spam honeypot).
-- Dispatches notification emails to **`builtbyatharva27@gmail.com`** using **Resend** (`RESEND_API_KEY`).
-- Branded, professional HTML email template detailing all client info, financials, and quick email/WhatsApp reply links.
-- Honest configuration warning returned if `RESEND_API_KEY` is not yet configured.
+### 8. Production Netlify Serverless Backend (`netlify/functions/submit-project.js`)
+- Node.js serverless function running on Netlify Functions (`/.netlify/functions/submit-project` and rewritten from `/api/submit-project`).
+- Backward-compatible adapter maintained at `api/submit-project.js`.
+- Server-side request sanitization & validation (RFC 5322 email validation, field size limits, anti-spam honeypot, duplicate rate limiting).
+- Dispatches notification emails to configured contact email (`builtbyatharva27@gmail.com`) using **Resend** Node.js SDK.
+- Branded, professional HTML email template detailing client info, project financials, timeline, and one-click email/WhatsApp response buttons.
+- Safe configuration alerts when `RESEND_API_KEY` is pending.
 
 ### 9. Correct Verified WhatsApp Integration
 - Number: **`+91 86260 74035`** (international format: `918626074035`).
@@ -118,19 +119,30 @@ The studio will run locally at:
 ```bash
 npm run test-api
 ```
-Tests method rejection (405), required field validation (400), honeypot spam protection (400), and configuration warning behavior (503).
+Runs comprehensive test suite verifying:
+- CORS Preflight (200)
+- Method restriction (405 on GET)
+- Empty body and field validations (400)
+- RFC 5322 email and phone format checks (400)
+- 50KB payload size limits (413)
+- Anti-spam honeypot defense (400)
+- Missing `RESEND_API_KEY` configuration safety (503)
+- Duplicate submission throttling (429)
+- Backward-compatible adapter functionality
 
 ---
 
-## ☁️ Deployment to Vercel
+## ☁️ Deployment to Netlify
 
-1. Push your repository to GitHub or run `vercel` via Vercel CLI.
-2. In your Vercel Project Dashboard:
-   - Go to **Settings** > **Environment Variables**.
-   - Add the following variable:
-     - `RESEND_API_KEY`: Your Resend API key (e.g. `re_123456789...` from [resend.com](https://resend.com)).
-     - *(Optional)* `RESEND_FROM_EMAIL`: Your verified sender domain (defaults to `BuiltByAtharva Studio <onboarding@resend.dev>` for testing).
-3. Deploy! Vercel will automatically host the static frontend and route `/api/submit-project` as a serverless function.
+1. Push your changes to your GitHub repository connected to Netlify.
+2. In your Netlify Dashboard:
+   - Go to **Site Configuration** > **Environment variables**.
+   - Add the following variables:
+     - `RESEND_API_KEY`: Your Resend API key (`re_...` from [resend.com/api-keys](https://resend.com/api-keys)).
+     - `CONTACT_EMAIL`: (Optional) Business email address for receiving leads (defaults to `builtbyatharva27@gmail.com`).
+     - `RESEND_FROM_EMAIL`: (Optional) Verified sender domain (defaults to `BuiltByAtharva Studio <onboarding@resend.dev>` for testing).
+     - `RESEND_CLIENT_CONFIRMATION`: (Optional) Set to `true` once you verify a custom domain in Resend to send auto-reply receipts to clients.
+3. Netlify automatically detects `netlify.toml`, deploys the static website, and publishes the serverless function to `/.netlify/functions/submit-project` (with `/api/submit-project` rewrite).
 
 ---
 

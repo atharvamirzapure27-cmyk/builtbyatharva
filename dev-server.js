@@ -28,8 +28,8 @@ const server = http.createServer(async (req, res) => {
   const parsedUrl = new URL(req.url, `http://${req.headers.host}`);
   const pathname = parsedUrl.pathname;
 
-  // Handle Serverless API endpoint
-  if (pathname === '/api/submit-project') {
+  // Handle Serverless API endpoint (both Netlify and legacy path)
+  if (pathname === '/api/submit-project' || pathname === '/.netlify/functions/submit-project') {
     let rawBody = '';
     req.on('data', chunk => {
       rawBody += chunk;
@@ -105,6 +105,7 @@ const server = http.createServer(async (req, res) => {
 });
 
 server.listen(PORT, () => {
-  console.log(`[BuiltByAtharva V6] Local server running at http://localhost:${PORT}`);
-  console.log(`[API Endpoint] http://localhost:${PORT}/api/submit-project`);
+  console.log(`[BuiltByAtharva Studio] Local dev server running at http://localhost:${PORT}`);
+  console.log(`[Netlify Function] http://localhost:${PORT}/.netlify/functions/submit-project`);
+  console.log(`[Rewritten API]    http://localhost:${PORT}/api/submit-project`);
 });
