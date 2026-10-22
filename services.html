@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Engineering Capabilities & Services — BuiltByAtharva</title>
+  <meta name="description" content="Explore custom website development, reactive web applications, AI integrations, UI/UX design, API integrations, and maintenance services by Atharva Mirzapure.">
+  <meta name="author" content="Atharva Mirzapure">
+
+  <link rel="icon" type="image/png" href="public/assets/brand/logo.png">
+  <link rel="stylesheet" href="styles.css">
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+</head>
+<body>
+
+  <div id="scroll-progress"></div>
+
+  <div class="bg-ambient-layer" aria-hidden="true">
+    <div class="bg-orb orb-blue"></div>
+    <div class="bg-orb orb-orange"></div>
+    <div class="bg-grid-pattern"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-brand bba-brand-badge">
+        <img src="public/assets/brand/logo.png" alt="BuiltByAtharva Logo" class="bba-logo-img" onerror="if(this.src.indexOf('assets/brand/logo.png') === -1){this.src='assets/brand/logo.png';}else{this.style.display='none';this.nextElementSibling.style.display='flex';}">
+        <div class="bba-logo-fallback" style="display:none;"><span class="bba-logo-mark">BA</span></div>
+        <div class="bba-wordmark-group">
+          <span class="bba-wordmark-title">BuiltByAtharva</span>
+          <span class="bba-wordmark-tagline">IDEAS. BUILT.</span>
+        </div>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="work.html" class="nav-link">Work</a></li>
+          <li><a href="services.html" class="nav-link active">Services</a></li>
+          <li><a href="pricing.html" class="nav-link">Pricing</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-cta-wrap" style="display: flex; align-items: center; gap: 14px;">
+        <button type="button" class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle Color Theme">
+          <i data-lucide="sun" class="sun-icon"></i>
+          <i data-lucide="moon" class="moon-icon"></i>
+        </button>
+        <a href="start-project.html" class="btn btn-primary btn-sm">
+          <span>Start a Project</span>
+          <i data-lucide="arrow-right" style="width:16px; height:16px;"></i>
+        </a>
+        <button type="button" class="mobile-toggle" id="mobile-toggle-btn">
+          <i data-lucide="menu"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-menu-drawer" id="mobile-menu-drawer">
+    <div class="mobile-drawer-header">
+      <div class="bba-brand-badge">
+        <img src="public/assets/brand/logo.png" alt="BuiltByAtharva" class="bba-logo-img" style="width:36px; height:36px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="bba-logo-fallback" style="width:36px; height:36px; display:none;"><span class="bba-logo-mark">BA</span></div>
+        <div class="bba-wordmark-group">
+          <span class="bba-wordmark-title" style="font-size:1.1rem;">BuiltByAtharva</span>
+          <span class="bba-wordmark-tagline">IDEAS. BUILT.</span>
+        </div>
+      </div>
+      <button type="button" class="mobile-drawer-close" id="mobile-drawer-close"><i data-lucide="x"></i></button>
+    </div>
+    <ul class="mobile-nav-links">
+      <li><a href="index.html" class="mobile-nav-link"><i data-lucide="home"></i> Home</a></li>
+      <li><a href="work.html" class="mobile-nav-link"><i data-lucide="briefcase"></i> Selected Work</a></li>
+      <li><a href="services.html" class="mobile-nav-link active"><i data-lucide="layers"></i> Capabilities & Services</a></li>
+      <li><a href="pricing.html" class="mobile-nav-link"><i data-lucide="credit-card"></i> Pricing & Packages</a></li>
+      <li><a href="about.html" class="mobile-nav-link"><i data-lucide="user"></i> About Atharva</a></li>
+      <li><a href="contact.html" class="mobile-nav-link"><i data-lucide="mail"></i> Contact Studio</a></li>
+    </ul>
+  </div>
+
+  <main>
+    <!-- Page Hero -->
+    <section class="page-hero">
+      <div class="container">
+        <div class="page-hero-badge">
+          <i data-lucide="layers"></i> Studio Capabilities & Offerings
+        </div>
+        <h1 class="page-hero-title">Custom Software Engineering & Digital Craft</h1>
+        <p class="page-hero-desc">
+          Bespoke digital architecture tailored for speed, visual excellence, and measurable utility. No bloated WordPress themes or slow drag-and-drop builders.
+        </p>
+      </div>
+    </section>
+
+    <!-- Services Detailed Grid -->
+    <section class="section-padding" style="padding-top: 10px;">
+      <div class="container">
+        <div class="services-detailed-grid">
+          
+          <!-- 1. Website Development -->
+          <article class="service-detail-card" id="website-dev">
+            <div>
+              <div class="service-detail-header">
+                <div class="service-icon-box" style="background: rgba(37, 99, 235, 0.1); color: var(--accent-blue);">
+                  <i data-lucide="globe"></i>
+                </div>
+                <div>
+                  <span style="font-size: 0.72rem; font-weight: 800; color: var(--accent-blue); text-transform: uppercase;">Core Engineering</span>
+                  <h2 style="font-size: 1.45rem; font-weight: 900; margin-top: 2px;">Website Development</h2>
+                </div>
+              </div>
+              
+              <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 16px;">
+                High-performance websites, personal brand showcases, and conversion landing pages engineered with clean semantic HTML5, modern CSS, and lightweight JavaScript.
+              </p>
+
+              <div style="margin-bottom: 16px;">
+                <strong style="font-size: 0.78rem; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 6px;">Target Customer:</strong>
+                <p style="font-size: 0.88rem; color: var(--text-primary);">Founders, creators, doctors, consultants, restaurants, and growing businesses needing a fast, credible digital identity.</p>
+              </div>
+
+              <div>
+                <strong style="font-size: 0.78rem; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 6px;">Key Deliverables:</strong>
+                <ul class="service-deliverables-list">
+                  <li><i data-lucide="check"></i> 100% Mobile, tablet & desktop responsive layouts</li>
+                  <li><i data-lucide="check"></i> Dual Light & Dark theme support with smooth toggling</li>
+                  <li><i data-lucide="check"></i> Serverless contact form with email notifications & PDF receipt</li>
+                  <li><i data-lucide="check"></i> On-page SEO, Open Graph cards, and sub-second load times</li>
+                </ul>
+              </div>
+
+              <div class="service-scope-boundary">
+                <strong>Scope Boundary:</strong> Static/JAMstack architecture. Heavy multi-user database backends or complex CMS portals fall under Web Applications.
+              </div>
+            </div>
+
+            <div class="service-action-bar" style="margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+              <span class="service-hint-tag">
+                <i data-lucide="sparkles" style="width: 14px; height: 14px; color: var(--accent-blue);"></i> Full Specs & Pricing in Modal
+              </span>
+              <button type="button" class="btn btn-primary btn-sm open-service-modal-btn" data-service-id="website-dev">
+                <span>Explore Service Details</span>
+                <i data-lucide="arrow-right"></i>
+              </button>
+            </div>
+          </article>
+
+          <!-- 2. Web Applications -->
+          <article class="service-detail-card border-beam-card" id="web-apps" data-service-id="web-apps">
+            <div>
+              <div class="service-detail-header">
+                <div class="service-icon-box" style="background: rgba(6, 182, 212, 0.1); color: var(--accent-cyan);">
+                  <i data-lucide="layout-template"></i>
+                </div>
+                <div>
+                  <span style="font-size: 0.72rem; font-weight: 800; color: var(--accent-cyan); text-transform: uppercase;">Interactive Systems</span>
+                  <h2 style="font-size: 1.45rem; font-weight: 900; margin-top: 2px;">Web Applications</h2>
+                </div>
+              </div>
+              
+              <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 16px;">
+                Dynamic client-side tools, clinical token queues, analytical dashboards, and calculator workflows built for instant response without heavy server latency.
+              </p>
+
+              <div style="margin-bottom: 16px;">
+                <strong style="font-size: 0.78rem; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 6px;">Target Customer:</strong>
+                <p style="font-size: 0.88rem; color: var(--text-primary);">Clinics, operational teams, financial advisors, and SaaS prototypes requiring reactive state management.</p>
+              </div>
+
+              <div>
+                <strong style="font-size: 0.78rem; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 6px;">Key Deliverables:</strong>
+                <ul class="service-deliverables-list">
+                  <li><i data-lucide="check"></i> Reactive client-side state architecture</li>
+                  <li><i data-lucide="check"></i> Interactive data tables with real-time search & sort</li>
+                  <li><i data-lucide="check"></i> LocalStorage / IndexedDB session caching</li>
+                  <li><i data-lucide="check"></i> Exportable reports (CSV & downloadable PDF format)</li>
+                </ul>
+              </div>
+
+              <div class="service-scope-boundary">
+                <strong>Scope Boundary:</strong> Enterprise relational databases or complex user role permissions require dedicated backend scope (e.g. Supabase/Firebase).
+              </div>
+            </div>
+
+            <div class="service-action-bar" style="margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+              <span class="service-hint-tag">
+                <i data-lucide="sparkles" style="width: 14px; height: 14px; color: var(--accent-cyan);"></i> Full Specs & Pricing in Modal
+              </span>
+              <button type="button" class="btn btn-primary btn-sm open-service-modal-btn" data-service-id="web-apps">
+                <span>Explore Service Details</span>
+                <i data-lucide="arrow-right"></i>
+              </button>
+            </div>
+          </article>
+
+          <!-- 3. AI & ML Solutions -->
+          <article class="service-detail-card border-beam-card" id="ai-solutions" data-service-id="ai-solutions">
+            <div>
+              <div class="service-detail-header">
+                <div class="service-icon-box" style="background: rgba(255, 107, 44, 0.1); color: var(--accent-orange);">
+                  <i data-lucide="cpu"></i>
+                </div>
+                <div>
+                  <span style="font-size: 0.72rem; font-weight: 800; color: var(--accent-orange); text-transform: uppercase;">AI & Automation</span>
+                  <h2 style="font-size: 1.45rem; font-weight: 900; margin-top: 2px;">AI & ML Solutions</h2>
+                </div>
+              </div>
+              
+              <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 16px;">
+                Connecting modern AI models (OpenAI, Claude, custom machine learning models) into intuitive web interfaces with streaming text and diagnostic breakdowns.
+              </p>
+
+              <div style="margin-bottom: 16px;">
+                <strong style="font-size: 0.78rem; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 6px;">Target Customer:</strong>
+                <p style="font-size: 0.88rem; color: var(--text-primary);">Startups and creators looking to integrate conversational chatbots, prompt tools, or vision diagnostics into their products.</p>
+              </div>
+
+              <div>
+                <strong style="font-size: 0.78rem; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 6px;">Key Deliverables:</strong>
+                <ul class="service-deliverables-list">
+                  <li><i data-lucide="check"></i> Streaming AI chat and response display</li>
+                  <li><i data-lucide="check"></i> Serverless proxy protecting API credentials</li>
+                  <li><i data-lucide="check"></i> Confidence metric visualization cards</li>
+                  <li><i data-lucide="check"></i> Multi-modal image and text input dropzones</li>
+                </ul>
+              </div>
+
+              <div class="service-scope-boundary">
+                <strong>Scope Boundary:</strong> Third-party model token costs (OpenAI/Anthropic) are billed directly to client's provider account. Model factuality reflects underlying AI capability.
+              </div>
+            </div>
+
+            <div class="service-action-bar" style="margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+              <span class="service-hint-tag">
+                <i data-lucide="sparkles" style="width: 14px; height: 14px; color: var(--accent-orange);"></i> Full Specs & Pricing in Modal
+              </span>
+              <button type="button" class="btn btn-primary btn-sm open-service-modal-btn" data-service-id="ai-solutions">
+                <span>Explore Service Details</span>
+                <i data-lucide="arrow-right"></i>
+              </button>
+            </div>
+          </article>
+
+          <!-- 4. UI/UX & Creative Design -->
+          <article class="service-detail-card border-beam-card" id="ui-ux" data-service-id="ui-ux">
+            <div>
+              <div class="service-detail-header">
+                <div class="service-icon-box" style="background: rgba(139, 92, 246, 0.1); color: var(--accent-violet);">
+                  <i data-lucide="palette"></i>
+                </div>
+                <div>
+                  <span style="font-size: 0.72rem; font-weight: 800; color: var(--accent-violet); text-transform: uppercase;">Design Systems</span>
+                  <h2 style="font-size: 1.45rem; font-weight: 900; margin-top: 2px;">UI/UX & Creative Design</h2>
+                </div>
+              </div>
+              
+              <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 16px;">
+                Dimensional, high-craft user interface design focusing on typography hierarchy, refined glassmorphism, responsive bento grids, and fluid micro-interactions.
+              </p>
+
+              <div style="margin-bottom: 16px;">
+                <strong style="font-size: 0.78rem; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 6px;">Target Customer:</strong>
+                <p style="font-size: 0.88rem; color: var(--text-primary);">Companies seeking a distinctive visual voice to avoid generic Bootstrap/Tailwind template aesthetics.</p>
+              </div>
+
+              <div>
+                <strong style="font-size: 0.78rem; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 6px;">Key Deliverables:</strong>
+                <ul class="service-deliverables-list">
+                  <li><i data-lucide="check"></i> Cohesive design system & CSS variables token set</li>
+                  <li><i data-lucide="check"></i> Dark and Light mode color harmony specifications</li>
+                  <li><i data-lucide="check"></i> Interactive button & micro-animation prototypes</li>
+                  <li><i data-lucide="check"></i> Development-ready layout handoff</li>
+                </ul>
+              </div>
+
+              <div class="service-scope-boundary">
+                <strong>Scope Boundary:</strong> Interface and component design; separate software engineering quote applies for full application programming.
+              </div>
+            </div>
+
+            <div class="service-action-bar" style="margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+              <span class="service-hint-tag">
+                <i data-lucide="sparkles" style="width: 14px; height: 14px; color: var(--accent-violet);"></i> Full Specs & Pricing in Modal
+              </span>
+              <button type="button" class="btn btn-primary btn-sm open-service-modal-btn" data-service-id="ui-ux">
+                <span>Explore Service Details</span>
+                <i data-lucide="arrow-right"></i>
+              </button>
+            </div>
+          </article>
+
+          <!-- 5. Integrations & APIs -->
+          <article class="service-detail-card border-beam-card" id="integrations" data-service-id="integrations">
+            <div>
+              <div class="service-detail-header">
+                <div class="service-icon-box" style="background: rgba(16, 185, 129, 0.1); color: var(--accent-green);">
+                  <i data-lucide="link"></i>
+                </div>
+                <div>
+                  <span style="font-size: 0.72rem; font-weight: 800; color: var(--accent-green); text-transform: uppercase;">Cloud & APIs</span>
+                  <h2 style="font-size: 1.45rem; font-weight: 900; margin-top: 2px;">Integrations & APIs</h2>
+                </div>
+              </div>
+              
+              <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 16px;">
+                Connecting frontend user interfaces to serverless functions, email providers (Resend), transactional SMS/WhatsApp bots, and Google Maps.
+              </p>
+
+              <div style="margin-bottom: 16px;">
+                <strong style="font-size: 0.78rem; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 6px;">Target Customer:</strong>
+                <p style="font-size: 0.88rem; color: var(--text-primary);">Business websites needing automated client email confirmations, lead notifications, or map integrations.</p>
+              </div>
+
+              <div>
+                <strong style="font-size: 0.78rem; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 6px;">Key Deliverables:</strong>
+                <ul class="service-deliverables-list">
+                  <li><i data-lucide="check"></i> Netlify/Vercel serverless function configuration</li>
+                  <li><i data-lucide="check"></i> Resend email dispatch with PDF receipt attachment</li>
+                  <li><i data-lucide="check"></i> Honeypot anti-spam & rate limiting defense</li>
+                  <li><i data-lucide="check"></i> Pre-filled WhatsApp consultation triggers</li>
+                </ul>
+              </div>
+
+              <div class="service-scope-boundary">
+                <strong>Scope Boundary:</strong> Third-party API accounts and usage limits are owned and maintained by the client.
+              </div>
+            </div>
+
+            <div class="service-action-bar" style="margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+              <span class="service-hint-tag">
+                <i data-lucide="sparkles" style="width: 14px; height: 14px; color: var(--accent-green);"></i> Full Specs & Pricing in Modal
+              </span>
+              <button type="button" class="btn btn-primary btn-sm open-service-modal-btn" data-service-id="integrations">
+                <span>Explore Service Details</span>
+                <i data-lucide="arrow-right"></i>
+              </button>
+            </div>
+          </article>
+
+          <!-- 6. Maintenance & Support -->
+          <article class="service-detail-card border-beam-card" id="maintenance" data-service-id="maintenance">
+            <div>
+              <div class="service-detail-header">
+                <div class="service-icon-box" style="background: rgba(37, 99, 235, 0.1); color: var(--accent-blue);">
+                  <i data-lucide="shield-check"></i>
+                </div>
+                <div>
+                  <span style="font-size: 0.72rem; font-weight: 800; color: var(--accent-blue); text-transform: uppercase;">Longevity</span>
+                  <h2 style="font-size: 1.45rem; font-weight: 900; margin-top: 2px;">Maintenance & Support</h2>
+                </div>
+              </div>
+              
+              <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 16px;">
+                Keep your digital presence secure, fast, and up-to-date. Prompt content updates, DNS verification, and browser performance checkups.
+              </p>
+
+              <div style="margin-bottom: 16px;">
+                <strong style="font-size: 0.78rem; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 6px;">Target Customer:</strong>
+                <p style="font-size: 0.88rem; color: var(--text-primary);">Existing clients and website owners seeking hassle-free ongoing technical updates and domain support.</p>
+              </div>
+
+              <div>
+                <strong style="font-size: 0.78rem; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 6px;">Key Deliverables:</strong>
+                <ul class="service-deliverables-list">
+                  <li><i data-lucide="check"></i> Same-day or 24-hr turnaround on copy and image changes</li>
+                  <li><i data-lucide="check"></i> DNS and custom domain setup & SSL renewals</li>
+                  <li><i data-lucide="check"></i> Performance and Lighthouse speed audits</li>
+                  <li><i data-lucide="check"></i> Priority direct WhatsApp access for bug resolution</li>
+                </ul>
+              </div>
+
+              <div class="service-scope-boundary">
+                <strong>Scope Boundary:</strong> Covers content updates and bug fixes within existing architecture. Complete ground-up redesigns are scoped as new projects.
+              </div>
+            </div>
+
+            <div class="service-action-bar" style="margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+              <span class="service-hint-tag">
+                <i data-lucide="sparkles" style="width: 14px; height: 14px; color: var(--accent-blue);"></i> Full Specs & Pricing in Modal
+              </span>
+              <button type="button" class="btn btn-primary btn-sm open-service-modal-btn" data-service-id="maintenance">
+                <span>Explore Service Details</span>
+                <i data-lucide="arrow-right"></i>
+              </button>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <section class="section-padding" style="background: var(--bg-alt); text-align: center;">
+      <div class="container" style="max-width: 700px;">
+        <h2 style="font-size: 2.2rem; font-weight: 900; margin-bottom: 16px;">Need guidance choosing the right scope?</h2>
+        <p style="font-size: 1.05rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 28px;">
+          I personally analyze your requirements and recommend the exact technical architecture that fits your goals and budget.
+        </p>
+        <div style="display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;">
+          <a href="pricing.html" class="btn btn-primary btn-lg">
+            <span>Explore Pricing & Packages</span>
+            <i data-lucide="arrow-right"></i>
+          </a>
+          <a href="https://wa.me/918626074035" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-lg">
+            <i data-lucide="message-circle"></i> Discuss via WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" style="background: var(--bg-footer); color: #ffffff; padding: 80px 0 36px;">
+    <div class="container">
+      <div class="footer-grid" style="display: grid; grid-template-columns: 2fr 1fr 1fr 1.2fr; gap: 48px; margin-bottom: 60px;">
+        <div>
+          <a href="index.html" class="bba-brand-badge" style="margin-bottom: 18px;">
+            <img src="public/assets/brand/logo.png" alt="BuiltByAtharva" class="bba-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="bba-logo-fallback" style="display:none;"><span class="bba-logo-mark">BA</span></div>
+            <div class="bba-wordmark-group">
+              <span class="bba-wordmark-title" style="color: #ffffff;">BuiltByAtharva</span>
+              <span class="bba-wordmark-tagline">IDEAS. BUILT.</span>
+            </div>
+          </a>
+          <p style="color: #94a3b8; font-size: 0.92rem; line-height: 1.6; max-width: 340px;">
+            Futuristic Creative Technology Studio founded by <strong>Atharva Mirzapure</strong>.
+          </p>
+        </div>
+        <div>
+          <h4 style="color: #ffffff; font-size: 0.95rem; font-weight: 800; text-transform: uppercase; margin-bottom: 18px;">Studio</h4>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 0.9rem;">
+            <li><a href="work.html" style="color: #94a3b8;">Selected Work</a></li>
+            <li><a href="services.html" style="color: #3b82f6;">Capabilities & Services</a></li>
+            <li><a href="pricing.html" style="color: #94a3b8;">Pricing & Packages</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="color: #ffffff; font-size: 0.95rem; font-weight: 800; text-transform: uppercase; margin-bottom: 18px;">About</h4>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 0.9rem;">
+            <li><a href="about.html" style="color: #94a3b8;">Atharva Mirzapure</a></li>
+            <li><a href="contact.html" style="color: #94a3b8;">Contact Studio</a></li>
+            <li><a href="start-project.html" style="color: #94a3b8;">Start a Project</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="color: #ffffff; font-size: 0.95rem; font-weight: 800; text-transform: uppercase; margin-bottom: 18px;">Direct Connect</h4>
+          <div style="display: flex; flex-direction: column; gap: 10px; font-size: 0.875rem;">
+            <a href="mailto:builtbyatharva27@gmail.com" style="color: #cbd5e1; display: inline-flex; align-items: center; gap: 8px;">
+              <i data-lucide="mail" style="color: var(--accent-blue);"></i> builtbyatharva27@gmail.com
+            </a>
+            <a href="https://wa.me/918626074035" target="_blank" rel="noopener noreferrer" style="color: #cbd5e1; display: inline-flex; align-items: center; gap: 8px;">
+              <i data-lucide="message-circle" style="color: #25d366;"></i> +91 86260 74035
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 <strong>BuiltByAtharva</strong>. Engineered with precision by Atharva Mirzapure.</div>
+        <div>Verified Deliverables • 50% Milestone Advance Policy</div>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/918626074035" target="_blank" rel="noopener noreferrer" class="floating-whatsapp-btn">
+    <i data-lucide="message-circle"></i>
+    <span class="whatsapp-btn-text">Chat with Atharva</span>
+  </a>
+
+  <!-- =========================================================================
+       ACCESSIBLE SERVICE DETAIL MODAL (REVEALS IN-DEPTH SPECS & PRICING)
+       ========================================================================= -->
+  <div class="bba-modal-overlay" id="service-detail-modal" role="dialog" aria-modal="true" aria-labelledby="modal-service-title">
+    <div class="bba-modal-dialog">
+      <button type="button" class="bba-modal-close-btn" id="modal-close-btn" aria-label="Close Service Details">
+        <i data-lucide="x" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 20px;">
+        <div id="modal-service-icon" style="width: 52px; height: 52px; border-radius: var(--radius-md); background: rgba(37, 99, 235, 0.1); color: var(--accent-blue); display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+          <i data-lucide="globe"></i>
+        </div>
+        <div>
+          <span id="modal-service-category" class="service-category-badge" style="background: rgba(37, 99, 235, 0.08); color: var(--accent-blue);">Core Engineering</span>
+          <h2 id="modal-service-title" style="font-size: 1.7rem; font-weight: 900; margin-top: 4px;">Website Development</h2>
+        </div>
+      </div>
+
+      <p id="modal-service-description" style="font-size: 1rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 24px;">
+        High-performance websites, personal brand showcases, and conversion landing pages engineered with clean semantic HTML5, modern CSS, and lightweight JavaScript.
+      </p>
+
+      <!-- Who It Is For -->
+      <div style="margin-bottom: 22px;">
+        <h4 style="font-size: 0.82rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 8px;">Target Client & Suitable Projects:</h4>
+        <p id="modal-service-audience" style="font-size: 0.92rem; color: var(--text-primary); line-height: 1.5;">Founders, creators, doctors, consultants, restaurants, and growing businesses needing a fast, credible digital identity.</p>
+      </div>
+
+      <!-- Deliverables List -->
+      <div style="margin-bottom: 24px;">
+        <h4 style="font-size: 0.82rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 12px;">Included Features & Key Deliverables:</h4>
+        <ul id="modal-service-deliverables" class="service-deliverables-list" style="list-style: none; display: flex; flex-direction: column; gap: 10px;">
+          <!-- Populated dynamically via JS -->
+        </ul>
+      </div>
+
+      <!-- Client Prerequisites -->
+      <div style="margin-bottom: 24px; background: var(--bg-alt); padding: 16px 20px; border-radius: var(--radius-md); border-left: 3px solid var(--accent-blue);">
+        <h4 style="font-size: 0.8rem; font-weight: 800; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px;">What You Need to Provide:</h4>
+        <p id="modal-service-prerequisites" style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;">
+          Brand logo, basic copy/content outline, reference URLs or preferred aesthetic inspiration.
+        </p>
+      </div>
+
+      <!-- Timeline & Project Proof -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px;">
+        <div style="background: var(--bg-alt); padding: 14px 18px; border-radius: var(--radius-md);">
+          <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 4px;">Estimated Timeline:</span>
+          <strong id="modal-service-timeline" style="font-size: 1rem; color: var(--text-primary);">3 - 5 Business Days</strong>
+        </div>
+        <div style="background: var(--bg-alt); padding: 14px 18px; border-radius: var(--radius-md);">
+          <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 4px;">Relevant Case Study:</span>
+          <a href="case-study.html?id=ayur-sanjeevani" id="modal-service-case-study" style="font-size: 0.92rem; font-weight: 700; color: var(--accent-blue); text-decoration: underline;">AyurSanjeevani &rarr;</a>
+        </div>
+      </div>
+
+      <!-- PRICE REVEAL BOX -->
+      <div class="modal-price-reveal-box">
+        <div>
+          <span style="font-size: 0.78rem; font-weight: 800; color: var(--accent-blue); text-transform: uppercase; letter-spacing: 0.08em; display: block; margin-bottom: 4px;">Verified Indicative Investment</span>
+          <div id="modal-service-price" class="modal-price-tag">₹2,999 - ₹14,999</div>
+          <span style="font-size: 0.8rem; color: var(--text-muted); display: block; margin-top: 4px;">Fixed scope agreement • 50% milestone advance policy</span>
+        </div>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <a href="start-project.html" id="modal-cta-brief" class="btn btn-primary">
+            <span>Start with this Service</span>
+            <i data-lucide="arrow-right"></i>
+          </a>
+          <a href="https://wa.me/918626074035" id="modal-cta-whatsapp" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+            <i data-lucide="message-circle"></i>
+            <span>WhatsApp</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="brand-config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

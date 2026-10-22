@@ -1,63 +1,97 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BuiltByAtharva — Futuristic Software Studio | IDEAS. BUILT.</title>
-  <meta name="description" content="BuiltByAtharva is the independent software development studio of Atharva Mirzapure. High-performance websites, reactive web applications, 3D digital experiences, and AI-powered solutions. IDEAS. BUILT.">
+  <title>BuiltByAtharva — IDEAS. BUILT. | Creative Technology & Software Studio</title>
+  <meta name="description" content="BuiltByAtharva is a high-craft creative technology and software studio founded by Atharva Mirzapure. We engineer high-performance websites, reactive web applications, and intelligent AI solutions.">
   <meta name="author" content="Atharva Mirzapure">
-  <meta name="robots" content="index, follow">
-  <meta name="theme-color" content="#07090e">
-  <link rel="canonical" href="https://builtbyatharva.vercel.app">
-
+  <meta name="keywords" content="BuiltByAtharva, Atharva Mirzapure, Creative Technologist, Web Development, Three.js, GSAP, AI Web Apps, Portfolio, Software Studio">
+  
   <!-- Open Graph / Social Sharing -->
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="BuiltByAtharva">
-  <meta property="og:title" content="BuiltByAtharva — Futuristic Software Studio | IDEAS. BUILT.">
-  <meta property="og:description" content="High-performance websites, reactive web applications, interactive 3D, and AI-powered solutions engineered by Atharva Mirzapure.">
-  <meta property="og:url" content="https://builtbyatharva.vercel.app">
-  <meta property="og:image" content="https://builtbyatharva.vercel.app/assets/portfolio-1.jpg">
-
+  <meta property="og:url" content="https://builtbyatharva.netlify.app/">
+  <meta property="og:title" content="BuiltByAtharva — IDEAS. BUILT. | Creative Technology Studio">
+  <meta property="og:description" content="Digital experiences, built to stand apart. Bespoke websites, web applications, and AI prototypes by Atharva Mirzapure.">
+  <meta property="og:image" content="public/assets/brand/logo.png">
+  
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="BuiltByAtharva — Futuristic Software Studio">
-  <meta name="twitter:description" content="High-performance websites, web applications, and AI solutions engineered by Atharva Mirzapure.">
-  <meta name="twitter:image" content="https://builtbyatharva.vercel.app/assets/portfolio-1.jpg">
+  <meta name="twitter:title" content="BuiltByAtharva — IDEAS. BUILT.">
+  <meta name="twitter:description" content="Digital experiences, built to stand apart. High-performance software engineering & creative technology studio.">
+  <meta name="twitter:image" content="public/assets/brand/logo.png">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%232563eb'/><text x='50%' y='56%' font-family='sans-serif' font-weight='900' font-size='48' fill='%23ffffff' text-anchor='middle' dominant-baseline='middle'>BA</text></svg>">
+  <link rel="icon" type="image/png" href="public/assets/brand/logo.png">
+  <link rel="apple-touch-icon" href="public/assets/brand/logo.png">
 
-  <!-- Inline Script to Pre-apply Saved Theme (Avoids Flash of Wrong Theme) -->
-  <script>
-    (function() {
-      try {
-        var saved = localStorage.getItem('bba-theme');
-        var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-        document.documentElement.setAttribute('data-theme', theme);
-      } catch (e) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-      }
-    })();
-  </script>
-
-  <!-- Stylesheet -->
+  <!-- Stylesheets -->
   <link rel="stylesheet" href="styles.css">
 
-  <!-- Lucide Icons (CDN) -->
+  <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
-  <!-- 3D & Animation Libraries (CDN) -->
+  <!-- Animation & 3D Libraries -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
 </head>
 <body>
 
-  <!-- Top Scroll Progress Bar -->
-  <div id="scroll-progress" aria-hidden="true"></div>
+  <!-- =========================================================================
+       0. CINEMATIC LAUNCH SEQUENCE (OPTIONAL TO SKIP, REMEMBERS SESSION)
+       ========================================================================= -->
+  <aside id="cinematic-intro" class="cinematic-intro" role="dialog" aria-modal="true" aria-label="BuiltByAtharva Launch Sequence">
+    <div class="intro-backdrop"></div>
+    <div class="intro-canvas-wrap">
+      <canvas id="intro-particles-canvas"></canvas>
+    </div>
+    
+    <div class="intro-center-stage">
+      <!-- Glowing Animated Emblem -->
+      <div class="intro-logo-reveal">
+        <div class="intro-ring intro-ring-outer"></div>
+        <div class="intro-ring intro-ring-inner"></div>
+        <div class="intro-logo-glow"></div>
+        <img src="assets/brand/builtbyatharva-logo.jpg" alt="BuiltByAtharva Official Logo" class="intro-logo-img" onerror="if(this.src.indexOf('public/assets/brand/logo.png')===-1){this.src='public/assets/brand/logo.png';}">
+      </div>
 
-  <!-- Ambient Background Layer -->
+      <!-- Kinetic Typography -->
+      <div class="intro-typography">
+        <div class="intro-studio-tag">
+          <span class="intro-pulse-dot"></span>
+          <span>CREATIVE TECHNOLOGY & SOFTWARE STUDIO</span>
+        </div>
+        <div class="intro-brand-title" id="intro-brand-title" role="heading" aria-level="2">
+          <span class="intro-char">B</span><span class="intro-char">U</span><span class="intro-char">I</span><span class="intro-char">L</span><span class="intro-char">T</span><span class="intro-char">B</span><span class="intro-char">Y</span><span class="intro-char">A</span><span class="intro-char">T</span><span class="intro-char">H</span><span class="intro-char">A</span><span class="intro-char">R</span><span class="intro-char">V</span><span class="intro-char">A</span>
+        </div>
+        <div class="intro-tagline-wrap">
+          <span class="intro-tagline-text" id="intro-tagline-text">IDEAS. BUILT.</span>
+        </div>
+        <p class="intro-statement" id="intro-statement">
+          Digital experiences, engineered to stand out.
+        </p>
+      </div>
+
+      <!-- Progress Track -->
+      <div class="intro-progress-bar-wrap">
+        <div class="intro-progress-bar" id="intro-progress-bar"></div>
+      </div>
+    </div>
+
+    <!-- Skip Intro Button -->
+    <button type="button" class="intro-skip-btn" id="intro-skip-btn" aria-label="Skip Cinematic Intro">
+      <span>SKIP INTRO</span>
+      <span class="intro-key-hint">ESC</span>
+      <i data-lucide="arrow-right" style="width:14px; height:14px;"></i>
+    </button>
+  </aside>
+
+  <!-- Scroll Progress Indicator -->
+  <div id="scroll-progress" role="progressbar" aria-label="Reading Progress"></div>
+
+  <!-- Ambient Background Lighting -->
   <div class="bg-ambient-layer" aria-hidden="true">
     <div class="bg-orb orb-blue"></div>
     <div class="bg-orb orb-orange"></div>
@@ -65,1496 +99,684 @@
     <div class="bg-grid-pattern"></div>
   </div>
 
-  <!-- Custom Cursor (Desktop Only) -->
-  <div class="custom-cursor" id="custom-cursor" aria-hidden="true"></div>
-  <div class="custom-cursor-dot" id="custom-cursor-dot" aria-hidden="true"></div>
+  <!-- Custom Cursor for Desktop -->
+  <div class="custom-cursor" aria-hidden="true"></div>
+  <div class="custom-cursor-dot" aria-hidden="true"></div>
 
-  <!-- ==========================================
-       Header & Navigation
-       ========================================== -->
+  <!-- =========================================================================
+       1. GLOBAL HEADER & NAVIGATION
+       ========================================================================= -->
   <header class="navbar" id="navbar">
     <div class="container nav-container">
-      <a href="#hero" class="nav-brand" aria-label="BuiltByAtharva Homepage">
-        <div class="logo-badge">BA</div>
-        <div class="brand-text-wrap">
-          <span class="brand-name">BuiltByAtharva</span>
-          <span class="brand-tagline">IDEAS. BUILT.</span>
+      <!-- Official Brand Logo -->
+      <a href="index.html" class="nav-brand bba-brand-badge" aria-label="BuiltByAtharva — Return to Home">
+        <img src="assets/brand/builtbyatharva-logo.jpg" alt="BuiltByAtharva Logo" class="bba-logo-img" onerror="if(this.src.indexOf('public/assets/brand/logo.png') === -1){this.src='public/assets/brand/logo.png';}else{this.style.display='none';this.nextElementSibling.style.display='flex';}">
+        <div class="bba-logo-fallback" style="display:none;"><span class="bba-logo-mark">BA</span></div>
+        <div class="bba-wordmark-group">
+          <span class="bba-wordmark-title">BuiltByAtharva</span>
+          <span class="bba-wordmark-tagline">IDEAS. BUILT.</span>
         </div>
       </a>
 
-      <nav class="nav-menu-desktop" aria-label="Main Navigation">
+      <!-- Desktop Nav Links -->
+      <nav aria-label="Main Navigation">
         <ul class="nav-links">
-          <li><a href="#hero" class="nav-link active">Home</a></li>
-          <li><a href="#about" class="nav-link">About</a></li>
-          <li><a href="#services" class="nav-link">Services</a></li>
-          <li><a href="#capabilities" class="nav-link">Capabilities</a></li>
-          <li><a href="#pricing" class="nav-link">Pricing</a></li>
-          <li><a href="#work" class="nav-link">Work</a></li>
-          <li><a href="#process" class="nav-link">Process</a></li>
+          <li><a href="work.html" class="nav-link">Work</a></li>
+          <li><a href="services.html" class="nav-link">Services</a></li>
+          <li><a href="pricing.html" class="nav-link">Pricing</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
         </ul>
       </nav>
 
-      <div class="nav-cta-wrap">
-        <!-- Light / Dark Theme Toggle Button -->
-        <button class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle Light and Dark Theme" title="Toggle Light/Dark Theme">
-          <i data-lucide="sun" class="theme-icon-sun"></i>
-          <i data-lucide="moon" class="theme-icon-moon"></i>
+      <!-- Nav CTA & Controls -->
+      <div class="nav-cta-wrap" style="display: flex; align-items: center; gap: 12px;">
+        <button type="button" class="btn btn-outline btn-sm" id="nav-replay-intro-btn" title="Replay Cinematic Launch Sequence" style="padding: 7px 12px; font-size: 0.78rem;">
+          <i data-lucide="play" style="width:13px; height:13px;"></i>
+          <span style="display: none; @media(min-width: 1024px){ display: inline; }">Intro</span>
         </button>
-
-        <a href="#start-project" class="btn btn-primary btn-sm">
-          Start a Project <i data-lucide="arrow-right"></i>
+        <button type="button" class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle Color Theme">
+          <i data-lucide="sun" class="sun-icon"></i>
+          <i data-lucide="moon" class="moon-icon"></i>
+        </button>
+        <a href="start-project.html" class="btn btn-primary btn-sm">
+          <span>Start a Project</span>
+          <i data-lucide="arrow-right" style="width:16px; height:16px;"></i>
         </a>
-        <button class="mobile-toggle" aria-label="Toggle Navigation Menu" aria-expanded="false" id="mobile-toggle-btn">
+        <button type="button" class="mobile-toggle" id="mobile-toggle-btn" aria-label="Open Navigation Menu">
           <i data-lucide="menu"></i>
         </button>
       </div>
     </div>
   </header>
 
-  <!-- Mobile Drawer Menu -->
-  <div class="drawer-backdrop" id="drawer-backdrop"></div>
-  <div class="mobile-drawer" id="mobile-drawer" aria-label="Mobile Navigation Drawer">
-    <div class="drawer-header">
-      <div class="nav-brand">
-        <div class="logo-badge">BA</div>
-        <div class="brand-text-wrap">
-          <span class="brand-name">BuiltByAtharva</span>
-          <span class="brand-tagline">IDEAS. BUILT.</span>
+  <!-- Mobile Navigation Drawer -->
+  <div class="mobile-menu-drawer" id="mobile-menu-drawer" aria-hidden="true">
+    <div class="mobile-drawer-header">
+      <div class="bba-brand-badge">
+        <img src="public/assets/brand/logo.png" alt="BuiltByAtharva" class="bba-logo-img" style="width:36px; height:36px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="bba-logo-fallback" style="width:36px; height:36px; display:none;"><span class="bba-logo-mark">BA</span></div>
+        <div class="bba-wordmark-group">
+          <span class="bba-wordmark-title" style="font-size:1.1rem;">BuiltByAtharva</span>
+          <span class="bba-wordmark-tagline">IDEAS. BUILT.</span>
         </div>
       </div>
-      <button class="drawer-close" aria-label="Close Navigation Menu" id="drawer-close-btn">
+      <button type="button" class="mobile-drawer-close" id="mobile-drawer-close" aria-label="Close Navigation Menu">
         <i data-lucide="x"></i>
       </button>
     </div>
-
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; padding:12px; background:var(--bg-alt); border-radius:var(--radius-md);">
-      <span style="font-size:0.85rem; font-weight:700;">Theme Mode</span>
-      <button class="theme-toggle-btn" id="mobile-theme-toggle-btn" aria-label="Toggle Theme">
-        <i data-lucide="sun" class="theme-icon-sun"></i>
-        <i data-lucide="moon" class="theme-icon-moon"></i>
-      </button>
-    </div>
-
-    <ul class="drawer-nav">
-      <li><a href="#hero" class="drawer-link"><i data-lucide="home"></i> Home</a></li>
-      <li><a href="#about" class="drawer-link"><i data-lucide="user"></i> About Me</a></li>
-      <li><a href="#services" class="drawer-link"><i data-lucide="layers"></i> Services</a></li>
-      <li><a href="#capabilities" class="drawer-link"><i data-lucide="grid"></i> Capabilities</a></li>
-      <li><a href="#pricing" class="drawer-link"><i data-lucide="tag"></i> Pricing & Configurator</a></li>
-      <li><a href="#work" class="drawer-link"><i data-lucide="briefcase"></i> Featured Work</a></li>
-      <li><a href="#process" class="drawer-link"><i data-lucide="git-merge"></i> 7-Step Process</a></li>
+    <ul class="mobile-nav-links">
+      <li><a href="index.html" class="mobile-nav-link active"><i data-lucide="home"></i> Home</a></li>
+      <li><a href="work.html" class="mobile-nav-link"><i data-lucide="briefcase"></i> Selected Work</a></li>
+      <li><a href="services.html" class="mobile-nav-link"><i data-lucide="layers"></i> Capabilities & Services</a></li>
+      <li><a href="pricing.html" class="mobile-nav-link"><i data-lucide="credit-card"></i> Pricing & Packages</a></li>
+      <li><a href="about.html" class="mobile-nav-link"><i data-lucide="user"></i> About Atharva</a></li>
+      <li><a href="contact.html" class="mobile-nav-link"><i data-lucide="mail"></i> Contact Studio</a></li>
     </ul>
-
-    <div style="margin-top: 28px;">
-      <a href="#start-project" class="btn btn-primary btn-full">
-        Start a Project <i data-lucide="arrow-right"></i>
+    <div class="mobile-drawer-footer">
+      <a href="start-project.html" class="btn btn-primary btn-full" style="margin-bottom: 14px;">
+        <i data-lucide="sparkles"></i> Start a Project
+      </a>
+      <a href="https://wa.me/918626074035" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-full">
+        <i data-lucide="message-circle"></i> Direct WhatsApp
       </a>
     </div>
   </div>
 
-  <main>
-    <!-- ==========================================
-         SECTION 1: ADVANCED DEVELOPER-STYLE HERO
-         ========================================== -->
-    <section class="hero" id="hero">
-      <div class="container hero-grid">
+  <main id="main-content">
+    <!-- =========================================================================
+         2. HERO SECTION — EDITORIAL WITH 3D CYBER-CORE CENTERPIECE
+         ========================================================================= -->
+    <section class="hero-section" id="hero" style="min-height: 92vh; display: flex; align-items: center; padding-top: calc(var(--header-height) + 20px);">
+      <div class="container hero-grid" style="display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 40px; align-items: center;">
+        
+        <!-- Left: Confident Editorial Typography & CTAs -->
         <div class="hero-content">
-          <div class="hero-status-pill">
-            <span class="status-dot"></span>
-            STUDIO STATUS: ACTIVE FOR PROJECTS
+          <div class="section-tag" style="background: rgba(37, 99, 235, 0.08); border-color: rgba(37, 99, 235, 0.3);">
+            <i data-lucide="sparkles" style="width: 14px; height: 14px;"></i>
+            <span>Creative Technology & Software Studio</span>
           </div>
 
-          <h1 class="hero-title">
-            <span class="hero-title-main">BUILTBYATHARVA</span>
-            <span class="hero-tagline-sub">
-              <span class="word-ideas">IDEAS.</span>
-              <span class="word-built">BUILT.</span>
-            </span>
-            <span class="kinetic-phrase" id="kinetic-phrase">// DESIGN. DEVELOP. DEPLOY.</span>
+          <h1 class="hero-headline" style="font-size: clamp(2.8rem, 5.2vw, 4.4rem); font-weight: 900; letter-spacing: -0.035em; line-height: 1.08; margin-bottom: 22px;">
+            Digital experiences,<br>
+            <span style="background: var(--grad-built); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">built to stand apart.</span>
           </h1>
 
-          <p class="hero-intro">
-            Hi, I'm <strong>Atharva Mirzapure</strong> — Independent Software Developer & Creative Technologist. I engineer modern websites, high-performance web applications, interactive 3D digital experiences, and AI-powered tools designed for real impact.
+          <p class="hero-lead" style="font-size: clamp(1.1rem, 1.8vw, 1.25rem); color: var(--text-secondary); line-height: 1.6; max-width: 560px; margin-bottom: 34px;">
+            Engineered by <strong>Atharva Mirzapure</strong>. I design and build high-performance websites, reactive web applications, and intelligent AI prototypes that turn bold ideas into production-ready digital reality.
           </p>
 
-          <div class="hero-actions">
-            <a href="#start-project" class="btn btn-primary btn-lg">
-              START A PROJECT <i data-lucide="arrow-right"></i>
+          <div class="hero-actions" style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 40px;">
+            <a href="start-project.html" class="btn btn-primary btn-lg" id="hero-primary-cta">
+              <span>Start a Project</span>
+              <i data-lucide="arrow-right"></i>
             </a>
-            <a href="#work" class="btn btn-secondary btn-lg">
-              EXPLORE MY WORK <i data-lucide="briefcase"></i>
+            <a href="work.html" class="btn btn-secondary btn-lg" id="hero-secondary-cta">
+              <i data-lucide="eye"></i>
+              <span>Explore Selected Work</span>
             </a>
           </div>
 
-          <div class="hero-badges-row">
-            <div class="hero-badge-item">
-              <i data-lucide="user-check"></i> Direct Handcrafted Code • Zero Middlemen
+          <!-- Quick Trust Metrics & Direct Availability -->
+          <div class="hero-trust-bar" style="display: flex; align-items: center; gap: 28px; padding-top: 24px; border-top: 1px solid var(--border-light); flex-wrap: wrap;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span style="width: 10px; height: 10px; border-radius: 50%; background: var(--accent-green); box-shadow: 0 0 10px var(--accent-green);"></span>
+              <span style="font-size: 0.85rem; font-weight: 700; color: var(--text-primary);">Available for Q4 2026 Projects</span>
             </div>
-            <div class="hero-badge-item">
-              <i data-lucide="cpu"></i> Modern Web Stack • Three.js • AI
+            <div style="font-size: 0.85rem; color: var(--text-muted);">
+              <i data-lucide="shield-check" style="width: 14px; height: 14px; vertical-align: middle; color: var(--accent-blue);"></i> 50% Milestone Advance Model
             </div>
-            <div class="hero-badge-item">
-              <i data-lucide="shield-check"></i> Fixed Milestone Scope • 50% Advance
+            <div style="font-size: 0.85rem; color: var(--text-muted);">
+              <i data-lucide="clock" style="width: 14px; height: 14px; vertical-align: middle; color: var(--accent-orange);"></i> 24-Hour Scope Turnaround
             </div>
           </div>
         </div>
 
-        <!-- 3D Canvas + Developer Workstation Terminal -->
-        <div class="hero-visual-wrap" id="hero-visual-wrap">
-          <canvas id="hero-3d-canvas" aria-label="Interactive 3D Geometric Software Centerpiece"></canvas>
+        <!-- Right: Original Interactive 3D Cyber-Core Centerpiece -->
+        <div class="hero-visual-wrap" style="position: relative; display: flex; justify-content: center; align-items: center; height: 480px;">
+          <canvas id="hero-3d-canvas" style="width: 100%; height: 100%; max-height: 480px;"></canvas>
 
-          <!-- Fallback when WebGL is unavailable or on mobile -->
-          <div class="hero-fallback-graphic" id="hero-fallback-graphic" style="display:none;" aria-hidden="true"></div>
-
-          <!-- Floating Terminal Workstation Card -->
-          <div class="hero-terminal-card" id="hero-terminal-card">
-            <div class="terminal-header">
-              <div class="terminal-controls">
-                <span class="term-dot red"></span>
-                <span class="term-dot yellow"></span>
-                <span class="term-dot green"></span>
-              </div>
-              <span class="terminal-title">builtbyatharva-studio ~ zsh</span>
-              <span class="terminal-status-tag">ENGINE ONLINE</span>
+          <!-- Fallback Graphic for Non-WebGL or Reduced Motion -->
+          <div id="hero-fallback-graphic" style="display: none; text-align: center; padding: 40px 20px;">
+            <div style="width: 180px; height: 180px; margin: 0 auto 20px; border-radius: 50%; background: var(--grad-primary); display: flex; align-items: center; justify-content: center; box-shadow: 0 20px 50px var(--accent-blue-glow);">
+              <img src="public/assets/brand/logo.png" alt="BuiltByAtharva" style="width: 120px; height: 120px; border-radius: 50%; object-fit: contain;" onerror="this.style.display='none';">
             </div>
+            <h3 style="font-size: 1.4rem; font-weight: 800;">IDEAS. BUILT.</h3>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">Futuristic Creative Technology Studio</p>
+          </div>
 
-            <div class="terminal-tabs">
-              <button class="term-tab active" data-file="studio.ts">studio.ts</button>
-              <button class="term-tab" data-file="services.json">services.json</button>
-              <button class="term-tab" data-file="stack.config.js">stack.config.js</button>
-            </div>
-
-            <div class="terminal-code-body" id="terminal-code-body">
-<span class="code-comment">// BuiltByAtharva Studio Engine v6.0</span>
-<span class="code-keyword">export const</span> <span class="code-prop">studio</span> = {
-  <span class="code-prop">founder</span>: <span class="code-string">"Atharva Mirzapure"</span>,
-  <span class="code-prop">role</span>: <span class="code-string">"Software Developer & Creator"</span>,
-  <span class="code-prop">tagline</span>: <span class="code-string">"IDEAS. BUILT."</span>,
-  <span class="code-prop">speciality</span>: [<span class="code-string">"Web Apps"</span>, <span class="code-string">"Three.js 3D"</span>, <span class="code-string">"AI Prototypes"</span>],
-  <span class="code-prop">delivery</span>: <span class="code-function">async</span> () =&gt; {
-    <span class="code-keyword">return</span> <span class="code-string">"High-craft engineering ready for launch."</span>;
-  }
-};
-            </div>
-
-            <div class="terminal-footer-pills">
-              <span class="tech-pill"><i data-lucide="layers"></i> Three.js 3D</span>
-              <span class="tech-pill"><i data-lucide="sparkles"></i> GSAP Motion</span>
-              <span class="tech-pill"><i data-lucide="cpu"></i> AI Integrations</span>
-              <span class="tech-pill"><i data-lucide="zap"></i> Vercel Edge</span>
-            </div>
+          <!-- Subtle Dimensional Badge Floating Over Canvas -->
+          <div style="position: absolute; bottom: 16px; right: 20px; background: var(--bg-card); border: 1px solid var(--border-medium); border-radius: var(--radius-full); padding: 8px 16px; font-size: 0.75rem; font-weight: 700; color: var(--text-muted); box-shadow: var(--shadow-sm); display: flex; align-items: center; gap: 8px; backdrop-filter: blur(10px);">
+            <i data-lucide="box" style="width: 14px; height: 14px; color: var(--accent-blue);"></i>
+            <span>Three.js WebGL Interactive</span>
           </div>
         </div>
+
       </div>
     </section>
 
-    <!-- ==========================================
-         SECTION 2: ABOUT ME (Personal Creator Story)
-         ========================================== -->
-    <section class="section-padding about-section" id="about">
-      <div class="container about-grid">
-        <div class="about-content">
-          <span class="section-tag"><i data-lucide="user"></i> About Me</span>
-          <h2 class="section-heading">Hey, I'm Atharva.</h2>
+    <!-- =========================================================================
+         3. SELECTED WORK PREVIEW (Refined, Non-bloated)
+         ========================================================================= -->
+    <section class="section-padding" style="background: var(--bg-alt);" id="selected-work-preview">
+      <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px; flex-wrap: wrap; gap: 20px;">
+          <div>
+            <div class="section-tag">
+              <i data-lucide="briefcase"></i> Selected Portfolio
+            </div>
+            <h2 class="section-heading" style="margin-bottom: 0;">Featured Engineering Projects</h2>
+          </div>
+          <a href="work.html" class="btn btn-secondary">
+            <span>View All 5 Projects</span>
+            <i data-lucide="arrow-right"></i>
+          </a>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px;">
           
-          <p class="about-p">
-            I am a student and independent digital creator who turns ideas into clean, functional, and memorable digital experiences. <strong>BuiltByAtharva</strong> is my personal creative studio where I combine modern frontend engineering, creative design, and AI-assisted workflows.
-          </p>
+          <!-- Project 1: Truth Guard -->
+          <article class="portfolio-card" style="background: var(--bg-card); border: 1px solid var(--border-medium); border-radius: var(--radius-xl); overflow: hidden; display: flex; flex-direction: column; transition: var(--transition-smooth); box-shadow: var(--shadow-sm);">
+            <div style="position: relative; height: 220px; overflow: hidden; background: #0f172a;">
+              <img src="assets/portfolio-1.jpg" alt="Truth Guard — Multimodal Fake News Detection System" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;">
+              <span style="position: absolute; top: 16px; left: 16px; background: rgba(15, 23, 42, 0.85); color: #ff7843; border: 1px solid rgba(255, 120, 67, 0.4); padding: 4px 12px; border-radius: var(--radius-full); font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; backdrop-filter: blur(8px);">
+                AI & ML • Research Prototype
+              </span>
+            </div>
+            <div style="padding: 28px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <h3 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 8px;">Truth Guard</h3>
+                <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 18px;">
+                  AI-assisted misinformation detection platform evaluating news claims and article credibility using natural language analysis and heuristic credibility signals.
+                </p>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px;">
+                  <span class="tech-pill">AI / NLP</span>
+                  <span class="tech-pill">JavaScript ES6</span>
+                  <span class="tech-pill">Vercel Edge</span>
+                </div>
+              </div>
+              <a href="case-study.html?id=truth-guard" class="btn btn-outline btn-full btn-sm">
+                <span>Explore Case Study</span>
+                <i data-lucide="arrow-right"></i>
+              </a>
+            </div>
+          </article>
 
-          <p class="about-p">
-            I believe great digital work doesn't need bloated agency processes. When you work with BuiltByAtharva, you communicate directly with me — ensuring clear understanding of requirements, rapid turnaround, and custom craftsmanship tailored to your exact project scope.
-          </p>
+          <!-- Project 2: Smart OPD Queue System -->
+          <article class="portfolio-card" style="background: var(--bg-card); border: 1px solid var(--border-medium); border-radius: var(--radius-xl); overflow: hidden; display: flex; flex-direction: column; transition: var(--transition-smooth); box-shadow: var(--shadow-sm);">
+            <div style="position: relative; height: 220px; overflow: hidden; background: #0f172a;">
+              <img src="assets/portfolio-2.jpg" alt="Smart OPD Queue Management System" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;">
+              <span style="position: absolute; top: 16px; left: 16px; background: rgba(15, 23, 42, 0.85); color: #06b6d4; border: 1px solid rgba(6, 182, 212, 0.4); padding: 4px 12px; border-radius: var(--radius-full); font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; backdrop-filter: blur(8px);">
+                Web Application • Prototype
+              </span>
+            </div>
+            <div style="padding: 28px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <h3 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 8px;">Smart OPD Queue System</h3>
+                <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 18px;">
+                  Real-time hospital OPD queue tracker and patient token management web application designed for live waiting room visibility and estimated wait-time calculation.
+                </p>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px;">
+                  <span class="tech-pill">Web Application</span>
+                  <span class="tech-pill">Real-Time State</span>
+                  <span class="tech-pill">Responsive UI</span>
+                </div>
+              </div>
+              <a href="case-study.html?id=smart-opd" class="btn btn-outline btn-full btn-sm">
+                <span>Explore Case Study</span>
+                <i data-lucide="arrow-right"></i>
+              </a>
+            </div>
+          </article>
 
-          <div class="about-features">
-            <div class="feature-box">
-              <h4><i data-lucide="check-circle" style="color:var(--accent-orange);"></i> Direct Communication</h4>
-              <p>You speak directly with the builder — personal attention with zero agency middlemen.</p>
+          <!-- Project 3: AyurSanjeevani -->
+          <article class="portfolio-card" style="background: var(--bg-card); border: 1px solid var(--border-medium); border-radius: var(--radius-xl); overflow: hidden; display: flex; flex-direction: column; transition: var(--transition-smooth); box-shadow: var(--shadow-sm);">
+            <div style="position: relative; height: 220px; overflow: hidden; background: #0f172a;">
+              <img src="assets/portfolio-5.jpg" alt="AyurSanjeevani Herbal Wellness & Ayurvedic Consultation Portal" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;">
+              <span style="position: absolute; top: 16px; left: 16px; background: rgba(15, 23, 42, 0.85); color: #3b82f6; border: 1px solid rgba(59, 130, 246, 0.4); padding: 4px 12px; border-radius: var(--radius-full); font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; backdrop-filter: blur(8px);">
+                Website Development • Completed Demo
+              </span>
             </div>
-            <div class="feature-box">
-              <h4><i data-lucide="zap" style="color:var(--accent-blue);"></i> Modern Tech Stack</h4>
-              <p>Clean semantic code, fast loading speeds, responsive layouts, and visual depth.</p>
+            <div style="padding: 28px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <h3 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 8px;">AyurSanjeevani</h3>
+                <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 18px;">
+                  Herbal medicine and Ayurvedic wellness digital portal featuring an interactive 3-stage Dosha constitution assessment and direct consultation booking workflow.
+                </p>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px;">
+                  <span class="tech-pill">Modern Web</span>
+                  <span class="tech-pill">Quiz Engine</span>
+                  <span class="tech-pill">Custom CSS</span>
+                </div>
+              </div>
+              <a href="case-study.html?id=ayur-sanjeevani" class="btn btn-outline btn-full btn-sm">
+                <span>Explore Case Study</span>
+                <i data-lucide="arrow-right"></i>
+              </a>
             </div>
-            <div class="feature-box">
-              <h4><i data-lucide="cpu" style="color:var(--accent-pink);"></i> AI-Assisted Workflows</h4>
-              <p>Using modern AI tools to accelerate prototyping, design exploration, and feature delivery.</p>
-            </div>
-            <div class="feature-box">
-              <h4><i data-lucide="shield-check" style="color:var(--accent-cyan);"></i> Testing & Refinement</h4>
-              <p>Live preview links, thorough device testing, and milestone-driven scope confirmation.</p>
-            </div>
-          </div>
-        </div>
+          </article>
 
-        <div class="about-visual-card">
-          <div class="about-card-badge">
-            <div class="logo-badge" style="width:52px; height:52px; font-size:1.45rem;">BA</div>
-            <div>
-              <strong style="display:block; font-size:1.15rem;">Atharva Mirzapure</strong>
-              <span style="font-size:0.85rem; color:var(--text-muted);">Founder & Software Developer</span>
-            </div>
-          </div>
-
-          <div class="about-quote">
-            "Built with care. Delivered with clarity. No cookie-cutter templates."
-          </div>
-          <div class="quote-author">— Atharva Mirzapure</div>
-
-          <div class="about-contact-bar">
-            <div>
-              <span style="font-size: 0.725rem; color: var(--text-muted); display: block; font-weight:800; letter-spacing:0.06em; text-transform:uppercase;">DIRECT EMAIL</span>
-              <a href="mailto:builtbyatharva27@gmail.com" class="contact-link">builtbyatharva27@gmail.com</a>
-            </div>
-            <div>
-              <span style="font-size: 0.725rem; color: var(--text-muted); display: block; font-weight:800; letter-spacing:0.06em; text-transform:uppercase;">INSTAGRAM</span>
-              <a href="https://www.instagram.com/built_by_atharva/" target="_blank" rel="noopener" class="contact-link">@built_by_atharva</a>
-            </div>
-          </div>
         </div>
       </div>
     </section>
 
-    <!-- ==========================================
-         SECTION 3: SIMPLIFIED COMPACT SERVICES
-         ========================================== -->
-    <section class="section-padding" id="services">
+    <!-- =========================================================================
+         4. INTERACTIVE SERVICE DISCOVERY (HIDDEN INITIAL PRICES)
+         ========================================================================= -->
+    <section class="section-padding" id="services-discovery">
       <div class="container">
-        <div class="text-center">
-          <span class="section-tag"><i data-lucide="layers"></i> Services</span>
-          <h2 class="section-heading">Core Engineering Services</h2>
-          <p class="section-subheading">Compact, focused service offerings. Click any card to explore full project capabilities, deliverables, technologies, and starting rates.</p>
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px; flex-wrap: wrap; gap: 20px;">
+          <div>
+            <div class="section-tag">
+              <i data-lucide="layers"></i> Studio Capabilities
+            </div>
+            <h2 class="section-heading" style="margin-bottom: 8px;">Interactive Service Discovery</h2>
+            <p class="section-subheading" style="margin-bottom: 0;">
+              Select any capability below to explore complete architectural deliverables, client prerequisites, timelines, and verified pricing.
+            </p>
+          </div>
+          <a href="services.html" class="btn btn-secondary">
+            <span>All 6 Services & Specs</span>
+            <i data-lucide="arrow-right"></i>
+          </a>
         </div>
 
-        <div class="services-compact-grid" id="services-compact-grid">
-          <!-- Dynamically populated or static cards with interactive modals -->
-          <div class="service-card-compact" data-service-id="website-dev" data-color="blue" role="button" tabindex="0" aria-label="View Website Development Service Details">
-            <div class="service-compact-top">
-              <div class="service-compact-icon"><i data-lucide="globe"></i></div>
-              <span class="service-category-badge">Core Speciality</span>
-            </div>
-            <h3 class="service-compact-title">Website Development</h3>
-            <div class="service-compact-indicator">
-              Explore Scope <i data-lucide="arrow-right"></i>
-            </div>
-          </div>
-
-          <div class="service-card-compact" data-service-id="web-apps" data-color="cyan" role="button" tabindex="0" aria-label="View Web Applications Service Details">
-            <div class="service-compact-top">
-              <div class="service-compact-icon"><i data-lucide="layout-template"></i></div>
-              <span class="service-category-badge">Systems</span>
-            </div>
-            <h3 class="service-compact-title">Web Applications</h3>
-            <div class="service-compact-indicator">
-              Explore Scope <i data-lucide="arrow-right"></i>
-            </div>
-          </div>
-
-          <div class="service-card-compact" data-service-id="ai-solutions" data-color="orange" role="button" tabindex="0" aria-label="View AI and ML Solutions Service Details">
-            <div class="service-compact-top">
-              <div class="service-compact-icon"><i data-lucide="cpu"></i></div>
-              <span class="service-category-badge">Innovation</span>
-            </div>
-            <h3 class="service-compact-title">AI & ML Solutions</h3>
-            <div class="service-compact-indicator">
-              Explore Scope <i data-lucide="arrow-right"></i>
-            </div>
-          </div>
-
-          <div class="service-card-compact" data-service-id="special-websites" data-color="pink" role="button" tabindex="0" aria-label="View Special Websites Service Details">
-            <div class="service-compact-top">
-              <div class="service-compact-icon"><i data-lucide="sparkles"></i></div>
-              <span class="service-category-badge">Creative</span>
-            </div>
-            <h3 class="service-compact-title">Special / Personal Websites</h3>
-            <div class="service-compact-indicator">
-              Explore Scope <i data-lucide="arrow-right"></i>
-            </div>
-          </div>
-
-          <div class="service-card-compact" data-service-id="ui-ux-design" data-color="violet" role="button" tabindex="0" aria-label="View UI UX Design Service Details">
-            <div class="service-compact-top">
-              <div class="service-compact-icon"><i data-lucide="palette"></i></div>
-              <span class="service-category-badge">Design</span>
-            </div>
-            <h3 class="service-compact-title">UI/UX & Design</h3>
-            <div class="service-compact-indicator">
-              Explore Scope <i data-lucide="arrow-right"></i>
-            </div>
-          </div>
-
-          <div class="service-card-compact" data-service-id="integrations-apis" data-color="cyan" role="button" tabindex="0" aria-label="View Integrations and APIs Service Details">
-            <div class="service-compact-top">
-              <div class="service-compact-icon"><i data-lucide="link-2"></i></div>
-              <span class="service-category-badge">Connectors</span>
-            </div>
-            <h3 class="service-compact-title">Integrations & APIs</h3>
-            <div class="service-compact-indicator">
-              Explore Scope <i data-lucide="arrow-right"></i>
-            </div>
-          </div>
-
-          <div class="service-card-compact" data-service-id="maintenance-support" data-color="blue" role="button" tabindex="0" aria-label="View Maintenance and Support Service Details">
-            <div class="service-compact-top">
-              <div class="service-compact-icon"><i data-lucide="shield-check"></i></div>
-              <span class="service-category-badge">Longevity</span>
-            </div>
-            <h3 class="service-compact-title">Maintenance & Support</h3>
-            <div class="service-compact-indicator">
-              Explore Scope <i data-lucide="arrow-right"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==========================================
-         SECTION 4: CAPABILITY SYSTEMS
-         ========================================== -->
-    <section class="section-padding" id="capabilities" style="background:var(--bg-alt);">
-      <div class="container">
-        <div class="text-center">
-          <span class="section-tag"><i data-lucide="grid"></i> Capabilities</span>
-          <h2 class="section-heading">Architectural Scope</h2>
-          <p class="section-subheading">A concise map of digital solutions engineered, tested, and deployed for personal and business goals.</p>
-        </div>
-
-        <div class="capability-compact-grid">
-          <div class="capability-system-card" data-cap-id="cap-system-websites" role="button" tabindex="0">
-            <div class="capability-system-header">
-              <div class="capability-system-icon" style="color:var(--accent-blue);"><i data-lucide="globe"></i></div>
-              <div>
-                <span style="font-size:0.75rem; font-weight:800; color:var(--accent-blue); letter-spacing:0.06em;">SYSTEM 01</span>
-                <h3>Web & Brand Showcases</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px;">
+          
+          <!-- Service 1: Website Development -->
+          <article class="service-discovery-card border-beam-card" data-service-id="website-dev">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px;">
+                <div style="width: 50px; height: 50px; border-radius: var(--radius-md); background: rgba(37, 99, 235, 0.1); color: var(--accent-blue); display: flex; align-items: center; justify-content: center; font-size: 1.35rem;">
+                  <i data-lucide="globe"></i>
+                </div>
+                <span class="service-category-badge" style="background: rgba(37, 99, 235, 0.08); color: var(--accent-blue); border: 1px solid rgba(37, 99, 235, 0.2);">
+                  Core Engineering
+                </span>
               </div>
-            </div>
-            <p style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:14px;">High-converting websites, portfolios, and brand platforms built for speed and visual elegance.</p>
-            <div class="capability-tags-flex">
-              <span class="capability-tag-pill"><i data-lucide="user"></i> Portfolios</span>
-              <span class="capability-tag-pill"><i data-lucide="building"></i> Business Sites</span>
-              <span class="capability-tag-pill"><i data-lucide="coffee"></i> Hospitality</span>
-              <span class="capability-tag-pill"><i data-lucide="sparkles"></i> Surprise Pages</span>
-            </div>
-          </div>
-
-          <div class="capability-system-card" data-cap-id="cap-system-apps" role="button" tabindex="0">
-            <div class="capability-system-header">
-              <div class="capability-system-icon" style="color:var(--accent-cyan);"><i data-lucide="layout-template"></i></div>
-              <div>
-                <span style="font-size:0.75rem; font-weight:800; color:var(--accent-cyan); letter-spacing:0.06em;">SYSTEM 02</span>
-                <h3>Web Applications & Systems</h3>
-              </div>
-            </div>
-            <p style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:14px;">Dynamic client-side tools, interactive dashboards, queue trackers, and custom utilities.</p>
-            <div class="capability-tags-flex">
-              <span class="capability-tag-pill"><i data-lucide="layout-dashboard"></i> Dashboards</span>
-              <span class="capability-tag-pill"><i data-lucide="clock"></i> Queue Trackers</span>
-              <span class="capability-tag-pill"><i data-lucide="calendar"></i> Clinic Loggers</span>
-              <span class="capability-tag-pill"><i data-lucide="database"></i> Data Portals</span>
-            </div>
-          </div>
-
-          <div class="capability-system-card" data-cap-id="cap-system-ai" role="button" tabindex="0">
-            <div class="capability-system-header">
-              <div class="capability-system-icon" style="color:var(--accent-orange);"><i data-lucide="cpu"></i></div>
-              <div>
-                <span style="font-size:0.75rem; font-weight:800; color:var(--accent-orange); letter-spacing:0.06em;">SYSTEM 03</span>
-                <h3>AI & ML Solutions</h3>
-              </div>
-            </div>
-            <p style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:14px;">Integrating modern AI models (OpenAI, Claude, custom prototypes) into responsive web interfaces.</p>
-            <div class="capability-tags-flex">
-              <span class="capability-tag-pill"><i data-lucide="bot"></i> AI Assistants</span>
-              <span class="capability-tag-pill"><i data-lucide="shield-alert"></i> Fact Scanners</span>
-              <span class="capability-tag-pill"><i data-lucide="image"></i> Image Diagnostics</span>
-              <span class="capability-tag-pill"><i data-lucide="link"></i> Serverless APIs</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==========================================
-         SECTION 5: PRICING & CONFIGURATOR
-         ========================================== -->
-    <section class="section-padding" id="pricing">
-      <div class="container">
-        <div class="text-center">
-          <span class="section-tag"><i data-lucide="tag"></i> Dedicated Pricing</span>
-          <h2 class="section-heading">Transparent Pricing Packages</h2>
-          <p class="section-subheading">Honest, package-based development rates. 50% advance payment required after project scope is confirmed.</p>
-        </div>
-
-        <!-- Website Packages -->
-        <h3 class="pricing-category-title"><i data-lucide="globe" style="color:var(--accent-blue);"></i> Website Packages</h3>
-        <div class="pricing-grid">
-          <!-- Starter -->
-          <div class="pricing-card">
-            <h3>Starter</h3>
-            <p class="tier-desc">Ideal for simple personal portfolios and single-page landing showcases.</p>
-            <div class="pricing-amount">₹2,999</div>
-            <div class="pricing-timeline"><i data-lucide="clock"></i> 2 - 3 Days Delivery</div>
-            <ul class="pricing-features">
-              <li><i data-lucide="check"></i> Up to 3 Custom Web Pages</li>
-              <li><i data-lucide="check"></i> Fully Mobile & Tablet Responsive</li>
-              <li><i data-lucide="check"></i> Direct Email Form Integration</li>
-              <li><i data-lucide="check"></i> Clean HTML5 & Modern CSS</li>
-              <li><i data-lucide="check"></i> Basic SEO & Vercel Deploy</li>
-            </ul>
-            <div class="advance-notice-pill">💳 50% Advance Required (₹1,500)</div>
-            <a href="#start-project" class="btn btn-outline btn-full select-pricing-btn" data-type="Website Development" data-tier="Starter" data-price="₹2,999">Select Starter</a>
-          </div>
-
-          <!-- Standard -->
-          <div class="pricing-card">
-            <h3>Standard</h3>
-            <p class="tier-desc">Great for small businesses, personal brands, creators, and service providers.</p>
-            <div class="pricing-amount">₹5,999</div>
-            <div class="pricing-timeline"><i data-lucide="clock"></i> 3 - 5 Days Delivery</div>
-            <ul class="pricing-features">
-              <li><i data-lucide="check"></i> Up to 5 Custom Pages</li>
-              <li><i data-lucide="check"></i> Futuristic UI Design & Micro-Interactions</li>
-              <li><i data-lucide="check"></i> Reliable Serverless Form Delivery</li>
-              <li><i data-lucide="check"></i> Social Media & Map Integration</li>
-              <li><i data-lucide="check"></i> 7 Days Post-Launch Support</li>
-            </ul>
-            <div class="advance-notice-pill">💳 50% Advance Required (₹3,000)</div>
-            <a href="#start-project" class="btn btn-outline btn-full select-pricing-btn" data-type="Website Development" data-tier="Standard" data-price="₹5,999">Select Standard</a>
-          </div>
-
-          <!-- Business (Featured) -->
-          <div class="pricing-card featured">
-            <span class="featured-badge">Most Popular</span>
-            <h3>Business</h3>
-            <p class="tier-desc">Complete custom digital presence for growing companies, agencies, and studios.</p>
-            <div class="pricing-amount">₹9,999</div>
-            <div class="pricing-timeline"><i data-lucide="clock"></i> 5 - 7 Days Delivery</div>
-            <ul class="pricing-features">
-              <li><i data-lucide="check"></i> Up to 8 Custom Responsive Pages</li>
-              <li><i data-lucide="check"></i> High-End Dimensional UI & GSAP Motion</li>
-              <li><i data-lucide="check"></i> Interactive Calculators / Filter Systems</li>
-              <li><i data-lucide="check"></i> Fast Performance & Lighthouse Optimization</li>
-              <li><i data-lucide="check"></i> 14 Days Post-Launch Support</li>
-            </ul>
-            <div class="advance-notice-pill">💳 50% Advance Required (₹5,000)</div>
-            <a href="#start-project" class="btn btn-primary btn-full select-pricing-btn" data-type="Website Development" data-tier="Business" data-price="₹9,999">Select Business</a>
-          </div>
-
-          <!-- Business Pro -->
-          <div class="pricing-card">
-            <h3>Business Pro</h3>
-            <p class="tier-desc">Advanced multi-section corporate experience with custom workflows and animations.</p>
-            <div class="pricing-amount">₹14,999+</div>
-            <div class="pricing-timeline"><i data-lucide="clock"></i> 7 - 10 Days Delivery</div>
-            <ul class="pricing-features">
-              <li><i data-lucide="check"></i> 10+ Custom Structured Pages</li>
-              <li><i data-lucide="check"></i> Choreographed GSAP Motion</li>
-              <li><i data-lucide="check"></i> Multi-Step Inquiry Wizards</li>
-              <li><i data-lucide="check"></i> Speed, Contrast & Accessibility Audit</li>
-              <li><i data-lucide="check"></i> Priority Queue & 30 Days Support</li>
-            </ul>
-            <div class="advance-notice-pill">💳 50% Advance Required (from ₹7,500)</div>
-            <a href="#start-project" class="btn btn-outline btn-full select-pricing-btn" data-type="Website Development" data-tier="Business Pro" data-price="₹14,999+">Select Business Pro</a>
-          </div>
-        </div>
-
-        <!-- Web Apps & AI Pricing -->
-        <h3 class="pricing-category-title" style="margin-top:52px;"><i data-lucide="cpu" style="color:var(--accent-orange);"></i> Web Applications & AI Solutions</h3>
-        <div class="pricing-grid">
-          <div class="pricing-card">
-            <h3>Basic Web App</h3>
-            <p class="tier-desc">Dynamic client-side tool with intuitive CRUD data views and utility workflows.</p>
-            <div class="pricing-amount">₹12,999</div>
-            <div class="pricing-timeline"><i data-lucide="clock"></i> 7 - 10 Days Delivery</div>
-            <div class="advance-notice-pill">💳 50% Advance Required</div>
-            <a href="#start-project" class="btn btn-outline btn-full select-pricing-btn" data-type="Web Application" data-tier="Basic Web App" data-price="₹12,999">Select Basic App</a>
-          </div>
-
-          <div class="pricing-card">
-            <h3>Advanced Web App</h3>
-            <p class="tier-desc">Complex interactive dashboard application with real-time UI states and simulated/external APIs.</p>
-            <div class="pricing-amount">₹19,999</div>
-            <div class="pricing-timeline"><i data-lucide="clock"></i> 10 - 14 Days Delivery</div>
-            <div class="advance-notice-pill">💳 50% Advance Required</div>
-            <a href="#start-project" class="btn btn-outline btn-full select-pricing-btn" data-type="Web Application" data-tier="Advanced Web App" data-price="₹19,999">Select Advanced App</a>
-          </div>
-
-          <div class="pricing-card">
-            <h3>AI Feature / Bot</h3>
-            <p class="tier-desc">Custom AI Chatbot or Assistant UI integrated with OpenAI / Claude endpoints.</p>
-            <div class="pricing-amount">₹3,999+</div>
-            <div class="pricing-timeline"><i data-lucide="clock"></i> 3 - 5 Days Delivery</div>
-            <div class="advance-notice-pill">💳 50% Advance Required</div>
-            <a href="#start-project" class="btn btn-outline btn-full select-pricing-btn" data-type="AI & ML Solution" data-tier="AI Feature / Bot" data-price="₹3,999+">Select AI Bot</a>
-          </div>
-
-          <div class="pricing-card">
-            <h3>Complete AI Web App</h3>
-            <p class="tier-desc">Full-scale AI-powered web tool with generative analysis, scoring systems, and dashboard views.</p>
-            <div class="pricing-amount">₹24,999+</div>
-            <div class="pricing-timeline"><i data-lucide="clock"></i> 12 - 18 Days Delivery</div>
-            <div class="advance-notice-pill">💳 50% Advance Required</div>
-            <a href="#start-project" class="btn btn-outline btn-full select-pricing-btn" data-type="AI & ML Solution" data-tier="Complete AI Web App" data-price="₹24,999+">Select AI Web App</a>
-          </div>
-        </div>
-
-        <!-- Interactive Project Estimator / Configurator -->
-        <div class="configurator-container" id="configurator">
-          <div class="text-center" style="margin-bottom:32px;">
-            <span class="section-tag"><i data-lucide="sliders"></i> Interactive Estimator</span>
-            <h3>Calculate Your Custom Scope</h3>
-            <p style="color:var(--text-muted); font-size:0.95rem;">Select your project requirements to calculate an immediate estimate. Value carries over into your brief.</p>
-          </div>
-
-          <!-- Step 1: Category -->
-          <div class="config-block">
-            <label class="config-label">1. Choose Category</label>
-            <div class="config-category-grid" id="config-category-options">
-              <button type="button" class="config-cat-btn active" data-category="Website Development">
-                <i data-lucide="globe"></i>
-                <strong>Website</strong>
-                <span>Personal & Business</span>
-              </button>
-              <button type="button" class="config-cat-btn" data-category="Web Application">
-                <i data-lucide="layout-template"></i>
-                <strong>Web App</strong>
-                <span>Dashboards & Trackers</span>
-              </button>
-              <button type="button" class="config-cat-btn" data-category="AI & ML Solution">
-                <i data-lucide="cpu"></i>
-                <strong>AI Solution</strong>
-                <span>Bots & Scanners</span>
-              </button>
-              <button type="button" class="config-cat-btn" data-category="Special / Personal Site">
-                <i data-lucide="sparkles"></i>
-                <strong>Special Site</strong>
-                <span>Surprise & Portfolios</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Step 2: Base Tier -->
-          <div class="config-block">
-            <label class="config-label">2. Select Base Package Tier</label>
-            <div class="config-tier-grid" id="config-tier-options">
-              <div class="config-tier-card" data-tier="starter" data-price="2999">
-                <div class="tier-head">
-                  <h4>Starter</h4>
-                  <span class="tier-price">₹2,999</span>
-                </div>
-                <p style="font-size:0.85rem; color:var(--text-muted);">1-3 pages personal showcase or single landing page.</p>
-              </div>
-
-              <div class="config-tier-card selected" data-tier="standard" data-price="5999">
-                <div class="tier-head">
-                  <h4>Standard</h4>
-                  <span class="tier-price">₹5,999</span>
-                </div>
-                <p style="font-size:0.85rem; color:var(--text-muted);">Up to 5 custom styled pages with serverless email form.</p>
-              </div>
-
-              <div class="config-tier-card" data-tier="business" data-price="9999">
-                <div class="tier-head">
-                  <h4>Business</h4>
-                  <span class="tier-price">₹9,999</span>
-                </div>
-                <p style="font-size:0.85rem; color:var(--text-muted);">Up to 8 pages with GSAP motion and calculators.</p>
-              </div>
-
-              <div class="config-tier-card" data-tier="business-pro" data-price="14999">
-                <div class="tier-head">
-                  <h4>Business Pro</h4>
-                  <span class="tier-price">₹14,999+</span>
-                </div>
-                <p style="font-size:0.85rem; color:var(--text-muted);">10+ pages with custom interactive workflows.</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Step 3: Optional Add-ons -->
-          <div class="config-block">
-            <label class="config-label">3. Optional Add-ons</label>
-            <div class="config-addons-grid" id="config-addons-options">
-              <label class="addon-card" data-addon-id="extra-pages" data-price="1500">
-                <input type="checkbox">
-                <div class="addon-info">
-                  <div class="addon-title-row">
-                    <strong>Extra Web Pages</strong>
-                    <span class="addon-cost">+₹1,500</span>
-                  </div>
-                  <p style="font-size:0.8rem; color:var(--text-muted);">2-3 additional styled pages for expanded content.</p>
-                </div>
-              </label>
-
-              <label class="addon-card" data-addon-id="ai-integration" data-price="3000">
-                <input type="checkbox">
-                <div class="addon-info">
-                  <div class="addon-title-row">
-                    <strong>AI Feature Integration</strong>
-                    <span class="addon-cost">+₹3,000</span>
-                  </div>
-                  <p style="font-size:0.8rem; color:var(--text-muted);">AI API chatbot, content generator, or text analysis UI.</p>
-                </div>
-              </label>
-
-              <label class="addon-card" data-addon-id="custom-animations" data-price="2000">
-                <input type="checkbox">
-                <div class="addon-info">
-                  <div class="addon-title-row">
-                    <strong>GSAP & 3D Motion</strong>
-                    <span class="addon-cost">+₹2,000</span>
-                  </div>
-                  <p style="font-size:0.8rem; color:var(--text-muted);">Choreographed entrance reveals and dimensional depth.</p>
-                </div>
-              </label>
-
-              <label class="addon-card" data-addon-id="whatsapp-integration" data-price="1000">
-                <input type="checkbox">
-                <div class="addon-info">
-                  <div class="addon-title-row">
-                    <strong>WhatsApp Direct Trigger</strong>
-                    <span class="addon-cost">+₹1,000</span>
-                  </div>
-                  <p style="font-size:0.8rem; color:var(--text-muted);">Pre-filled consultation button connected to WhatsApp.</p>
-                </div>
-              </label>
-
-              <label class="addon-card" data-addon-id="maps-integration" data-price="1000">
-                <input type="checkbox">
-                <div class="addon-info">
-                  <div class="addon-title-row">
-                    <strong>Interactive Google Maps</strong>
-                    <span class="addon-cost">+₹1,000</span>
-                  </div>
-                  <p style="font-size:0.8rem; color:var(--text-muted);">Custom embedded responsive map for clinic or store location.</p>
-                </div>
-              </label>
-
-              <label class="addon-card" data-addon-id="express-delivery" data-price="1500">
-                <input type="checkbox">
-                <div class="addon-info">
-                  <div class="addon-title-row">
-                    <strong>Express Rush Delivery</strong>
-                    <span class="addon-cost">+₹1,500</span>
-                  </div>
-                  <p style="font-size:0.8rem; color:var(--text-muted);">Priority development queue with accelerated turnaround.</p>
-                </div>
-              </label>
-
-              <label class="addon-card" data-addon-id="extended-support" data-price="1500">
-                <input type="checkbox">
-                <div class="addon-info">
-                  <div class="addon-title-row">
-                    <strong>Extended 30-Day Support</strong>
-                    <span class="addon-cost">+₹1,500</span>
-                  </div>
-                  <p style="font-size:0.8rem; color:var(--text-muted);">Dedicated post-launch bug fixes and guidance.</p>
-                </div>
-              </label>
-
-              <label class="addon-card" data-addon-id="auth-ui-setup" data-price="3500">
-                <input type="checkbox">
-                <div class="addon-info">
-                  <div class="addon-title-row">
-                    <strong>Auth UI Setup (Frontend)</strong>
-                    <span class="addon-cost">+₹3,500</span>
-                  </div>
-                  <p style="font-size:0.8rem; color:var(--text-muted);">Login/signup modal flows & account state UI.</p>
-                </div>
-              </label>
-            </div>
-          </div>
-
-          <!-- Total Calculation Display -->
-          <div class="config-summary-box">
-            <div class="summary-details">
-              <span style="font-size:0.8rem; text-transform:uppercase; font-weight:800; color:var(--text-muted);">Selected Scope</span>
-              <h4 id="summary-category-display" style="font-size:1.35rem; margin-top:4px;">Website Development — Standard Tier</h4>
-              <p id="summary-features-list" style="font-size:0.85rem; color:var(--text-muted); margin-top:6px;">
-                Includes: 5 Custom Pages • Responsive UI • Serverless Form
+              <h3 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 10px;">Website Development</h3>
+              <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 20px;">
+                High-performance company hubs, personal portfolios, and conversion-focused brand showcases built from scratch with semantic HTML5, modern CSS, and lightweight motion.
               </p>
-              <div class="advance-callout">
-                💳 <strong>50% Advance Required:</strong> <span id="summary-advance-display">₹2,999</span> before development starts.
-              </div>
+              <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 24px;">
+                <li><i data-lucide="check" style="width: 14px; height: 14px; color: var(--accent-green); vertical-align: middle;"></i> 100% Mobile & tablet responsive layouts</li>
+                <li><i data-lucide="check" style="width: 14px; height: 14px; color: var(--accent-green); vertical-align: middle;"></i> Dual light & high-tech dark theme modes</li>
+                <li><i data-lucide="check" style="width: 14px; height: 14px; color: var(--accent-green); vertical-align: middle;"></i> Serverless contact form with PDF receipt</li>
+              </ul>
             </div>
-
-            <div class="summary-total-side">
-              <span style="font-size:0.8rem; text-transform:uppercase; font-weight:800; color:var(--text-muted);">Estimated Project Total</span>
-              <div class="summary-total-amount" id="config-total-display">₹5,999</div>
-              <button type="button" class="btn btn-primary btn-full" id="config-apply-btn">
-                Apply Estimate to Request Form <i data-lucide="arrow-down"></i>
+            <div class="service-action-bar">
+              <span class="service-hint-tag">
+                <i data-lucide="sparkles" style="width: 13px; height: 13px; color: var(--accent-cyan);"></i> Pricing in modal
+              </span>
+              <button type="button" class="btn btn-outline btn-sm open-service-modal-btn" data-service-id="website-dev">
+                <span>Explore Service</span>
+                <i data-lucide="arrow-right"></i>
               </button>
             </div>
-          </div>
-        </div>
+          </article>
 
-        <div class="pricing-disclaimer-box">
-          ℹ️ <strong>Note:</strong> Final quotation depends on exact project scope and custom requirements. 50% advance payment is required before development begins once the quote is agreed upon.
-        </div>
-      </div>
-    </section>
-
-    <!-- ==========================================
-         SECTION 6: AUTHENTIC REAL PROJECTS (STUDIO EXPERIENCE)
-         ========================================== -->
-    <section class="section-padding" id="work">
-      <div class="container">
-        <div class="text-center">
-          <span class="section-tag"><i data-lucide="briefcase"></i> Selected Work</span>
-          <h2 class="section-heading">Featured Real Projects</h2>
-          <p class="section-subheading">Authentic web builds, AI solutions, and web application systems engineered by Atharva Mirzapure. Real work, genuine code, honest positioning.</p>
-        </div>
-
-        <!-- Filter Bar -->
-        <div class="portfolio-filter-bar" role="tablist" aria-label="Portfolio Filters">
-          <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All Projects</button>
-          <button class="filter-btn" data-filter="website" role="tab" aria-selected="false">Websites</button>
-          <button class="filter-btn" data-filter="webapp" role="tab" aria-selected="false">Web Apps</button>
-          <button class="filter-btn" data-filter="ai" role="tab" aria-selected="false">AI Solutions</button>
-        </div>
-
-        <!-- Studio Project Cards Grid -->
-        <div class="portfolio-grid" id="portfolio-grid">
-          <!-- Real Project 1: Truth Guard -->
-          <div class="portfolio-card" data-category="ai">
-            <div class="browser-chrome">
-              <div class="browser-dots">
-                <span class="browser-dot red"></span>
-                <span class="browser-dot yellow"></span>
-                <span class="browser-dot green"></span>
-              </div>
-              <span class="browser-url-pill">truthguard.studio</span>
-              <span style="font-size:0.65rem; color:#94a3b8; font-family:var(--font-mono);">AI / NLP</span>
-            </div>
-            <div class="portfolio-img-wrap">
-              <img src="assets/portfolio-1.jpg" alt="Truth Guard AI Fake News Detection Platform" loading="lazy">
-            </div>
-            <div class="portfolio-info">
-              <div class="portfolio-tag-wrap">
-                <span class="portfolio-tag">AI & ML Solution</span>
-                <span class="portfolio-status-tag">Research Prototype</span>
-              </div>
-              <h3>Truth Guard</h3>
-              <p>AI-assisted fake news and misinformation detection platform evaluating news claims and article credibility using natural language analysis.</p>
-              <div class="portfolio-actions-row">
-                <button class="btn btn-primary btn-sm portfolio-modal-btn" data-project="truth-guard" data-mode="preview">
-                  <i data-lucide="play-circle"></i> Launch Preview
-                </button>
-                <button class="btn btn-outline btn-sm portfolio-modal-btn" data-project="truth-guard" data-mode="casestudy">
-                  Case Study <i data-lucide="arrow-right"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Real Project 2: Dermatologist Reminder -->
-          <div class="portfolio-card" data-category="webapp">
-            <div class="browser-chrome">
-              <div class="browser-dots">
-                <span class="browser-dot red"></span>
-                <span class="browser-dot yellow"></span>
-                <span class="browser-dot green"></span>
-              </div>
-              <span class="browser-url-pill">dermaremind.clinic</span>
-              <span style="font-size:0.65rem; color:#94a3b8; font-family:var(--font-mono);">WEB APP</span>
-            </div>
-            <div class="portfolio-img-wrap">
-              <img src="assets/portfolio-3.jpg" alt="Dermatologist Appointment Reminder System" loading="lazy">
-            </div>
-            <div class="portfolio-info">
-              <div class="portfolio-tag-wrap">
-                <span class="portfolio-tag">Web Application</span>
-                <span class="portfolio-status-tag">In Development</span>
-              </div>
-              <h3>Dermatologist Visit Reminder</h3>
-              <p>Automated patient appointment schedule & follow-up notification application tailored for dermatology clinics.</p>
-              <div class="portfolio-actions-row">
-                <button class="btn btn-primary btn-sm portfolio-modal-btn" data-project="dermatologist-reminder" data-mode="preview">
-                  <i data-lucide="play-circle"></i> View Screenshots
-                </button>
-                <button class="btn btn-outline btn-sm portfolio-modal-btn" data-project="dermatologist-reminder" data-mode="casestudy">
-                  Case Study <i data-lucide="arrow-right"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Real Project 3: AgriVision AI -->
-          <div class="portfolio-card" data-category="ai">
-            <div class="browser-chrome">
-              <div class="browser-dots">
-                <span class="browser-dot red"></span>
-                <span class="browser-dot yellow"></span>
-                <span class="browser-dot green"></span>
-              </div>
-              <span class="browser-url-pill">agrivision.ai</span>
-              <span style="font-size:0.65rem; color:#94a3b8; font-family:var(--font-mono);">VISION AI</span>
-            </div>
-            <div class="portfolio-img-wrap">
-              <img src="assets/portfolio-4.jpg" alt="AgriVision AI Crop Health Portal" loading="lazy">
-            </div>
-            <div class="portfolio-info">
-              <div class="portfolio-tag-wrap">
-                <span class="portfolio-tag">AI & ML Solution</span>
-                <span class="portfolio-status-tag">Research Prototype</span>
-              </div>
-              <h3>AgriVision AI</h3>
-              <p>AI-assisted crop disease diagnostic portal & yield health dashboard designed for smart agricultural monitoring.</p>
-              <div class="portfolio-actions-row">
-                <button class="btn btn-primary btn-sm portfolio-modal-btn" data-project="agrivision-ai" data-mode="preview">
-                  <i data-lucide="play-circle"></i> View Screenshots
-                </button>
-                <button class="btn btn-outline btn-sm portfolio-modal-btn" data-project="agrivision-ai" data-mode="casestudy">
-                  Case Study <i data-lucide="arrow-right"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Real Project 4: AyurSanjeevani -->
-          <div class="portfolio-card" data-category="website">
-            <div class="browser-chrome">
-              <div class="browser-dots">
-                <span class="browser-dot red"></span>
-                <span class="browser-dot yellow"></span>
-                <span class="browser-dot green"></span>
-              </div>
-              <span class="browser-url-pill">ayursanjeevani.portal</span>
-              <span style="font-size:0.65rem; color:#94a3b8; font-family:var(--font-mono);">MODERN WEB</span>
-            </div>
-            <div class="portfolio-img-wrap">
-              <img src="assets/portfolio-5.jpg" alt="AyurSanjeevani Herbal Wellness Portal" loading="lazy">
-            </div>
-            <div class="portfolio-info">
-              <div class="portfolio-tag-wrap">
-                <span class="portfolio-tag">Website Development</span>
-                <span class="portfolio-status-tag">Prototype Demo</span>
-              </div>
-              <h3>AyurSanjeevani</h3>
-              <p>Herbal medicine & Ayurvedic wellness web portal featuring personalized Dosha constitution diagnosis and consultation booking.</p>
-              <div class="portfolio-actions-row">
-                <button class="btn btn-primary btn-sm portfolio-modal-btn" data-project="ayur-sanjeevani" data-mode="preview">
-                  <i data-lucide="play-circle"></i> Launch Quiz Demo
-                </button>
-                <button class="btn btn-outline btn-sm portfolio-modal-btn" data-project="ayur-sanjeevani" data-mode="casestudy">
-                  Case Study <i data-lucide="arrow-right"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Real Project 5: Smart OPD Queue -->
-          <div class="portfolio-card" data-category="webapp">
-            <div class="browser-chrome">
-              <div class="browser-dots">
-                <span class="browser-dot red"></span>
-                <span class="browser-dot yellow"></span>
-                <span class="browser-dot green"></span>
-              </div>
-              <span class="browser-url-pill">smartopd.hospital</span>
-              <span style="font-size:0.65rem; color:#94a3b8; font-family:var(--font-mono);">REAL-TIME APP</span>
-            </div>
-            <div class="portfolio-img-wrap">
-              <img src="assets/portfolio-2.jpg" alt="Smart OPD Hospital Waiting Room Tracker" loading="lazy">
-            </div>
-            <div class="portfolio-info">
-              <div class="portfolio-tag-wrap">
-                <span class="portfolio-tag">Web Application</span>
-                <span class="portfolio-status-tag">Prototype Demo</span>
-              </div>
-              <h3>Smart OPD Queue System</h3>
-              <p>Real-time hospital OPD queue tracker & patient token management web application for live waiting room visibility.</p>
-              <div class="portfolio-actions-row">
-                <button class="btn btn-primary btn-sm portfolio-modal-btn" data-project="smart-opd" data-mode="preview">
-                  <i data-lucide="play-circle"></i> Launch Token Demo
-                </button>
-                <button class="btn btn-outline btn-sm portfolio-modal-btn" data-project="smart-opd" data-mode="casestudy">
-                  Case Study <i data-lucide="arrow-right"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==========================================
-         SECTION 7: HOW WE WORK TOGETHER (7-STEP PROCESS)
-         ========================================== -->
-    <section class="section-padding" id="process" style="background:var(--bg-alt);">
-      <div class="container">
-        <div class="text-center">
-          <span class="section-tag"><i data-lucide="git-merge"></i> Transparent Flow</span>
-          <h2 class="section-heading">How We Work Together</h2>
-          <p class="section-subheading">Our structured 7-step process from initial idea to live launch. Clear milestones, direct communication, and no surprises.</p>
-        </div>
-
-        <div class="process-timeline-wrap">
-          <div class="process-timeline">
-            <div class="process-step-card">
-              <div class="step-num">01</div>
-              <h4>Tell Me Your Idea</h4>
-              <p>Share your vision, project goals, must-have features, and design preferences through our request brief or direct message.</p>
-            </div>
-
-            <div class="process-step-card">
-              <div class="step-num">02</div>
-              <h4>Discuss Requirements</h4>
-              <p>I personally review your submission and connect with you directly via email or WhatsApp to clarify scope, timeline, and technical expectations.</p>
-            </div>
-
-            <div class="process-step-card">
-              <div class="step-num">03</div>
-              <h4>Get Your Quote</h4>
-              <p>You receive a clear, honest, fixed-scope quotation with exact milestones. No hidden fees or unexpected post-launch surprises.</p>
-            </div>
-
-            <div class="process-step-card">
-              <div class="step-num">04</div>
-              <h4>50% Advance</h4>
-              <p>Payment details and QR are shared directly. Work begins immediately upon 50% advance confirmation to secure your development slot.</p>
-            </div>
-
-            <div class="process-step-card">
-              <div class="step-num">05</div>
-              <h4>Development</h4>
-              <p>I build your solution with clean code, modern typography, responsive layouts, and visual depth — sharing live progress updates along the way.</p>
-            </div>
-
-            <div class="process-step-card">
-              <div class="step-num">06</div>
-              <h4>Testing & Refinement</h4>
-              <p>You receive a private live preview link to test interactions on your devices, share feedback, and request revisions within agreed scope.</p>
-            </div>
-
-            <div class="process-step-card">
-              <div class="step-num">07</div>
-              <h4>Delivery & Launch</h4>
-              <p>Upon final approval and remaining payment, your website is deployed live on Vercel with clean code handover and domain setup support.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==========================================
-         SECTION 8: PROJECT BRIEF WIZARD & SERVERLESS SUBMISSION
-         ========================================== -->
-    <section class="section-padding" id="start-project">
-      <div class="container">
-        <div class="text-center">
-          <span class="section-tag"><i data-lucide="rocket"></i> HAVE AN IDEA? LET'S BUILD IT.</span>
-          <h2 class="section-heading">Start a Project</h2>
-          <p class="section-subheading">Fill in the project brief below to dispatch a confirmed brief to Atharva Mirzapure. All values are preserved between steps.</p>
-        </div>
-
-        <div class="project-wizard-container">
-          <div class="wizard-steps-bar" role="tablist">
-            <div class="wizard-step-item active" data-step="1">
-              <div class="step-circle">1</div>
-              <span class="step-label-text">Contact</span>
-            </div>
-            <div class="wizard-step-item" data-step="2">
-              <div class="step-circle">2</div>
-              <span class="step-label-text">Details</span>
-            </div>
-            <div class="wizard-step-item" data-step="3">
-              <div class="step-circle">3</div>
-              <span class="step-label-text">Requirements</span>
-            </div>
-            <div class="wizard-step-item" data-step="4">
-              <div class="step-circle">4</div>
-              <span class="step-label-text">Review</span>
-            </div>
-          </div>
-
-          <form id="project-request-form" novalidate>
-            <!-- Anti-spam Honeypot field (hidden from real users) -->
-            <input type="text" name="website_hp" id="form-website-hp" style="display:none !important;" tabindex="-1" autocomplete="off">
-
-            <input type="hidden" name="project_type" id="form-project-type" value="Website Development">
-            <input type="hidden" name="selected_tier" id="form-selected-tier" value="Standard">
-            <input type="hidden" name="estimated_cost" id="form-estimated-cost" value="₹5,999">
-
-            <!-- STEP 1: Contact Details -->
-            <div class="wizard-panel active" data-step="1">
-              <h3 style="margin-bottom: 20px;">Step 1: Contact Information</h3>
-              <div class="form-group-grid">
-                <div class="form-group">
-                  <label class="form-label" for="form-client-name">Full Name <span class="req">*</span></label>
-                  <input type="text" id="form-client-name" name="client_name" class="form-input" placeholder="e.g. Rahul Sharma" required autocomplete="name">
-                  <span class="field-error-msg" id="err-client-name" style="display:none; color:var(--accent-red); font-size:0.8rem; margin-top:4px;"></span>
+          <!-- Service 2: Web Applications & Tools -->
+          <article class="service-discovery-card border-beam-card" data-service-id="web-apps">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px;">
+                <div style="width: 50px; height: 50px; border-radius: var(--radius-md); background: rgba(6, 182, 212, 0.1); color: var(--accent-cyan); display: flex; align-items: center; justify-content: center; font-size: 1.35rem;">
+                  <i data-lucide="layout-template"></i>
                 </div>
-
-                <div class="form-group">
-                  <label class="form-label" for="form-client-phone">Phone / WhatsApp Number <span class="req">*</span></label>
-                  <input type="tel" id="form-client-phone" name="contact_phone" class="form-input" placeholder="+91 86260 74035" required autocomplete="tel">
-                  <span class="field-error-msg" id="err-client-phone" style="display:none; color:var(--accent-red); font-size:0.8rem; margin-top:4px;"></span>
-                </div>
-
-                <div class="form-group">
-                  <label class="form-label" for="form-client-email">Email Address <span class="req">*</span></label>
-                  <input type="email" id="form-client-email" name="client_email" class="form-input" placeholder="name@example.com" required autocomplete="email">
-                  <span class="field-error-msg" id="err-client-email" style="display:none; color:var(--accent-red); font-size:0.8rem; margin-top:4px;"></span>
-                </div>
-
-                <div class="form-group">
-                  <label class="form-label" for="form-company">Company / Organization <small style="font-weight:normal; color:var(--text-muted);">(Optional)</small></label>
-                  <input type="text" id="form-company" name="company_name" class="form-input" placeholder="e.g. Acme Studio" autocomplete="organization">
-                </div>
+                <span class="service-category-badge" style="background: rgba(6, 182, 212, 0.08); color: var(--accent-cyan); border: 1px solid rgba(6, 182, 212, 0.2);">
+                  Interactive Systems
+                </span>
               </div>
-            </div>
-
-            <!-- STEP 2: Project Details -->
-            <div class="wizard-panel" data-step="2">
-              <h3 style="margin-bottom: 20px;">Step 2: Project Details</h3>
-              
-              <div class="form-group">
-                <label class="form-label">Project Category <span class="req">*</span></label>
-                <div class="project-type-grid" id="form-category-grid">
-                  <div class="type-select-card selected" data-type="Website Development">
-                    <i data-lucide="globe"></i>
-                    <h5>Website</h5>
-                    <span style="font-size:0.75rem; color:var(--text-muted);">Standard / Business</span>
-                  </div>
-                  <div class="type-select-card" data-type="Web Application">
-                    <i data-lucide="layout-template"></i>
-                    <h5>Web App</h5>
-                    <span style="font-size:0.75rem; color:var(--text-muted);">Dynamic & Tools</span>
-                  </div>
-                  <div class="type-select-card" data-type="AI & ML Solution">
-                    <i data-lucide="cpu"></i>
-                    <h5>AI Solution</h5>
-                    <span style="font-size:0.75rem; color:var(--text-muted);">APIs & Bots</span>
-                  </div>
-                  <div class="type-select-card" data-type="Special / Personal Site">
-                    <i data-lucide="sparkles"></i>
-                    <h5>Special Site</h5>
-                    <span style="font-size:0.75rem; color:var(--text-muted);">Surprise / Showcase</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label" for="form-project-title">Project Title / Short Name <span class="req">*</span></label>
-                <input type="text" id="form-project-title" name="project_title" class="form-input" placeholder="e.g. Modern Landing Page for Fitness Studio" required>
-                <span class="field-error-msg" id="err-project-title" style="display:none; color:var(--accent-red); font-size:0.8rem; margin-top:4px;"></span>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label" for="form-project-desc">Project Overview & Goals <span class="req">*</span></label>
-                <textarea id="form-project-desc" name="project_description" class="form-textarea" placeholder="Briefly describe what you want to build, key objectives, and any specific ideas..." required></textarea>
-                <span class="field-error-msg" id="err-project-desc" style="display:none; color:var(--accent-red); font-size:0.8rem; margin-top:4px;"></span>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label" for="form-existing-website">Existing Website / Social Link <small style="font-weight:normal; color:var(--text-muted);">(Optional)</small></label>
-                <input type="url" id="form-existing-website" name="existing_website" class="form-input" placeholder="https://example.com">
-              </div>
-            </div>
-
-            <!-- STEP 3: Requirements & Budget -->
-            <div class="wizard-panel" data-step="3">
-              <h3 style="margin-bottom: 20px;">Step 3: Requirements & Timeline</h3>
-
-              <div class="form-group-grid">
-                <div class="form-group">
-                  <label class="form-label" for="form-customisations">Desired Features & Customizations</label>
-                  <input type="text" id="form-customisations" name="special_customisations" class="form-input" placeholder="e.g. GSAP animations, WhatsApp button, light/dark mode">
-                </div>
-
-                <div class="form-group">
-                  <label class="form-label" for="form-reference-url">Design Reference Link</label>
-                  <input type="url" id="form-reference-url" name="reference_website" class="form-input" placeholder="https://reference-site.com">
-                </div>
-
-                <div class="form-group">
-                  <label class="form-label" for="form-timeline">Expected Timeline</label>
-                  <select id="form-timeline" name="desired_timeline" class="form-select">
-                    <option value="Urgent (2 - 3 Days)">Urgent (2 - 3 Days)</option>
-                    <option value="Standard (4 - 7 Days)" selected>Standard (4 - 7 Days)</option>
-                    <option value="Flexible (1 - 2 Weeks)">Flexible (1 - 2 Weeks)</option>
-                  </select>
-                </div>
-
-                <div class="form-group">
-                  <label class="form-label" for="form-budget">Budget Range</label>
-                  <select id="form-budget" name="budget_expectation" class="form-select">
-                    <option value="₹2,999 - ₹5,999 (Starter / Standard)">₹2,999 - ₹5,999 (Starter / Standard Website)</option>
-                    <option value="₹5,999 - ₹9,999 (Business)" selected>₹5,999 - ₹9,999 (Business Website)</option>
-                    <option value="₹9,999 - ₹14,999 (Business Pro)">₹9,999 - ₹14,999 (Business Pro Website)</option>
-                    <option value="₹12,999 - ₹19,999 (Web App / AI)">₹12,999 - ₹19,999 (Web App / AI Solution)</option>
-                    <option value="₹20,000+ (Custom Application)">₹20,000+ (Custom Application)</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-
-            <!-- STEP 4: Review Your Brief -->
-            <div class="wizard-panel" data-step="4">
-              <h3 style="margin-bottom: 20px;">Step 4: Review Your Project Brief</h3>
-              <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:16px;">
-                Please review your details below before dispatching. You can go back to make changes or download a printable brief summary.
+              <h3 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 10px;">Web Applications & Tools</h3>
+              <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 20px;">
+                Reactive client-side web tools, clinical token queues, analytical dashboards, and interactive calculators built for real-time responsiveness and zero lag.
               </p>
-
-              <div class="review-summary-card" id="review-summary-box">
-                <!-- Dynamically populated by script.js -->
-              </div>
-
-              <div class="review-policy-alert">
-                💳 <strong>Payment Terms:</strong> 50% advance payment is required after project scope and quotation are agreed. Payment details and UPI payment QR code will be shared personally by Atharva.
-              </div>
-
-              <div style="margin-top:18px; display:flex; gap:12px; flex-wrap:wrap;">
-                <button type="button" class="btn btn-secondary btn-sm" id="btn-print-brief">
-                  <i data-lucide="printer"></i> Download / Print Project Brief
-                </button>
-              </div>
+              <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 24px;">
+                <li><i data-lucide="check" style="width: 14px; height: 14px; color: var(--accent-green); vertical-align: middle;"></i> Reactive client-side state architecture</li>
+                <li><i data-lucide="check" style="width: 14px; height: 14px; color: var(--accent-green); vertical-align: middle;"></i> LocalStorage / Session persistent cache</li>
+                <li><i data-lucide="check" style="width: 14px; height: 14px; color: var(--accent-green); vertical-align: middle;"></i> CSV & printable single-page PDF report export</li>
+              </ul>
             </div>
-
-            <!-- Wizard Step Controls -->
-            <div class="wizard-controls">
-              <button type="button" class="btn btn-secondary" id="btn-prev-step" style="display:none;">
-                <i data-lucide="arrow-left"></i> Previous
-              </button>
-              <button type="button" class="btn btn-primary" id="btn-next-step" style="margin-left:auto;">
-                Next Step <i data-lucide="arrow-right"></i>
-              </button>
-              <button type="submit" class="btn btn-primary" id="btn-submit-project" style="display:none; margin-left:auto; background:var(--accent-green);">
-                SUBMIT PROJECT REQUEST <i data-lucide="send"></i>
+            <div class="service-action-bar">
+              <span class="service-hint-tag">
+                <i data-lucide="sparkles" style="width: 13px; height: 13px; color: var(--accent-cyan);"></i> Pricing in modal
+              </span>
+              <button type="button" class="btn btn-outline btn-sm open-service-modal-btn" data-service-id="web-apps">
+                <span>Explore Service</span>
+                <i data-lucide="arrow-right"></i>
               </button>
             </div>
-          </form>
+          </article>
+
+          <!-- Service 3: AI & Machine Learning Integrations -->
+          <article class="service-discovery-card border-beam-card" data-service-id="ai-solutions">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px;">
+                <div style="width: 50px; height: 50px; border-radius: var(--radius-md); background: rgba(255, 107, 44, 0.1); color: var(--accent-orange); display: flex; align-items: center; justify-content: center; font-size: 1.35rem;">
+                  <i data-lucide="cpu"></i>
+                </div>
+                <span class="service-category-badge" style="background: rgba(255, 107, 44, 0.08); color: var(--accent-orange); border: 1px solid rgba(255, 107, 44, 0.2);">
+                  AI & Automation
+                </span>
+              </div>
+              <h3 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 10px;">AI & ML Model Integrations</h3>
+              <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 20px;">
+                Connecting modern AI models (OpenAI, Claude, custom computer vision/NLP prototypes) into responsive web interfaces with streaming responses and secure serverless proxies.
+              </p>
+              <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 24px;">
+                <li><i data-lucide="check" style="width: 14px; height: 14px; color: var(--accent-green); vertical-align: middle;"></i> Serverless API key shielding & rate limiting</li>
+                <li><i data-lucide="check" style="width: 14px; height: 14px; color: var(--accent-green); vertical-align: middle;"></i> Streaming AI chat and prompt visualizer cards</li>
+                <li><i data-lucide="check" style="width: 14px; height: 14px; color: var(--accent-green); vertical-align: middle;"></i> Multimodal text & image diagnostic breakdown</li>
+              </ul>
+            </div>
+            <div class="service-action-bar">
+              <span class="service-hint-tag">
+                <i data-lucide="sparkles" style="width: 13px; height: 13px; color: var(--accent-cyan);"></i> Pricing in modal
+              </span>
+              <button type="button" class="btn btn-outline btn-sm open-service-modal-btn" data-service-id="ai-solutions">
+                <span>Explore Service</span>
+                <i data-lucide="arrow-right"></i>
+              </button>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         5. HOW WE WORK / 4-STAGE STUDIO ROADMAP
+         ========================================================================= -->
+    <section class="section-padding" style="background: var(--bg-alt);" id="how-we-work">
+      <div class="container">
+        <div class="text-center" style="margin-bottom: 56px;">
+          <div class="section-tag">
+            <i data-lucide="compass"></i> Collaborative Journey
+          </div>
+          <h2 class="section-heading">How We Engineer Your Project</h2>
+          <p class="section-subheading">
+            A structured, transparent four-stage process from your initial brief to production deployment. Direct engineer communication, fixed milestones, and zero agency friction.
+          </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px;">
+          
+          <!-- Step 1 -->
+          <div class="bento-card" style="padding: 30px; position: relative;">
+            <span style="font-size: 2.2rem; font-weight: 900; font-family: var(--font-mono); color: var(--accent-blue); opacity: 0.3; display: block; margin-bottom: 12px;">01</span>
+            <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 10px;">Discovery & Brief</h3>
+            <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6;">
+              Submit your project brief. We assess requirements, review reference links, and deliver an exact, fixed-cost proposal within 24 hours.
+            </p>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="bento-card" style="padding: 30px; position: relative;">
+            <span style="font-size: 2.2rem; font-weight: 900; font-family: var(--font-mono); color: var(--accent-cyan); opacity: 0.3; display: block; margin-bottom: 12px;">02</span>
+            <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 10px;">Architecture & Design</h3>
+            <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6;">
+              We outline user flow, interactive layout, and design system. 50% milestone advance initiated upon agreed scope sign-off.
+            </p>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="bento-card" style="padding: 30px; position: relative;">
+            <span style="font-size: 2.2rem; font-weight: 900; font-family: var(--font-mono); color: var(--accent-orange); opacity: 0.3; display: block; margin-bottom: 12px;">03</span>
+            <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 10px;">Production Build</h3>
+            <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6;">
+              Handcrafted code with clean HTML5, CSS custom properties, Three.js/GSAP motion, and resilient Netlify serverless functions.
+            </p>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="bento-card" style="padding: 30px; position: relative;">
+            <span style="font-size: 2.2rem; font-weight: 900; font-family: var(--font-mono); color: var(--accent-green); opacity: 0.3; display: block; margin-bottom: 12px;">04</span>
+            <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 10px;">QA & Handover</h3>
+            <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6;">
+              Comprehensive visual testing on mobile, tablet, and desktop. Final 50% balance cleared upon approval, followed by global edge deploy.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         5. COMPACT DEVELOPER PROFILE INTRODUCTION
+         ========================================================================= -->
+    <section class="section-padding" style="background: var(--bg-alt);" id="developer-intro">
+      <div class="container">
+        <div style="background: var(--bg-card); border: 1px solid var(--border-medium); border-radius: var(--radius-xl); padding: clamp(28px, 5vw, 56px); box-shadow: var(--shadow-sm); display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 40px; align-items: center;">
+          
+          <!-- Left: Brand Emblem & Visual Profile -->
+          <div style="text-align: center; padding: 20px;">
+            <div style="display: inline-block; position: relative; margin-bottom: 20px;">
+              <img src="public/assets/brand/logo.png" alt="Atharva Mirzapure — BuiltByAtharva" class="bba-logo-img" style="width: 120px; height: 120px; border-radius: 50%; box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="bba-logo-fallback" style="width: 120px; height: 120px; border-radius: 50%; display: none; font-size: 2.5rem; margin: 0 auto;"><span class="bba-logo-mark">BA</span></div>
+            </div>
+            <h3 style="font-size: 1.6rem; font-weight: 900; margin-bottom: 4px;">Atharva Mirzapure</h3>
+            <p style="font-size: 0.9rem; font-weight: 700; color: var(--accent-blue); margin-bottom: 12px;">Independent Software Developer & Creative Technologist</p>
+            <p style="font-size: 0.85rem; color: var(--text-muted);"><i data-lucide="map-pin" style="width:14px; height:14px; vertical-align:middle;"></i> India • Collaborating Globally</p>
+          </div>
+
+          <!-- Right: Core Philosophy & Link to About -->
+          <div>
+            <div class="section-tag" style="margin-bottom: 14px;">About the Founder</div>
+            <h2 style="font-size: clamp(1.8rem, 3.2vw, 2.4rem); font-weight: 900; line-height: 1.2; margin-bottom: 18px;">
+              Direct collaboration without agency layers.
+            </h2>
+            <p style="font-size: 1rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 22px;">
+              When you work with BuiltByAtharva, you work directly with me from initial napkin sketch to final production deployment. Every layout is intentionally designed, every line of JavaScript is handcrafted, and every quote is fixed and transparent.
+            </p>
+            <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+              <a href="about.html" class="btn btn-secondary">
+                <i data-lucide="user"></i> Read Full Story & Skills
+              </a>
+              <a href="https://wa.me/918626074035" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+                <i data-lucide="message-circle"></i> Quick Chat on WhatsApp
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         6. FINAL PROJECT CALL TO ACTION BANNER
+         ========================================================================= -->
+    <section class="section-padding" style="background: radial-gradient(circle at 50% 50%, var(--accent-blue-glow) 0%, var(--bg-main) 70%); text-align: center;">
+      <div class="container" style="max-width: 780px;">
+        <div class="section-tag" style="margin-bottom: 16px;">
+          <i data-lucide="sparkles"></i> Let's Collaborate
+        </div>
+        <h2 style="font-size: clamp(2.4rem, 4.5vw, 3.6rem); font-weight: 900; letter-spacing: -0.03em; margin-bottom: 20px;">
+          Have an ambitious project in mind?
+        </h2>
+        <p style="font-size: 1.15rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 36px;">
+          Whether you need a bespoke brand website, a reactive web application, or an AI prototype, let's explore how we can bring it to life with precision and speed.
+        </p>
+        <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+          <a href="start-project.html" class="btn btn-primary btn-lg">
+            <span>Start Your Project Brief</span>
+            <i data-lucide="arrow-right"></i>
+          </a>
+          <a href="pricing.html" class="btn btn-secondary btn-lg">
+            <span>Explore Pricing & Packages</span>
+          </a>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- ==========================================
-       SECTION 9: DEEP FOOTER
-       ========================================== -->
-  <footer class="footer" id="footer">
+  <!-- =========================================================================
+       7. GLOBAL FOOTER
+       ========================================================================= -->
+  <footer class="footer" style="background: var(--bg-footer); color: #ffffff; padding: 80px 0 36px; border-top: 1px solid rgba(255, 255, 255, 0.08);">
     <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <div class="nav-brand">
-            <div class="logo-badge">BA</div>
-            <div class="brand-text-wrap">
-              <span class="brand-name" style="color:#ffffff;">BuiltByAtharva</span>
-              <span class="brand-tagline">IDEAS. BUILT.</span>
+      <div class="footer-grid" style="display: grid; grid-template-columns: 2fr 1fr 1fr 1.2fr; gap: 48px; margin-bottom: 60px;">
+        
+        <!-- Column 1: Brand & Identity -->
+        <div>
+          <a href="index.html" class="bba-brand-badge" style="margin-bottom: 18px;">
+            <img src="public/assets/brand/logo.png" alt="BuiltByAtharva" class="bba-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="bba-logo-fallback" style="display:none;"><span class="bba-logo-mark">BA</span></div>
+            <div class="bba-wordmark-group">
+              <span class="bba-wordmark-title" style="color: #ffffff;">BuiltByAtharva</span>
+              <span class="bba-wordmark-tagline">IDEAS. BUILT.</span>
             </div>
-          </div>
-          <p>
-            Futuristic software development studio by <strong>Atharva Mirzapure</strong>. Modern websites, interactive web applications, UI/UX design, and AI-powered solutions.
+          </a>
+          <p style="color: #94a3b8; font-size: 0.92rem; line-height: 1.6; max-width: 340px; margin-bottom: 20px;">
+            Futuristic Creative Technology & Software Studio founded by <strong>Atharva Mirzapure</strong>. Engineering high-craft digital experiences that stand apart.
           </p>
-          <div style="margin-top:20px;">
-            <a href="https://wa.me/918626074035?text=Hi%20Atharva,%20I'm%20interested%20in%20discussing%20a%20project%20with%20BuiltByAtharva." target="_blank" rel="noopener" class="btn btn-outline btn-sm" style="color:#ffffff; border-color:rgba(255,255,255,0.25);">
-              <i data-lucide="message-circle" style="color:#25d366;"></i> WhatsApp Consultation
-            </a>
+          <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); padding: 6px 14px; border-radius: var(--radius-full); font-size: 0.78rem; font-weight: 700; color: #34d399;">
+            <span style="width: 8px; height: 8px; border-radius: 50%; background: #34d399; box-shadow: 0 0 8px #34d399;"></span>
+            <span>Available for Q4 2026 Projects</span>
           </div>
         </div>
 
-        <div class="footer-col">
-          <h4>Navigation</h4>
-          <ul class="footer-links">
-            <li><a href="#hero">Home</a></li>
-            <li><a href="#about">About Me</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#capabilities">Capabilities</a></li>
-            <li><a href="#pricing">Pricing</a></li>
-            <li><a href="#work">Featured Work</a></li>
-            <li><a href="#process">Process</a></li>
+        <!-- Column 2: Studio Navigation -->
+        <div>
+          <h4 style="color: #ffffff; font-size: 0.95rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 18px;">Studio</h4>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 0.9rem;">
+            <li><a href="work.html" style="color: #94a3b8; transition: color 0.2s;" onmouseover="this.style.color='#3b82f6'" onmouseout="this.style.color='#94a3b8'">Selected Work</a></li>
+            <li><a href="services.html" style="color: #94a3b8; transition: color 0.2s;" onmouseover="this.style.color='#3b82f6'" onmouseout="this.style.color='#94a3b8'">Capabilities & Services</a></li>
+            <li><a href="pricing.html" style="color: #94a3b8; transition: color 0.2s;" onmouseover="this.style.color='#3b82f6'" onmouseout="this.style.color='#94a3b8'">Pricing & Estimator</a></li>
+            <li><a href="case-study.html?id=truth-guard" style="color: #94a3b8; transition: color 0.2s;" onmouseover="this.style.color='#3b82f6'" onmouseout="this.style.color='#94a3b8'">Truth Guard Case Study</a></li>
           </ul>
         </div>
 
-        <div class="footer-col">
-          <h4>Services</h4>
-          <ul class="footer-links">
-            <li><a href="#services">Website Development</a></li>
-            <li><a href="#services">Web Applications</a></li>
-            <li><a href="#services">AI & ML Solutions</a></li>
-            <li><a href="#services">Special Websites</a></li>
-            <li><a href="#services">UI/UX Design</a></li>
-            <li><a href="#services">Integrations & APIs</a></li>
-            <li><a href="#services">Maintenance & Support</a></li>
+        <!-- Column 3: Company -->
+        <div>
+          <h4 style="color: #ffffff; font-size: 0.95rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 18px;">About</h4>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 0.9rem;">
+            <li><a href="about.html" style="color: #94a3b8; transition: color 0.2s;" onmouseover="this.style.color='#3b82f6'" onmouseout="this.style.color='#94a3b8'">Atharva Mirzapure</a></li>
+            <li><a href="contact.html" style="color: #94a3b8; transition: color 0.2s;" onmouseover="this.style.color='#3b82f6'" onmouseout="this.style.color='#94a3b8'">Direct Consultation</a></li>
+            <li><a href="start-project.html" style="color: #94a3b8; transition: color 0.2s;" onmouseover="this.style.color='#3b82f6'" onmouseout="this.style.color='#94a3b8'">Start a Project Brief</a></li>
           </ul>
         </div>
 
-        <div class="footer-col">
-          <h4>Verified Contact</h4>
-          <div class="footer-contact-info">
-            <p><i data-lucide="mail"></i> <a href="mailto:builtbyatharva27@gmail.com" style="color:#94a3b8;">builtbyatharva27@gmail.com</a></p>
-            <p><i data-lucide="message-circle" style="color:#25d366;"></i> <a href="https://wa.me/918626074035?text=Hi%20Atharva" target="_blank" rel="noopener" style="color:#94a3b8;">+91 86260 74035</a></p>
-            <p><i data-lucide="instagram"></i> <a href="https://www.instagram.com/built_by_atharva/" target="_blank" rel="noopener" style="color:#94a3b8;">@built_by_atharva</a></p>
-            <p><i data-lucide="map-pin"></i> India (Available Globally)</p>
-          </div>
-          <div class="social-links-row">
-            <a href="https://www.instagram.com/built_by_atharva/" target="_blank" rel="noopener" class="social-icon" aria-label="Instagram">
-              <i data-lucide="instagram"></i>
+        <!-- Column 4: Verified Direct Connect -->
+        <div>
+          <h4 style="color: #ffffff; font-size: 0.95rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 18px;">Direct Connect</h4>
+          <p style="color: #94a3b8; font-size: 0.85rem; line-height: 1.5; margin-bottom: 14px;">
+            Direct studio channels with response within 24 hours:
+          </p>
+          <div style="display: flex; flex-direction: column; gap: 10px; font-size: 0.875rem;">
+            <a href="mailto:builtbyatharva27@gmail.com" style="color: #cbd5e1; display: inline-flex; align-items: center; gap: 8px;">
+              <i data-lucide="mail" style="width: 15px; height: 15px; color: var(--accent-blue);"></i> builtbyatharva27@gmail.com
             </a>
-            <a href="mailto:builtbyatharva27@gmail.com" class="social-icon" aria-label="Email">
-              <i data-lucide="mail"></i>
+            <a href="https://wa.me/918626074035" target="_blank" rel="noopener noreferrer" style="color: #cbd5e1; display: inline-flex; align-items: center; gap: 8px;">
+              <i data-lucide="message-circle" style="width: 15px; height: 15px; color: #25d366;"></i> +91 86260 74035
             </a>
-            <a href="https://wa.me/918626074035?text=Hi%20Atharva,%20I'm%20interested%20in%20discussing%20a%20project%20with%20BuiltByAtharva." target="_blank" rel="noopener" class="social-icon" aria-label="WhatsApp">
-              <i data-lucide="message-circle"></i>
+            <a href="https://www.instagram.com/built_by_atharva/" target="_blank" rel="noopener noreferrer" style="color: #cbd5e1; display: inline-flex; align-items: center; gap: 8px;">
+              <i data-lucide="instagram" style="width: 15px; height: 15px; color: #ec4899;"></i> @built_by_atharva
             </a>
           </div>
         </div>
+
       </div>
 
       <div class="footer-bottom">
-        <span>&copy; 2026 BuiltByAtharva. Founder: Atharva Mirzapure. All rights reserved.</span>
-        <span>IDEAS. BUILT.</span>
+        <div>
+          &copy; 2026 <strong>BuiltByAtharva</strong>. Handcrafted with precision by Atharva Mirzapure. All rights reserved.
+        </div>
+        <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+          <span>50% Milestone Advance Policy • Fixed Scope Quotes • Zero Bloat</span>
+          <button type="button" id="footer-replay-intro-btn" style="background: none; border: none; color: #64748b; font-size: 0.8rem; cursor: pointer; text-decoration: underline; display: inline-flex; align-items: center; gap: 4px;" onmouseover="this.style.color='#38bdf8'" onmouseout="this.style.color='#64748b'">
+            <i data-lucide="play-circle" style="width: 13px; height: 13px;"></i> Replay Launch Intro
+          </button>
+        </div>
       </div>
     </div>
   </footer>
 
-  <!-- Floating WhatsApp CTA Button (Verified Number ONLY) -->
-  <a href="https://wa.me/918626074035?text=Hi%20Atharva,%20I'm%20interested%20in%20discussing%20a%20project%20with%20BuiltByAtharva." target="_blank" rel="noopener" class="floating-whatsapp-btn" id="floating-whatsapp" aria-label="Chat on WhatsApp">
-    <i data-lucide="message-circle"></i>
-    <span class="whatsapp-btn-text">Chat on WhatsApp</span>
-  </a>
+  <!-- =========================================================================
+       8. ACCESSIBLE SERVICE DETAIL MODAL (REVEALS IN-DEPTH SPECS & PRICING)
+       ========================================================================= -->
+  <div class="bba-modal-overlay" id="service-detail-modal" role="dialog" aria-modal="true" aria-labelledby="modal-service-title">
+    <div class="bba-modal-dialog">
+      <button type="button" class="bba-modal-close-btn" id="modal-close-btn" aria-label="Close Service Details">
+        <i data-lucide="x" style="width: 20px; height: 20px;"></i>
+      </button>
 
-  <!-- ==========================================
-       MODAL 1: SERVICE DETAIL MODAL (COMPACT CARD EXPANSION)
-       ========================================== -->
-  <div class="modal-overlay" id="service-detail-modal" role="dialog" aria-modal="true" aria-labelledby="modal-service-title">
-    <div class="modal-card">
-      <button class="modal-close-corner" id="service-modal-close-corner" aria-label="Close Service Details"><i data-lucide="x"></i></button>
-      
-      <div style="display:flex; align-items:center; gap:14px; margin-bottom:16px;">
-        <div class="service-compact-icon" id="modal-service-icon" style="width:58px; height:58px; font-size:1.5rem;">
+      <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 20px;">
+        <div id="modal-service-icon" style="width: 52px; height: 52px; border-radius: var(--radius-md); background: rgba(37, 99, 235, 0.1); color: var(--accent-blue); display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
           <i data-lucide="globe"></i>
         </div>
         <div>
-          <span class="service-category-badge" id="modal-service-category">Category</span>
-          <h2 id="modal-service-title" style="font-size:1.75rem; margin-top:4px;">Service Title</h2>
+          <span id="modal-service-category" class="service-category-badge" style="background: rgba(37, 99, 235, 0.08); color: var(--accent-blue);">Core Engineering</span>
+          <h2 id="modal-service-title" style="font-size: 1.7rem; font-weight: 900; margin-top: 4px;">Website Development</h2>
         </div>
       </div>
 
-      <p id="modal-service-desc" style="font-size:1rem; color:var(--text-secondary); line-height:1.7; margin-bottom:20px;"></p>
+      <p id="modal-service-description" style="font-size: 1rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 24px;">
+        High-performance websites, personal brand showcases, and conversion landing pages engineered with clean semantic HTML5, modern CSS, and lightweight JavaScript.
+      </p>
 
-      <div class="modal-price-box">
+      <!-- Who It Is For -->
+      <div style="margin-bottom: 22px;">
+        <h4 style="font-size: 0.82rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 8px;">Target Client & Suitable Projects:</h4>
+        <p id="modal-service-audience" style="font-size: 0.92rem; color: var(--text-primary); line-height: 1.5;">Founders, creators, doctors, consultants, restaurants, and growing businesses needing a fast, credible digital identity.</p>
+      </div>
+
+      <!-- Deliverables List -->
+      <div style="margin-bottom: 24px;">
+        <h4 style="font-size: 0.82rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 12px;">Included Features & Key Deliverables:</h4>
+        <ul id="modal-service-deliverables" class="service-deliverables-list" style="list-style: none; display: flex; flex-direction: column; gap: 10px;">
+          <!-- Populated dynamically via JS -->
+        </ul>
+      </div>
+
+      <!-- Client Prerequisites -->
+      <div style="margin-bottom: 24px; background: var(--bg-alt); padding: 16px 20px; border-radius: var(--radius-md); border-left: 3px solid var(--accent-blue);">
+        <h4 style="font-size: 0.8rem; font-weight: 800; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px;">What You Need to Provide:</h4>
+        <p id="modal-service-prerequisites" style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;">
+          Brand logo, basic copy/content outline, reference URLs or preferred aesthetic inspiration.
+        </p>
+      </div>
+
+      <!-- Timeline & Project Proof -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px;">
+        <div style="background: var(--bg-alt); padding: 14px 18px; border-radius: var(--radius-md);">
+          <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 4px;">Estimated Timeline:</span>
+          <strong id="modal-service-timeline" style="font-size: 1rem; color: var(--text-primary);">3 - 5 Business Days</strong>
+        </div>
+        <div style="background: var(--bg-alt); padding: 14px 18px; border-radius: var(--radius-md);">
+          <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 4px;">Relevant Case Study:</span>
+          <a href="case-study.html?id=ayur-sanjeevani" id="modal-service-case-study" style="font-size: 0.92rem; font-weight: 700; color: var(--accent-blue); text-decoration: underline;">AyurSanjeevani &rarr;</a>
+        </div>
+      </div>
+
+      <!-- PRICE REVEAL BOX -->
+      <div class="modal-price-reveal-box">
         <div>
-          <span style="font-size:0.75rem; text-transform:uppercase; font-weight:800; color:var(--text-muted); display:block;">Starting Rate</span>
-          <strong id="modal-service-price" style="font-size:1.4rem; color:var(--accent-orange); font-family:var(--font-heading);">₹2,999</strong>
+          <span style="font-size: 0.78rem; font-weight: 800; color: var(--accent-blue); text-transform: uppercase; letter-spacing: 0.08em; display: block; margin-bottom: 4px;">Verified Indicative Investment</span>
+          <div id="modal-service-price" class="modal-price-tag">₹2,999 - ₹14,999</div>
+          <span style="font-size: 0.8rem; color: var(--text-muted); display: block; margin-top: 4px;">Fixed scope agreement • 50% milestone advance policy</span>
         </div>
-        <div style="text-align:right;">
-          <span style="font-size:0.75rem; text-transform:uppercase; font-weight:800; color:var(--text-muted); display:block;">Estimated Delivery</span>
-          <strong id="modal-service-delivery" style="font-size:1rem; color:var(--text-primary);">2 - 5 Days</strong>
-        </div>
-      </div>
-
-      <div style="margin-bottom:20px;">
-        <strong style="font-size:0.85rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-primary); display:block; margin-bottom:8px;">Included Core Features</strong>
-        <ul class="modal-features-list" id="modal-service-features"></ul>
-      </div>
-
-      <div style="margin-bottom:20px;">
-        <strong style="font-size:0.85rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-primary); display:block; margin-bottom:8px;">Example Deliverables</strong>
-        <div class="capability-tags-flex" id="modal-service-types"></div>
-      </div>
-
-      <div style="margin-bottom:20px;">
-        <strong style="font-size:0.85rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-primary); display:block; margin-bottom:8px;">Technologies Applied</strong>
-        <div class="tech-pills" id="modal-service-tech"></div>
-      </div>
-
-      <div class="modal-disclaimer-box" id="modal-service-limitations">
-        Scope notice: Third-party domain costs and external services billed directly to client.
-      </div>
-
-      <div style="display:flex; gap:12px; margin-top:24px;">
-        <button type="button" class="btn btn-primary btn-full" id="btn-start-service-project">
-          Start This Project <i data-lucide="arrow-right"></i>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ==========================================
-       MODAL 2: CAPABILITY DETAIL MODAL
-       ========================================== -->
-  <div class="modal-overlay" id="capability-detail-modal" role="dialog" aria-modal="true" aria-labelledby="modal-cap-title">
-    <div class="modal-card">
-      <button class="modal-close-corner" id="cap-modal-close-corner" aria-label="Close Capability Details"><i data-lucide="x"></i></button>
-      
-      <div style="display:flex; align-items:center; gap:14px; margin-bottom:16px;">
-        <div class="capability-system-icon" id="modal-cap-icon" style="color:var(--accent-blue);">
-          <i data-lucide="globe"></i>
-        </div>
-        <div>
-          <span style="font-size:0.75rem; font-weight:800; color:var(--accent-blue);" id="modal-cap-subtitle">SYSTEM</span>
-          <h2 id="modal-cap-title" style="font-size:1.75rem; margin-top:4px;">Capability System</h2>
-        </div>
-      </div>
-
-      <p id="modal-cap-desc" style="font-size:1rem; color:var(--text-secondary); line-height:1.7; margin-bottom:20px;"></p>
-
-      <div style="margin-bottom:20px;">
-        <strong style="font-size:0.85rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-primary); display:block; margin-bottom:12px;">Scope & Use Cases</strong>
-        <div class="capability-tags-flex" id="modal-cap-tags"></div>
-      </div>
-
-      <div style="margin-bottom:20px;">
-        <strong style="font-size:0.85rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-primary); display:block; margin-bottom:8px;">Typical Tech Stack</strong>
-        <div class="tech-pills" id="modal-cap-tech"></div>
-      </div>
-
-      <div style="display:flex; gap:12px; margin-top:24px;">
-        <button type="button" class="btn btn-primary btn-full" id="btn-start-cap-project">
-          Configure Solution <i data-lucide="arrow-right"></i>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ==========================================
-       MODAL 3: STUDIO PROJECT PREVIEW & CASE STUDY
-       ========================================== -->
-  <div class="modal-overlay" id="project-studio-modal" role="dialog" aria-modal="true" aria-labelledby="modal-project-title">
-    <div class="modal-card" style="max-width:820px;">
-      <button class="modal-close-corner" id="project-modal-close-corner" aria-label="Close Project Studio"><i data-lucide="x"></i></button>
-
-      <!-- Mode Switcher Tabs -->
-      <div class="studio-modal-tabs">
-        <button type="button" class="studio-tab-btn active" id="tab-btn-casestudy">
-          <i data-lucide="file-text"></i> Case Study & Architecture
-        </button>
-        <button type="button" class="studio-tab-btn" id="tab-btn-preview">
-          <i data-lucide="smartphone"></i> Interactive Device Preview
-        </button>
-      </div>
-
-      <!-- TAB 1: Case Study Content -->
-      <div id="project-casestudy-tab" class="studio-tab-content">
-        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; flex-wrap:wrap; gap:8px;">
-          <span class="portfolio-tag" id="modal-project-cat">Category</span>
-          <span class="portfolio-status-tag" id="modal-project-status">Status</span>
-        </div>
-
-        <h2 id="modal-project-title" style="font-size:2rem; margin-bottom:6px;">Project Title</h2>
-        <p id="modal-project-subtitle" style="font-size:1rem; color:var(--text-muted); margin-bottom:20px;"></p>
-
-        <div class="portfolio-img-wrap" style="border-radius:var(--radius-md); height:280px; margin-bottom:24px;">
-          <img id="modal-project-img" src="assets/portfolio-1.jpg" alt="Project Screenshot">
-        </div>
-
-        <div style="margin-bottom:20px;">
-          <strong style="color:var(--accent-orange); display:block; margin-bottom:4px; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.05em;">Overview & Objective</strong>
-          <p id="modal-project-desc" style="color:var(--text-secondary); font-size:0.95rem; line-height:1.65;"></p>
-        </div>
-
-        <div style="margin-bottom:20px;">
-          <strong style="color:var(--accent-blue); display:block; margin-bottom:4px; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.05em;">Problem Solved</strong>
-          <p id="modal-project-problem" style="color:var(--text-secondary); font-size:0.95rem; line-height:1.65;"></p>
-        </div>
-
-        <div style="margin-bottom:20px;">
-          <strong style="color:var(--accent-pink); display:block; margin-bottom:4px; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.05em;">What Atharva Engineered</strong>
-          <p id="modal-project-built" style="color:var(--text-secondary); font-size:0.95rem; line-height:1.65;"></p>
-        </div>
-
-        <div style="margin-bottom:20px;">
-          <strong style="color:var(--text-primary); display:block; margin-bottom:8px; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.05em;">Key Implemented Features</strong>
-          <ul id="modal-project-features" class="modal-features-list"></ul>
-        </div>
-
-        <div class="modal-disclaimer-box" id="modal-project-disclaimer">
-          ℹ️ Project status reflects evaluated prototype results.
-        </div>
-
-        <div style="margin-bottom:24px;">
-          <strong style="color:var(--text-muted); display:block; margin-bottom:8px; font-size:0.8rem; text-transform:uppercase;">Technologies Stack</strong>
-          <div class="tech-pills" id="modal-project-tech"></div>
-        </div>
-
-        <div style="display:flex; gap:12px; flex-wrap:wrap;">
-          <button type="button" class="btn btn-primary" id="btn-switch-to-preview">
-            Switch to Interactive Device Preview <i data-lucide="arrow-right"></i>
-          </button>
-          <a href="#" target="_blank" rel="noopener" class="btn btn-outline" id="modal-project-ext-link" style="display:none;">
-            Open Live External Website <i data-lucide="external-link"></i>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <a href="start-project.html" id="modal-cta-brief" class="btn btn-primary">
+            <span>Start with this Service</span>
+            <i data-lucide="arrow-right"></i>
+          </a>
+          <a href="https://wa.me/918626074035" id="modal-cta-whatsapp" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+            <i data-lucide="message-circle"></i>
+            <span>WhatsApp</span>
           </a>
         </div>
       </div>
-
-      <!-- TAB 2: Interactive Device Preview Frame -->
-      <div id="project-preview-tab" class="studio-tab-content" style="display:none;">
-        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; flex-wrap:wrap; gap:12px;">
-          <div>
-            <h4 id="preview-tab-project-name" style="font-size:1.25rem;">Live Device Preview</h4>
-            <p style="font-size:0.85rem; color:var(--text-muted);">Preview responsive layout across Desktop, Tablet, and Mobile viewports.</p>
-          </div>
-          <div class="preview-device-switcher">
-            <button type="button" class="preview-device-btn active" data-device="desktop"><i data-lucide="monitor"></i> Desktop</button>
-            <button type="button" class="preview-device-btn" data-device="tablet"><i data-lucide="tablet"></i> Tablet</button>
-            <button type="button" class="preview-device-btn" data-device="mobile"><i data-lucide="smartphone"></i> Mobile</button>
-          </div>
-        </div>
-
-        <div class="preview-iframe-wrapper">
-          <div class="preview-iframe-container desktop" id="preview-stage-container">
-            <div class="browser-chrome">
-              <div class="browser-dots">
-                <span class="browser-dot red"></span>
-                <span class="browser-dot yellow"></span>
-                <span class="browser-dot green"></span>
-              </div>
-              <span class="browser-url-pill" id="preview-stage-url">builtbyatharva.studio/preview</span>
-            </div>
-
-            <!-- Dynamic Preview Content: Embedded Interactive Engine OR Live Iframe OR Blocked Fallback -->
-            <div id="preview-dynamic-viewport" style="min-height:360px; padding:20px; position:relative;">
-              <!-- Populated by script.js -->
-            </div>
-          </div>
-        </div>
-
-        <div class="modal-disclaimer-box" id="preview-status-notice" style="margin-top:16px;">
-          ℹ️ <strong>Status:</strong> Testing interactive client-side logic and responsive viewport breakpoints.
-        </div>
-      </div>
     </div>
   </div>
 
-  <!-- ==========================================
-       MODAL 4: SUCCESS CONFIRMATION MODAL
-       ========================================== -->
-  <div class="modal-overlay" id="success-modal" role="dialog" aria-modal="true" aria-labelledby="modal-success-title">
-    <div class="modal-card" style="text-align:center;">
-      <div style="width:72px; height:72px; border-radius:50%; background:var(--accent-blue-glow); color:var(--accent-green); display:flex; align-items:center; justify-content:center; margin:0 auto 20px auto; font-size:2.2rem; border:2px solid var(--accent-green);">
-        <i data-lucide="check-circle-2"></i>
-      </div>
-      <h2 id="modal-success-title" style="font-size:1.85rem; margin-bottom:10px;">PROJECT BRIEF RECEIVED 🎉</h2>
-      <p style="margin-bottom:20px; color:var(--text-secondary); font-size:0.95rem;">
-        Thank you for choosing <strong>BuiltByAtharva</strong>. Your project brief has been successfully emailed to Atharva Mirzapure. I will personally review your requirements and reach out via email or WhatsApp within 24 hours.
-      </p>
+  <!-- Floating Fast WhatsApp Connect -->
+  <a href="https://wa.me/918626074035" target="_blank" rel="noopener noreferrer" class="floating-whatsapp-btn" aria-label="Chat directly on WhatsApp with Atharva">
+    <i data-lucide="message-circle"></i>
+    <span class="whatsapp-btn-text">Chat with Atharva</span>
+  </a>
 
-      <div style="background:var(--bg-alt); padding:20px; border-radius:var(--radius-md); text-align:left; font-size:0.9rem; margin-bottom:24px; border:1px solid var(--border-light);">
-        <strong style="color:var(--accent-orange); display:block; margin-bottom:6px;">Important Next Steps:</strong>
-        <p style="color:var(--text-secondary); margin-bottom:8px;">
-          💳 <strong>50% advance payment is required after scope is agreed upon.</strong>
-        </p>
-        <p style="color:var(--text-muted); font-size:0.85rem;">
-          Payment details and the personal UPI payment QR code will be shared personally by Atharva after confirming milestones.
-        </p>
-      </div>
-
-      <div style="display:flex; gap:12px; flex-direction:column;">
-        <button type="button" class="btn btn-secondary btn-full" id="success-download-brief-btn">
-          <i data-lucide="printer"></i> Download / Print Project Brief
-        </button>
-        <button type="button" class="btn btn-primary btn-full" id="close-modal-btn">
-          Back to Website <i data-lucide="arrow-right"></i>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Hidden Print-Ready Project Brief Container -->
-  <div id="printable-brief-area" class="printable-brief-area"></div>
-
-  <!-- Scripts -->
+  <!-- Application Configuration & Scripts -->
   <script src="config.js"></script>
+  <script src="brand-config.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

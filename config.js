@@ -20,8 +20,13 @@ const CONFIG = {
   BRAND: {
     name: "BuiltByAtharva",
     tagline: "IDEAS. BUILT.",
+    subTagline: "Futuristic Creative Technology & Software Studio",
     founder: "Atharva Mirzapure",
     role: "Independent Software Developer & Creative Technologist",
+    logoPath: "public/assets/brand/logo.png",
+    fallbackLogoPath: "assets/brand/logo.png",
+    logoAlt: "BuiltByAtharva — IDEAS. BUILT.",
+    logoFallbackText: "BuiltByAtharva",
     location: "India (Available Globally)",
     email: "builtbyatharva27@gmail.com",
     instagram: "@built_by_atharva",
@@ -29,7 +34,8 @@ const CONFIG = {
     // Verified WhatsApp number (international format with country code, no + or spaces for wa.me)
     whatsappNumber: "918626074035",
     whatsappDisplay: "+91 86260 74035",
-    siteUrl: "https://builtbyatharva.vercel.app",
+    whatsappLink: "https://wa.me/918626074035",
+    siteUrl: "https://builtbyatharva.netlify.app",
     paymentPolicy: "50% advance payment is required after project scope and quotation are agreed. Payment details and payment QR code will be shared personally by Atharva."
   },
 

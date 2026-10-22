@@ -80,7 +80,25 @@ const server = http.createServer(async (req, res) => {
 
   fs.stat(filePath, (err, stats) => {
     if (err || !stats.isFile()) {
-      // If file not found, try index.html
+      // Check if appending .html matches a file (e.g. /work -> /work.html)
+      const htmlPath = filePath + '.html';
+      if (fs.existsSync(htmlPath) && fs.statSync(htmlPath).isFile()) {
+        res.setHeader('Content-Type', 'text/html; charset=utf-8');
+        res.statusCode = 200;
+        fs.createReadStream(htmlPath).pipe(res);
+        return;
+      }
+
+      // Check for custom 404.html
+      const notFoundPath = path.join(__dirname, '404.html');
+      if (fs.existsSync(notFoundPath)) {
+        res.setHeader('Content-Type', 'text/html; charset=utf-8');
+        res.statusCode = 404;
+        fs.createReadStream(notFoundPath).pipe(res);
+        return;
+      }
+
+      // Otherwise fallback to index.html
       const fallbackPath = path.join(__dirname, 'index.html');
       fs.readFile(fallbackPath, (fallbackErr, fallbackData) => {
         if (fallbackErr) {

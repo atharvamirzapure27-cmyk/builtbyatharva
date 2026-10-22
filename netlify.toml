@@ -5,6 +5,9 @@
   publish = "."
   functions = "netlify/functions"
 
+[functions]
+  included_files = ["assets/brand/**", "public/assets/brand/**", "lib/**"]
+
 # Rewrites /api/submit-project to the Netlify Serverless Function
 [[redirects]]
   from = "/api/submit-project"

@@ -7,7 +7,10 @@
   "scripts": {
     "dev": "node dev-server.js",
     "start": "node dev-server.js",
-    "test-api": "node test-api.js"
+    "test": "node test-audit.js && node test-api.js",
+    "test:api": "node test-api.js",
+    "test:audit": "node test-audit.js",
+    "check": "node -c script.js dev-server.js test-api.js test-audit.js brand-config.js config.js"
   },
   "keywords": [
     "portfolio",
@@ -20,6 +23,7 @@
   "author": "Atharva Mirzapure <builtbyatharva27@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "pdfkit": "^0.20.2",
     "resend": "^6.34.1"
   }
 }

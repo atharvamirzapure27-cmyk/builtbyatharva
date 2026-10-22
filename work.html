@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selected Work & Engineering Prototypes — BuiltByAtharva</title>
+  <meta name="description" content="Explore selected web applications, AI research prototypes, and digital platforms engineered by Atharva Mirzapure at BuiltByAtharva.">
+  <meta name="author" content="Atharva Mirzapure">
+  
+  <meta property="og:title" content="Selected Work & Engineering Prototypes — BuiltByAtharva">
+  <meta property="og:description" content="Truth Guard, Smart OPD Queue, AgriVision AI, AyurSanjeevani, and Dermatologist Visit Reminder.">
+  <meta property="og:image" content="public/assets/brand/logo.png">
+
+  <link rel="icon" type="image/png" href="public/assets/brand/logo.png">
+  <link rel="stylesheet" href="styles.css">
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+</head>
+<body>
+
+  <div id="scroll-progress"></div>
+
+  <div class="bg-ambient-layer" aria-hidden="true">
+    <div class="bg-orb orb-blue"></div>
+    <div class="bg-orb orb-orange"></div>
+    <div class="bg-grid-pattern"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-brand bba-brand-badge">
+        <img src="public/assets/brand/logo.png" alt="BuiltByAtharva Logo" class="bba-logo-img" onerror="if(this.src.indexOf('assets/brand/logo.png') === -1){this.src='assets/brand/logo.png';}else{this.style.display='none';this.nextElementSibling.style.display='flex';}">
+        <div class="bba-logo-fallback" style="display:none;"><span class="bba-logo-mark">BA</span></div>
+        <div class="bba-wordmark-group">
+          <span class="bba-wordmark-title">BuiltByAtharva</span>
+          <span class="bba-wordmark-tagline">IDEAS. BUILT.</span>
+        </div>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="work.html" class="nav-link active">Work</a></li>
+          <li><a href="services.html" class="nav-link">Services</a></li>
+          <li><a href="pricing.html" class="nav-link">Pricing</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-cta-wrap" style="display: flex; align-items: center; gap: 14px;">
+        <button type="button" class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle Color Theme">
+          <i data-lucide="sun" class="sun-icon"></i>
+          <i data-lucide="moon" class="moon-icon"></i>
+        </button>
+        <a href="start-project.html" class="btn btn-primary btn-sm">
+          <span>Start a Project</span>
+          <i data-lucide="arrow-right" style="width:16px; height:16px;"></i>
+        </a>
+        <button type="button" class="mobile-toggle" id="mobile-toggle-btn" aria-label="Open Navigation Menu">
+          <i data-lucide="menu"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-menu-drawer" id="mobile-menu-drawer">
+    <div class="mobile-drawer-header">
+      <div class="bba-brand-badge">
+        <img src="public/assets/brand/logo.png" alt="BuiltByAtharva" class="bba-logo-img" style="width:36px; height:36px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="bba-logo-fallback" style="width:36px; height:36px; display:none;"><span class="bba-logo-mark">BA</span></div>
+        <div class="bba-wordmark-group">
+          <span class="bba-wordmark-title" style="font-size:1.1rem;">BuiltByAtharva</span>
+          <span class="bba-wordmark-tagline">IDEAS. BUILT.</span>
+        </div>
+      </div>
+      <button type="button" class="mobile-drawer-close" id="mobile-drawer-close"><i data-lucide="x"></i></button>
+    </div>
+    <ul class="mobile-nav-links">
+      <li><a href="index.html" class="mobile-nav-link"><i data-lucide="home"></i> Home</a></li>
+      <li><a href="work.html" class="mobile-nav-link active"><i data-lucide="briefcase"></i> Selected Work</a></li>
+      <li><a href="services.html" class="mobile-nav-link"><i data-lucide="layers"></i> Capabilities & Services</a></li>
+      <li><a href="pricing.html" class="mobile-nav-link"><i data-lucide="credit-card"></i> Pricing & Packages</a></li>
+      <li><a href="about.html" class="mobile-nav-link"><i data-lucide="user"></i> About Atharva</a></li>
+      <li><a href="contact.html" class="mobile-nav-link"><i data-lucide="mail"></i> Contact Studio</a></li>
+    </ul>
+  </div>
+
+  <main>
+    <!-- Page Hero -->
+    <section class="page-hero">
+      <div class="container">
+        <div class="page-hero-badge">
+          <i data-lucide="briefcase"></i> Portfolio & Engineering Catalog
+        </div>
+        <h1 class="page-hero-title">Selected Work & Prototypes</h1>
+        <p class="page-hero-desc">
+          Honest engineering case studies spanning web applications, AI research models, and high-performance websites. Each project solves a concrete problem with purposeful code.
+        </p>
+
+        <!-- Category Filters -->
+        <div class="portfolio-filters-wrap" id="work-filters">
+          <button type="button" class="filter-btn active" data-filter="all">All Projects (5)</button>
+          <button type="button" class="filter-btn" data-filter="ai">AI & ML Solutions (2)</button>
+          <button type="button" class="filter-btn" data-filter="webapp">Web Applications (2)</button>
+          <button type="button" class="filter-btn" data-filter="website">Websites (1)</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section class="section-padding" style="padding-top: 10px;">
+      <div class="container">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 36px;" id="portfolio-grid">
+          
+          <!-- 1. Truth Guard -->
+          <article class="portfolio-card" data-category="ai" style="background: var(--bg-card); border: 1px solid var(--border-medium); border-radius: var(--radius-xl); overflow: hidden; display: flex; flex-direction: column; transition: var(--transition-smooth); box-shadow: var(--shadow-sm);">
+            <div style="position: relative; height: 230px; overflow: hidden; background: #0f172a;">
+              <img src="assets/portfolio-1.jpg" alt="Truth Guard — Multimodal Fake News Detection System" style="width: 100%; height: 100%; object-fit: cover;">
+              <span style="position: absolute; top: 16px; left: 16px; background: rgba(15, 23, 42, 0.88); color: #ff7843; border: 1px solid rgba(255, 120, 67, 0.4); padding: 5px 14px; border-radius: var(--radius-full); font-size: 0.75rem; font-weight: 800; text-transform: uppercase;">
+                AI & ML • Research Prototype
+              </span>
+            </div>
+            <div style="padding: 32px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <h2 style="font-size: 1.5rem; font-weight: 900; margin-bottom: 6px;">Truth Guard</h2>
+                <div style="font-size: 0.85rem; font-weight: 700; color: var(--accent-orange); margin-bottom: 14px;">Multimodal Fake News Detection Platform</div>
+                <div style="margin-bottom: 16px;">
+                  <strong style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 4px;">Problem:</strong>
+                  <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5;">Misinformation spreads quickly across social media. Readers need a transparent, fast way to evaluate claim veracity.</p>
+                </div>
+                <div style="margin-bottom: 20px;">
+                  <strong style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 4px;">Engineering Solution:</strong>
+                  <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5;">Built a responsive credibility analysis interface scoring natural language claims against linguistic markers and source confidence indicators.</p>
+                </div>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px;">
+                  <span class="tech-pill">AI / NLP</span>
+                  <span class="tech-pill">JavaScript ES6</span>
+                  <span class="tech-pill">Vercel Deploy</span>
+                </div>
+              </div>
+              <div style="display: flex; gap: 10px;">
+                <a href="case-study.html?id=truth-guard" class="btn btn-primary btn-full btn-sm">
+                  <span>Read Full Case Study</span>
+                  <i data-lucide="arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 2. Smart OPD Queue System -->
+          <article class="portfolio-card" data-category="webapp" style="background: var(--bg-card); border: 1px solid var(--border-medium); border-radius: var(--radius-xl); overflow: hidden; display: flex; flex-direction: column; transition: var(--transition-smooth); box-shadow: var(--shadow-sm);">
+            <div style="position: relative; height: 230px; overflow: hidden; background: #0f172a;">
+              <img src="assets/portfolio-2.jpg" alt="Smart OPD Queue Management System" style="width: 100%; height: 100%; object-fit: cover;">
+              <span style="position: absolute; top: 16px; left: 16px; background: rgba(15, 23, 42, 0.88); color: #06b6d4; border: 1px solid rgba(6, 182, 212, 0.4); padding: 5px 14px; border-radius: var(--radius-full); font-size: 0.75rem; font-weight: 800; text-transform: uppercase;">
+                Web Application • Completed Prototype
+              </span>
+            </div>
+            <div style="padding: 32px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <h2 style="font-size: 1.5rem; font-weight: 900; margin-bottom: 6px;">Smart OPD Queue System</h2>
+                <div style="font-size: 0.85rem; font-weight: 700; color: var(--accent-cyan); margin-bottom: 14px;">Hospital Waiting Room & Token Tracker</div>
+                <div style="margin-bottom: 16px;">
+                  <strong style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 4px;">Problem:</strong>
+                  <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5;">Chaotic outpatient waiting rooms cause patient distress, unpredictable wait periods, and inefficient doctor sequencing.</p>
+                </div>
+                <div style="margin-bottom: 20px;">
+                  <strong style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 4px;">Engineering Solution:</strong>
+                  <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5;">Developed a real-time reactive waiting room board with dynamic token dispense, automated wait-time estimation, and department calling controls.</p>
+                </div>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px;">
+                  <span class="tech-pill">Real-Time State</span>
+                  <span class="tech-pill">Token Engine</span>
+                  <span class="tech-pill">Accessible UI</span>
+                </div>
+              </div>
+              <div style="display: flex; gap: 10px;">
+                <a href="case-study.html?id=smart-opd" class="btn btn-primary btn-full btn-sm">
+                  <span>Read Full Case Study</span>
+                  <i data-lucide="arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 3. AgriVision AI -->
+          <article class="portfolio-card" data-category="ai" style="background: var(--bg-card); border: 1px solid var(--border-medium); border-radius: var(--radius-xl); overflow: hidden; display: flex; flex-direction: column; transition: var(--transition-smooth); box-shadow: var(--shadow-sm);">
+            <div style="position: relative; height: 230px; overflow: hidden; background: #0f172a;">
+              <img src="assets/portfolio-4.jpg" alt="AgriVision AI Crop Leaf Disease Diagnostic Portal" style="width: 100%; height: 100%; object-fit: cover;">
+              <span style="position: absolute; top: 16px; left: 16px; background: rgba(15, 23, 42, 0.88); color: #ff7843; border: 1px solid rgba(255, 120, 67, 0.4); padding: 5px 14px; border-radius: var(--radius-full); font-size: 0.75rem; font-weight: 800; text-transform: uppercase;">
+                AI & ML • Research Prototype
+              </span>
+            </div>
+            <div style="padding: 32px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <h2 style="font-size: 1.5rem; font-weight: 900; margin-bottom: 6px;">AgriVision AI</h2>
+                <div style="font-size: 0.85rem; font-weight: 700; color: var(--accent-orange); margin-bottom: 14px;">Crop Leaf Disease Diagnostic & Health Portal</div>
+                <div style="margin-bottom: 16px;">
+                  <strong style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 4px;">Problem:</strong>
+                  <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5;">Delayed diagnosis of crop leaf blights and fungal infestations causes devastating agricultural yield losses for farmers.</p>
+                </div>
+                <div style="margin-bottom: 20px;">
+                  <strong style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 4px;">Engineering Solution:</strong>
+                  <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5;">Created a lightweight image inspection portal with drag-and-drop leaf image preview, diagnostic matching breakdown, and treatment guidelines.</p>
+                </div>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px;">
+                  <span class="tech-pill">Machine Vision UI</span>
+                  <span class="tech-pill">Diagnostic Breakdown</span>
+                  <span class="tech-pill">Responsive Canvas</span>
+                </div>
+              </div>
+              <div style="display: flex; gap: 10px;">
+                <a href="case-study.html?id=agrivision-ai" class="btn btn-primary btn-full btn-sm">
+                  <span>Read Full Case Study</span>
+                  <i data-lucide="arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 4. AyurSanjeevani -->
+          <article class="portfolio-card" data-category="website" style="background: var(--bg-card); border: 1px solid var(--border-medium); border-radius: var(--radius-xl); overflow: hidden; display: flex; flex-direction: column; transition: var(--transition-smooth); box-shadow: var(--shadow-sm);">
+            <div style="position: relative; height: 230px; overflow: hidden; background: #0f172a;">
+              <img src="assets/portfolio-5.jpg" alt="AyurSanjeevani Herbal Wellness & Ayurvedic Consultation Portal" style="width: 100%; height: 100%; object-fit: cover;">
+              <span style="position: absolute; top: 16px; left: 16px; background: rgba(15, 23, 42, 0.88); color: #3b82f6; border: 1px solid rgba(59, 130, 246, 0.4); padding: 5px 14px; border-radius: var(--radius-full); font-size: 0.75rem; font-weight: 800; text-transform: uppercase;">
+                Website Development • Completed Demo
+              </span>
+            </div>
+            <div style="padding: 32px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <h2 style="font-size: 1.5rem; font-weight: 900; margin-bottom: 6px;">AyurSanjeevani</h2>
+                <div style="font-size: 0.85rem; font-weight: 700; color: var(--accent-blue); margin-bottom: 14px;">Herbal Medicine & Dosha Diagnosis Portal</div>
+                <div style="margin-bottom: 16px;">
+                  <strong style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 4px;">Problem:</strong>
+                  <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5;">Ayurvedic clinics struggle to educate patients on holistic constitution types and streamline digital consultations.</p>
+                </div>
+                <div style="margin-bottom: 20px;">
+                  <strong style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 4px;">Engineering Solution:</strong>
+                  <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5;">Designed a botanical digital portal featuring an interactive 3-stage self-assessment quiz that calculates dominant Doshas and books appointments.</p>
+                </div>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px;">
+                  <span class="tech-pill">Interactive Quiz</span>
+                  <span class="tech-pill">Consultation Flow</span>
+                  <span class="tech-pill">Modern HTML/CSS</span>
+                </div>
+              </div>
+              <div style="display: flex; gap: 10px;">
+                <a href="case-study.html?id=ayur-sanjeevani" class="btn btn-primary btn-full btn-sm">
+                  <span>Read Full Case Study</span>
+                  <i data-lucide="arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 5. Dermatologist Reminder -->
+          <article class="portfolio-card" data-category="webapp" style="background: var(--bg-card); border: 1px solid var(--border-medium); border-radius: var(--radius-xl); overflow: hidden; display: flex; flex-direction: column; transition: var(--transition-smooth); box-shadow: var(--shadow-sm);">
+            <div style="position: relative; height: 230px; overflow: hidden; background: #0f172a;">
+              <img src="assets/portfolio-3.jpg" alt="Dermatologist Visit Reminder & Patient Notification System" style="width: 100%; height: 100%; object-fit: cover;">
+              <span style="position: absolute; top: 16px; left: 16px; background: rgba(15, 23, 42, 0.88); color: #06b6d4; border: 1px solid rgba(6, 182, 212, 0.4); padding: 5px 14px; border-radius: var(--radius-full); font-size: 0.75rem; font-weight: 800; text-transform: uppercase;">
+                Web Application • In Development / Prototype
+              </span>
+            </div>
+            <div style="padding: 32px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <h2 style="font-size: 1.5rem; font-weight: 900; margin-bottom: 6px;">Dermatologist Reminder</h2>
+                <div style="font-size: 0.85rem; font-weight: 700; color: var(--accent-cyan); margin-bottom: 14px;">Clinical Appointment & Follow-Up Notification System</div>
+                <div style="margin-bottom: 16px;">
+                  <strong style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 4px;">Problem:</strong>
+                  <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5;">Skin care regimens require multi-week follow-up sessions, but clinic patient no-show rates exceed 30% without automated prompts.</p>
+                </div>
+                <div style="margin-bottom: 20px;">
+                  <strong style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 4px;">Engineering Solution:</strong>
+                  <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5;">Architected a patient appointment calendar and automated reminder queue visualizer tailored for dermatologist workflows.</p>
+                </div>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px;">
+                  <span class="tech-pill">Calendar Logic</span>
+                  <span class="tech-pill">Notification Queue</span>
+                  <span class="tech-pill">Clinical Workflow</span>
+                </div>
+              </div>
+              <div style="display: flex; gap: 10px;">
+                <a href="case-study.html?id=dermatologist-reminder" class="btn btn-primary btn-full btn-sm">
+                  <span>Read Full Case Study</span>
+                  <i data-lucide="arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <section class="section-padding" style="background: var(--bg-alt); text-align: center;">
+      <div class="container" style="max-width: 700px;">
+        <h2 style="font-size: 2.2rem; font-weight: 900; margin-bottom: 16px;">Need a custom solution like these?</h2>
+        <p style="font-size: 1.05rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 28px;">
+          I build custom web applications, responsive websites, and AI prototypes tailored specifically to your operational requirements.
+        </p>
+        <a href="start-project.html" class="btn btn-primary btn-lg">
+          <span>Start Your Project Brief</span>
+          <i data-lucide="arrow-right"></i>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" style="background: var(--bg-footer); color: #ffffff; padding: 80px 0 36px;">
+    <div class="container">
+      <div class="footer-grid" style="display: grid; grid-template-columns: 2fr 1fr 1fr 1.2fr; gap: 48px; margin-bottom: 60px;">
+        <div>
+          <a href="index.html" class="bba-brand-badge" style="margin-bottom: 18px;">
+            <img src="public/assets/brand/logo.png" alt="BuiltByAtharva" class="bba-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="bba-logo-fallback" style="display:none;"><span class="bba-logo-mark">BA</span></div>
+            <div class="bba-wordmark-group">
+              <span class="bba-wordmark-title" style="color: #ffffff;">BuiltByAtharva</span>
+              <span class="bba-wordmark-tagline">IDEAS. BUILT.</span>
+            </div>
+          </a>
+          <p style="color: #94a3b8; font-size: 0.92rem; line-height: 1.6; max-width: 340px;">
+            Futuristic Creative Technology Studio founded by <strong>Atharva Mirzapure</strong>.
+          </p>
+        </div>
+        <div>
+          <h4 style="color: #ffffff; font-size: 0.95rem; font-weight: 800; text-transform: uppercase; margin-bottom: 18px;">Studio</h4>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 0.9rem;">
+            <li><a href="work.html" style="color: #3b82f6;">Selected Work</a></li>
+            <li><a href="services.html" style="color: #94a3b8;">Capabilities & Services</a></li>
+            <li><a href="pricing.html" style="color: #94a3b8;">Pricing & Packages</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="color: #ffffff; font-size: 0.95rem; font-weight: 800; text-transform: uppercase; margin-bottom: 18px;">About</h4>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 0.9rem;">
+            <li><a href="about.html" style="color: #94a3b8;">Atharva Mirzapure</a></li>
+            <li><a href="contact.html" style="color: #94a3b8;">Contact Studio</a></li>
+            <li><a href="start-project.html" style="color: #94a3b8;">Start a Project</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="color: #ffffff; font-size: 0.95rem; font-weight: 800; text-transform: uppercase; margin-bottom: 18px;">Direct Connect</h4>
+          <div style="display: flex; flex-direction: column; gap: 10px; font-size: 0.875rem;">
+            <a href="mailto:builtbyatharva27@gmail.com" style="color: #cbd5e1; display: inline-flex; align-items: center; gap: 8px;">
+              <i data-lucide="mail" style="color: var(--accent-blue);"></i> builtbyatharva27@gmail.com
+            </a>
+            <a href="https://wa.me/918626074035" target="_blank" rel="noopener noreferrer" style="color: #cbd5e1; display: inline-flex; align-items: center; gap: 8px;">
+              <i data-lucide="message-circle" style="color: #25d366;"></i> +91 86260 74035
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 <strong>BuiltByAtharva</strong>. Engineered with precision by Atharva Mirzapure.</div>
+        <div>Verified Portfolios • 50% Milestone Advance Policy</div>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/918626074035" target="_blank" rel="noopener noreferrer" class="floating-whatsapp-btn">
+    <i data-lucide="message-circle"></i>
+    <span class="whatsapp-btn-text">Chat with Atharva</span>
+  </a>
+
+  <script src="config.js"></script>
+  <script src="brand-config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

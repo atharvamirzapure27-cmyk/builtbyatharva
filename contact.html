@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Studio — BuiltByAtharva</title>
+  <meta name="description" content="Connect directly with Atharva Mirzapure at BuiltByAtharva via email, WhatsApp, or Instagram for project inquiries and engineering consultations.">
+  <meta name="author" content="Atharva Mirzapure">
+
+  <link rel="icon" type="image/png" href="public/assets/brand/logo.png">
+  <link rel="stylesheet" href="styles.css">
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+</head>
+<body>
+
+  <div id="scroll-progress"></div>
+
+  <div class="bg-ambient-layer" aria-hidden="true">
+    <div class="bg-orb orb-blue"></div>
+    <div class="bg-orb orb-orange"></div>
+    <div class="bg-grid-pattern"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-brand bba-brand-badge">
+        <img src="public/assets/brand/logo.png" alt="BuiltByAtharva Logo" class="bba-logo-img" onerror="if(this.src.indexOf('assets/brand/logo.png') === -1){this.src='assets/brand/logo.png';}else{this.style.display='none';this.nextElementSibling.style.display='flex';}">
+        <div class="bba-logo-fallback" style="display:none;"><span class="bba-logo-mark">BA</span></div>
+        <div class="bba-wordmark-group">
+          <span class="bba-wordmark-title">BuiltByAtharva</span>
+          <span class="bba-wordmark-tagline">IDEAS. BUILT.</span>
+        </div>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="work.html" class="nav-link">Work</a></li>
+          <li><a href="services.html" class="nav-link">Services</a></li>
+          <li><a href="pricing.html" class="nav-link">Pricing</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="contact.html" class="nav-link active">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-cta-wrap" style="display: flex; align-items: center; gap: 14px;">
+        <button type="button" class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle Color Theme">
+          <i data-lucide="sun" class="sun-icon"></i>
+          <i data-lucide="moon" class="moon-icon"></i>
+        </button>
+        <a href="start-project.html" class="btn btn-primary btn-sm">
+          <span>Start a Project</span>
+          <i data-lucide="arrow-right" style="width:16px; height:16px;"></i>
+        </a>
+        <button type="button" class="mobile-toggle" id="mobile-toggle-btn">
+          <i data-lucide="menu"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-menu-drawer" id="mobile-menu-drawer">
+    <div class="mobile-drawer-header">
+      <div class="bba-brand-badge">
+        <img src="public/assets/brand/logo.png" alt="BuiltByAtharva" class="bba-logo-img" style="width:36px; height:36px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="bba-logo-fallback" style="width:36px; height:36px; display:none;"><span class="bba-logo-mark">BA</span></div>
+        <div class="bba-wordmark-group">
+          <span class="bba-wordmark-title" style="font-size:1.1rem;">BuiltByAtharva</span>
+          <span class="bba-wordmark-tagline">IDEAS. BUILT.</span>
+        </div>
+      </div>
+      <button type="button" class="mobile-drawer-close" id="mobile-drawer-close"><i data-lucide="x"></i></button>
+    </div>
+    <ul class="mobile-nav-links">
+      <li><a href="index.html" class="mobile-nav-link"><i data-lucide="home"></i> Home</a></li>
+      <li><a href="work.html" class="mobile-nav-link"><i data-lucide="briefcase"></i> Selected Work</a></li>
+      <li><a href="services.html" class="mobile-nav-link"><i data-lucide="layers"></i> Capabilities & Services</a></li>
+      <li><a href="pricing.html" class="mobile-nav-link"><i data-lucide="credit-card"></i> Pricing & Packages</a></li>
+      <li><a href="about.html" class="mobile-nav-link"><i data-lucide="user"></i> About Atharva</a></li>
+      <li><a href="contact.html" class="mobile-nav-link active"><i data-lucide="mail"></i> Contact Studio</a></li>
+    </ul>
+  </div>
+
+  <main>
+    <!-- Page Hero -->
+    <section class="page-hero">
+      <div class="container">
+        <div class="page-hero-badge">
+          <i data-lucide="mail"></i> Direct Communication
+        </div>
+        <h1 class="page-hero-title">Let's Connect</h1>
+        <p class="page-hero-desc">
+          Have an idea or need an engineering consultation? Connect directly through verified studio channels.
+        </p>
+      </div>
+    </section>
+
+    <!-- Contact Cards Grid -->
+    <section class="section-padding" style="padding-top: 10px;">
+      <div class="container" style="max-width: 900px;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px; margin-bottom: 56px;">
+          
+          <!-- Card 1: Email -->
+          <div class="bento-card" style="text-align: center; padding: 36px 24px;">
+            <div style="width: 56px; height: 56px; border-radius: 50%; background: rgba(37, 99, 235, 0.1); color: var(--accent-blue); display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; font-size: 1.5rem;">
+              <i data-lucide="mail"></i>
+            </div>
+            <span style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 6px;">Direct Studio Email</span>
+            <h3 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 8px; word-break: break-all;">builtbyatharva27@gmail.com</h3>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 20px;">For formal briefs, RFP documents, and asynchronous discussions.</p>
+            <a href="mailto:builtbyatharva27@gmail.com" class="btn btn-outline btn-full btn-sm">
+              <span>Send Email</span>
+              <i data-lucide="external-link"></i>
+            </a>
+          </div>
+
+          <!-- Card 2: WhatsApp -->
+          <div class="bento-card" style="text-align: center; padding: 36px 24px; border-color: rgba(37, 211, 102, 0.3);">
+            <div style="width: 56px; height: 56px; border-radius: 50%; background: rgba(37, 211, 102, 0.1); color: #25d366; display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; font-size: 1.5rem;">
+              <i data-lucide="message-circle"></i>
+            </div>
+            <span style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 6px;">Fast WhatsApp Connect</span>
+            <h3 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 8px;">+91 86260 74035</h3>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 20px;">Fastest response for initial scope queries and availability check.</p>
+            <a href="https://wa.me/918626074035" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-full btn-sm" style="background: #25d366;">
+              <span>Message on WhatsApp</span>
+              <i data-lucide="message-circle"></i>
+            </a>
+          </div>
+
+          <!-- Card 3: Instagram -->
+          <div class="bento-card" style="text-align: center; padding: 36px 24px;">
+            <div style="width: 56px; height: 56px; border-radius: 50%; background: rgba(236, 72, 153, 0.1); color: #ec4899; display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; font-size: 1.5rem;">
+              <i data-lucide="instagram"></i>
+            </div>
+            <span style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 6px;">Instagram Studio Hub</span>
+            <h3 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 8px;">@built_by_atharva</h3>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 20px;">UI breakdowns, engineering demos, and creative studio updates.</p>
+            <a href="https://www.instagram.com/built_by_atharva/" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-full btn-sm">
+              <span>View Profile</span>
+              <i data-lucide="external-link"></i>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Comprehensive Brief Box -->
+        <div style="background: var(--bg-card); border: 1px solid var(--border-medium); border-radius: var(--radius-xl); padding: 40px; text-align: center; box-shadow: var(--shadow-sm);">
+          <div class="section-tag" style="margin-bottom: 12px;"><i data-lucide="file-text"></i> Preferred Method</div>
+          <h2 style="font-size: 1.8rem; font-weight: 900; margin-bottom: 12px;">Have detailed requirements ready?</h2>
+          <p style="font-size: 1rem; color: var(--text-secondary); line-height: 1.6; max-width: 600px; margin: 0 auto 24px;">
+            Completing our dedicated 4-step project brief allows me to evaluate your scope and generate a formal single-page A4 PDF receipt immediately.
+          </p>
+          <a href="start-project.html" class="btn btn-primary btn-lg">
+            <span>Open Guided Project Brief</span>
+            <i data-lucide="arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" style="background: var(--bg-footer); color: #ffffff; padding: 80px 0 36px;">
+    <div class="container">
+      <div class="footer-grid" style="display: grid; grid-template-columns: 2fr 1fr 1fr 1.2fr; gap: 48px; margin-bottom: 60px;">
+        <div>
+          <a href="index.html" class="bba-brand-badge" style="margin-bottom: 18px;">
+            <img src="public/assets/brand/logo.png" alt="BuiltByAtharva" class="bba-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="bba-logo-fallback" style="display:none;"><span class="bba-logo-mark">BA</span></div>
+            <div class="bba-wordmark-group">
+              <span class="bba-wordmark-title" style="color: #ffffff;">BuiltByAtharva</span>
+              <span class="bba-wordmark-tagline">IDEAS. BUILT.</span>
+            </div>
+          </a>
+          <p style="color: #94a3b8; font-size: 0.92rem; line-height: 1.6; max-width: 340px;">
+            Futuristic Creative Technology Studio founded by <strong>Atharva Mirzapure</strong>.
+          </p>
+        </div>
+        <div>
+          <h4 style="color: #ffffff; font-size: 0.95rem; font-weight: 800; text-transform: uppercase; margin-bottom: 18px;">Studio</h4>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 0.9rem;">
+            <li><a href="work.html" style="color: #94a3b8;">Selected Work</a></li>
+            <li><a href="services.html" style="color: #94a3b8;">Capabilities & Services</a></li>
+            <li><a href="pricing.html" style="color: #94a3b8;">Pricing & Packages</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="color: #ffffff; font-size: 0.95rem; font-weight: 800; text-transform: uppercase; margin-bottom: 18px;">About</h4>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 0.9rem;">
+            <li><a href="about.html" style="color: #94a3b8;">Atharva Mirzapure</a></li>
+            <li><a href="contact.html" style="color: #3b82f6;">Contact Studio</a></li>
+            <li><a href="start-project.html" style="color: #94a3b8;">Start a Project</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="color: #ffffff; font-size: 0.95rem; font-weight: 800; text-transform: uppercase; margin-bottom: 18px;">Direct Connect</h4>
+          <div style="display: flex; flex-direction: column; gap: 10px; font-size: 0.875rem;">
+            <a href="mailto:builtbyatharva27@gmail.com" style="color: #cbd5e1; display: inline-flex; align-items: center; gap: 8px;">
+              <i data-lucide="mail" style="color: var(--accent-blue);"></i> builtbyatharva27@gmail.com
+            </a>
+            <a href="https://wa.me/918626074035" target="_blank" rel="noopener noreferrer" style="color: #cbd5e1; display: inline-flex; align-items: center; gap: 8px;">
+              <i data-lucide="message-circle" style="color: #25d366;"></i> +91 86260 74035
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 <strong>BuiltByAtharva</strong>. Engineered with precision by Atharva Mirzapure.</div>
+        <div>Direct Inquiries • 24hr Response Time</div>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/918626074035" target="_blank" rel="noopener noreferrer" class="floating-whatsapp-btn">
+    <i data-lucide="message-circle"></i>
+    <span class="whatsapp-btn-text">Chat with Atharva</span>
+  </a>
+
+  <script src="config.js"></script>
+  <script src="brand-config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

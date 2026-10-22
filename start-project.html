@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Start a Project — Project Brief & Consultation | BuiltByAtharva</title>
+  <meta name="description" content="Submit your project brief directly to Atharva Mirzapure at BuiltByAtharva. Receive an instant formal single-page A4 PDF receipt and fixed quotation within 24 hours.">
+  <meta name="author" content="Atharva Mirzapure">
+
+  <link rel="icon" type="image/png" href="public/assets/brand/logo.png">
+  <link rel="stylesheet" href="styles.css">
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+</head>
+<body>
+
+  <div id="scroll-progress"></div>
+
+  <div class="bg-ambient-layer" aria-hidden="true">
+    <div class="bg-orb orb-blue"></div>
+    <div class="bg-orb orb-orange"></div>
+    <div class="bg-grid-pattern"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-brand bba-brand-badge">
+        <img src="assets/brand/builtbyatharva-logo.jpg" alt="BuiltByAtharva Logo" class="bba-logo-img" onerror="if(this.src.indexOf('public/assets/brand/logo.png') === -1){this.src='public/assets/brand/logo.png';}else{this.style.display='none';this.nextElementSibling.style.display='flex';}">
+        <div class="bba-logo-fallback" style="display:none;"><span class="bba-logo-mark">BA</span></div>
+        <div class="bba-wordmark-group">
+          <span class="bba-wordmark-title">BuiltByAtharva</span>
+          <span class="bba-wordmark-tagline">IDEAS. BUILT.</span>
+        </div>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="work.html" class="nav-link">Work</a></li>
+          <li><a href="services.html" class="nav-link">Services</a></li>
+          <li><a href="pricing.html" class="nav-link">Pricing</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-cta-wrap" style="display: flex; align-items: center; gap: 14px;">
+        <button type="button" class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle Color Theme">
+          <i data-lucide="sun" class="sun-icon"></i>
+          <i data-lucide="moon" class="moon-icon"></i>
+        </button>
+        <a href="start-project.html" class="btn btn-primary btn-sm" style="box-shadow: 0 0 16px var(--accent-blue);">
+          <span>Start a Project</span>
+          <i data-lucide="arrow-right" style="width:16px; height:16px;"></i>
+        </a>
+        <button type="button" class="mobile-toggle" id="mobile-toggle-btn">
+          <i data-lucide="menu"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-menu-drawer" id="mobile-menu-drawer">
+    <div class="mobile-drawer-header">
+      <div class="bba-brand-badge">
+        <img src="public/assets/brand/logo.png" alt="BuiltByAtharva" class="bba-logo-img" style="width:36px; height:36px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="bba-logo-fallback" style="width:36px; height:36px; display:none;"><span class="bba-logo-mark">BA</span></div>
+        <div class="bba-wordmark-group">
+          <span class="bba-wordmark-title" style="font-size:1.1rem;">BuiltByAtharva</span>
+          <span class="bba-wordmark-tagline">IDEAS. BUILT.</span>
+        </div>
+      </div>
+      <button type="button" class="mobile-drawer-close" id="mobile-drawer-close"><i data-lucide="x"></i></button>
+    </div>
+    <ul class="mobile-nav-links">
+      <li><a href="index.html" class="mobile-nav-link"><i data-lucide="home"></i> Home</a></li>
+      <li><a href="work.html" class="mobile-nav-link"><i data-lucide="briefcase"></i> Selected Work</a></li>
+      <li><a href="services.html" class="mobile-nav-link"><i data-lucide="layers"></i> Capabilities & Services</a></li>
+      <li><a href="pricing.html" class="mobile-nav-link"><i data-lucide="credit-card"></i> Pricing & Packages</a></li>
+      <li><a href="about.html" class="mobile-nav-link"><i data-lucide="user"></i> About Atharva</a></li>
+      <li><a href="contact.html" class="mobile-nav-link"><i data-lucide="mail"></i> Contact Studio</a></li>
+    </ul>
+  </div>
+
+  <main>
+    <!-- Page Hero -->
+    <section class="page-hero">
+      <div class="container">
+        <div class="page-hero-badge">
+          <i data-lucide="sparkles"></i> Direct Studio Engagement
+        </div>
+        <h1 class="page-hero-title">Start Your Project Brief</h1>
+        <p class="page-hero-desc">
+          Tell me about your goals, features, and timeline. Once submitted, our serverless engine automatically dispatches an official single-page A4 PDF receipt and I will personally review your brief within 24 hours.
+        </p>
+      </div>
+    </section>
+
+    <!-- Multi-Step Form Section -->
+    <section class="section-padding" style="padding-top: 10px;">
+      <div class="container" style="max-width: 860px;">
+        <div class="project-wizard-container" style="background: var(--bg-card); border: 1px solid var(--border-medium); border-radius: var(--radius-xl); padding: clamp(24px, 4vw, 44px); box-shadow: var(--shadow-md);">
+          
+          <!-- Wizard 5-Step Stepper Header -->
+          <div class="wizard-5step-header" id="wizard-stepper">
+            <div class="wizard-5step-item active" data-step="1">
+              <span class="wizard-5step-circle">1</span>
+              <span class="wizard-5step-label">Project Type</span>
+            </div>
+            <div class="wizard-5step-item" data-step="2">
+              <span class="wizard-5step-circle">2</span>
+              <span class="wizard-5step-label">Requirements</span>
+            </div>
+            <div class="wizard-5step-item" data-step="3">
+              <span class="wizard-5step-circle">3</span>
+              <span class="wizard-5step-label">Scope & Budget</span>
+            </div>
+            <div class="wizard-5step-item" data-step="4">
+              <span class="wizard-5step-circle">4</span>
+              <span class="wizard-5step-label">Contact</span>
+            </div>
+            <div class="wizard-5step-item" data-step="5">
+              <span class="wizard-5step-circle">5</span>
+              <span class="wizard-5step-label">Review</span>
+            </div>
+          </div>
+
+          <!-- Wizard Form -->
+          <form id="project-brief-form" novalidate>
+            
+            <!-- Honeypot Anti-Spam (Hidden from humans) -->
+            <div style="position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden;" aria-hidden="true">
+              <label for="form-website-hp">Do not fill this field</label>
+              <input type="text" id="form-website-hp" name="website_hp" tabindex="-1" autocomplete="off">
+            </div>
+
+            <!-- Hidden field for actual selected project type -->
+            <input type="hidden" id="form-project-type" name="project_type" value="Business Website">
+            <input type="hidden" id="form-selected-tier" name="selected_tier" value="Standard">
+            <input type="hidden" id="form-budget" name="budget_expectation" value="₹5,999">
+            <input type="hidden" id="form-timeline" name="desired_timeline" value="Standard (1 - 2 Weeks)">
+
+            <!-- =========================================================================
+                 STEP 1: Choose a Project Type
+                 ========================================================================= -->
+            <div class="wizard-panel active" data-step="1" id="step-panel-1">
+              <div style="margin-bottom: 24px;">
+                <span class="section-tag" style="margin-bottom: 8px;">Step 1 of 5</span>
+                <h3 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 6px;">Choose Your Project Type</h3>
+                <p style="font-size: 0.92rem; color: var(--text-secondary);">Select the category that best matches your vision. Next, we will customize the brief questions specifically for your choice.</p>
+              </div>
+
+              <div class="project-type-grid" id="project-type-grid">
+                
+                <div class="project-type-card selected" data-type="Business Website" data-title="Business & Company Website" data-category="Website">
+                  <div class="project-type-icon"><i data-lucide="building-2"></i></div>
+                  <h4 class="project-type-title">Business Website</h4>
+                  <p class="project-type-desc">Credible corporate hub, service showcase, or consultation platform built for trust and client inquiries.</p>
+                </div>
+
+                <div class="project-type-card" data-type="Portfolio Website" data-title="Portfolio & Personal Brand" data-category="Website">
+                  <div class="project-type-icon"><i data-lucide="user"></i></div>
+                  <h4 class="project-type-title">Portfolio & Personal</h4>
+                  <p class="project-type-desc">High-craft showcase for designers, software engineers, doctors, architects, and independent creators.</p>
+                </div>
+
+                <div class="project-type-card" data-type="Landing Page" data-title="High-Converting Landing Page" data-category="Website">
+                  <div class="project-type-icon"><i data-lucide="sparkles"></i></div>
+                  <h4 class="project-type-title">Landing Page</h4>
+                  <p class="project-type-desc">Single-page sprint engineered for a new product launch, lead capture, event, or waitlist sign-up.</p>
+                </div>
+
+                <div class="project-type-card" data-type="E-commerce Website" data-title="E-commerce & Product Catalog" data-category="Website">
+                  <div class="project-type-icon"><i data-lucide="shopping-bag"></i></div>
+                  <h4 class="project-type-title">E-Commerce & Catalog</h4>
+                  <p class="project-type-desc">Digital storefront, curated product catalog, or direct WhatsApp ordering workflow.</p>
+                </div>
+
+                <div class="project-type-card" data-type="Website Redesign" data-title="Website Redesign & UI/UX Elevation" data-category="Website">
+                  <div class="project-type-icon"><i data-lucide="refresh-cw"></i></div>
+                  <h4 class="project-type-title">Website Redesign</h4>
+                  <p class="project-type-desc">Transform an outdated or slow website into a modern, responsive, high-converting digital experience.</p>
+                </div>
+
+                <div class="project-type-card" data-type="Web Application" data-title="Web Application & Dashboard" data-category="WebApp">
+                  <div class="project-type-icon"><i data-lucide="layout-template"></i></div>
+                  <h4 class="project-type-title">Web Application</h4>
+                  <p class="project-type-desc">Interactive tools, queue trackers, client portals, analytical dashboards, and reactive state systems.</p>
+                </div>
+
+                <div class="project-type-card" data-type="AI & ML Solution" data-title="AI & Machine Learning Prototype" data-category="AI">
+                  <div class="project-type-icon"><i data-lucide="cpu"></i></div>
+                  <h4 class="project-type-title">AI & ML Solution</h4>
+                  <p class="project-type-desc">LLM chatbots, custom vision classification, natural language processors, or automated intelligence workflows.</p>
+                </div>
+
+                <div class="project-type-card" data-type="Automation & Integration" data-title="Automation & Workflow Integration" data-category="Automation">
+                  <div class="project-type-icon"><i data-lucide="workflow"></i></div>
+                  <h4 class="project-type-title">Automation & Tools</h4>
+                  <p class="project-type-desc">PDF generation pipelines, transactional email workflows, webhook syncing, and API integrations.</p>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- =========================================================================
+                 STEP 2: Understand the Requirements (Adaptive Dynamic Questions)
+                 ========================================================================= -->
+            <div class="wizard-panel" data-step="2" id="step-panel-2" style="display: none;">
+              <div style="margin-bottom: 24px;">
+                <span class="section-tag" style="margin-bottom: 8px;">Step 2 of 5</span>
+                <h3 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 6px;">Understand the Requirements</h3>
+                <p style="font-size: 0.92rem; color: var(--text-secondary);">Tailored questions based on your selection of <strong id="adaptive-type-name" style="color: var(--accent-blue);">Business Website</strong>.</p>
+              </div>
+
+              <!-- Project Title / Working Name (Required for backend) -->
+              <div style="margin-bottom: 20px;">
+                <label for="form-project-title" style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 6px;">Project Title / Working Name *</label>
+                <input type="text" id="form-project-title" class="form-input" placeholder="e.g. Apex Health Clinic Official Portal" required>
+                <span class="field-error-msg" id="err-project-title" style="color: var(--accent-red); font-size: 0.78rem; display: none; margin-top: 4px;"></span>
+              </div>
+
+              <!-- Adaptive Question 1: Main Goal -->
+              <div style="margin-bottom: 20px;">
+                <label for="form-primary-goal" style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 6px;">Primary Goal / Objective *</label>
+                <select id="form-primary-goal" class="form-input">
+                  <option value="Establish strong digital credibility and showcase brand authority">Establish strong digital credibility and showcase brand authority</option>
+                  <option value="Generate qualified client leads and consultation inquiries">Generate qualified client leads and consultation inquiries</option>
+                  <option value="Deliver interactive tool utility and automate client workflow">Deliver interactive tool utility and automate client workflow</option>
+                  <option value="Showcase creative portfolio to attract high-value opportunities">Showcase creative portfolio to attract high-value opportunities</option>
+                  <option value="Direct product sales or digital bookings">Direct product sales or digital bookings</option>
+                </select>
+              </div>
+
+              <!-- Adaptive Question 2: Features Checklist -->
+              <div style="margin-bottom: 22px;">
+                <label style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 10px;">Key Features Needed (Select all that apply):</label>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;" id="features-checkbox-grid">
+                  <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; background: var(--bg-alt); padding: 10px 14px; border-radius: var(--radius-sm); border: 1px solid var(--border-light); cursor: pointer;">
+                    <input type="checkbox" name="req_features" value="Dual Light & Dark Theme" checked>
+                    <span>Dual Light/Dark Theme</span>
+                  </label>
+                  <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; background: var(--bg-alt); padding: 10px 14px; border-radius: var(--radius-sm); border: 1px solid var(--border-light); cursor: pointer;">
+                    <input type="checkbox" name="req_features" value="PDF Receipt Dispatch" checked>
+                    <span>Instant PDF Receipt</span>
+                  </label>
+                  <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; background: var(--bg-alt); padding: 10px 14px; border-radius: var(--radius-sm); border: 1px solid var(--border-light); cursor: pointer;">
+                    <input type="checkbox" name="req_features" value="Three.js / 3D Graphics">
+                    <span>Three.js 3D Interactive</span>
+                  </label>
+                  <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; background: var(--bg-alt); padding: 10px 14px; border-radius: var(--radius-sm); border: 1px solid var(--border-light); cursor: pointer;">
+                    <input type="checkbox" name="req_features" value="WhatsApp Direct Integration" checked>
+                    <span>WhatsApp Direct Chat</span>
+                  </label>
+                  <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; background: var(--bg-alt); padding: 10px 14px; border-radius: var(--radius-sm); border: 1px solid var(--border-light); cursor: pointer;">
+                    <input type="checkbox" name="req_features" value="Custom Calculator / Tools">
+                    <span>Interactive Calculator</span>
+                  </label>
+                  <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; background: var(--bg-alt); padding: 10px 14px; border-radius: var(--radius-sm); border: 1px solid var(--border-light); cursor: pointer;">
+                    <input type="checkbox" name="req_features" value="Database / Edge Backend">
+                    <span>Backend / Database Sync</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Reference & Existing Website URLs -->
+              <div class="form-group-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                <div>
+                  <label for="form-existing-url" style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 6px;">Existing Website URL (if any)</label>
+                  <input type="url" id="form-existing-url" class="form-input" placeholder="https://currentsite.com">
+                </div>
+                <div>
+                  <label for="form-reference-url" style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 6px;">Preferred Design Reference (Optional)</label>
+                  <input type="url" id="form-reference-url" class="form-input" placeholder="https://inspiration.com">
+                </div>
+              </div>
+
+              <!-- Project Description & Brief (Required min 10 chars) -->
+              <div style="margin-bottom: 20px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                  <label for="form-project-desc" style="font-size: 0.85rem; font-weight: 700;">Detailed Brief & Requirements *</label>
+                  <span id="desc-char-counter" style="font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-mono);">0 / 4000</span>
+                </div>
+                <textarea id="form-project-desc" class="form-input" rows="4" placeholder="Describe the problem you're solving, must-have pages or screens, target audience, and any technical constraints..." required></textarea>
+                <span class="field-error-msg" id="err-project-desc" style="color: var(--accent-red); font-size: 0.78rem; display: none; margin-top: 4px;"></span>
+              </div>
+            </div>
+
+            <!-- =========================================================================
+                 STEP 3: Scope & Budget
+                 ========================================================================= -->
+            <div class="wizard-panel" data-step="3" id="step-panel-3" style="display: none;">
+              <div style="margin-bottom: 24px;">
+                <span class="section-tag" style="margin-bottom: 8px;">Step 3 of 5</span>
+                <h3 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 6px;">Scope & Budget Alignment</h3>
+                <p style="font-size: 0.92rem; color: var(--text-secondary);">Select the package tier that fits your scope. All projects adhere to our transparent 50% milestone advance model.</p>
+              </div>
+
+              <!-- Package Tier Cards -->
+              <div class="scope-tier-grid" id="scope-tier-grid">
+                
+                <div class="scope-tier-card" data-tier="Starter" data-price="₹2,999">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <strong style="font-size: 1.1rem; color: var(--text-primary);">Starter</strong>
+                    <span style="font-size: 0.75rem; background: var(--bg-alt); padding: 2px 8px; border-radius: var(--radius-full); font-weight: 700;">2-3 Days</span>
+                  </div>
+                  <div style="font-size: 1.6rem; font-weight: 900; color: var(--text-primary); margin-bottom: 8px;">₹2,999</div>
+                  <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.4; margin-bottom: 12px;">Single landing page or personal portfolio with responsive layout and contact form.</p>
+                  <span style="font-size: 0.75rem; color: var(--text-muted);">50% Advance: ₹1,500</span>
+                </div>
+
+                <div class="scope-tier-card selected" data-tier="Standard" data-price="₹5,999">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <strong style="font-size: 1.1rem; color: var(--text-primary);">Standard</strong>
+                    <span style="font-size: 0.75rem; background: rgba(37, 99, 235, 0.1); color: var(--accent-blue); padding: 2px 8px; border-radius: var(--radius-full); font-weight: 800;">POPULAR</span>
+                  </div>
+                  <div style="font-size: 1.6rem; font-weight: 900; color: var(--accent-blue); margin-bottom: 8px;">₹5,999</div>
+                  <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.4; margin-bottom: 12px;">Complete 5-page studio website with dual theme, GSAP motion, and PDF receipt engine.</p>
+                  <span style="font-size: 0.75rem; color: var(--text-muted);">50% Advance: ₹3,000 (rounded)</span>
+                </div>
+
+                <div class="scope-tier-card" data-tier="Business" data-price="₹9,999">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <strong style="font-size: 1.1rem; color: var(--text-primary);">Business</strong>
+                    <span style="font-size: 0.75rem; background: var(--bg-alt); padding: 2px 8px; border-radius: var(--radius-full); font-weight: 700;">5-7 Days</span>
+                  </div>
+                  <div style="font-size: 1.6rem; font-weight: 900; color: var(--text-primary); margin-bottom: 8px;">₹9,999</div>
+                  <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.4; margin-bottom: 12px;">Comprehensive brand showcase with custom interactive components and SEO setup.</p>
+                  <span style="font-size: 0.75rem; color: var(--text-muted);">50% Advance: ₹5,000</span>
+                </div>
+
+                <div class="scope-tier-card" data-tier="Business Pro" data-price="₹14,999+">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <strong style="font-size: 1.1rem; color: var(--text-primary);">Business Pro</strong>
+                    <span style="font-size: 0.75rem; background: var(--bg-alt); padding: 2px 8px; border-radius: var(--radius-full); font-weight: 700;">1-2 Weeks</span>
+                  </div>
+                  <div style="font-size: 1.6rem; font-weight: 900; color: var(--text-primary); margin-bottom: 8px;">₹14,999+</div>
+                  <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.4; margin-bottom: 12px;">Full-scale web application, real-time queues, AI integration, or complex custom tools.</p>
+                  <span style="font-size: 0.75rem; color: var(--text-muted);">50% Advance: ₹7,500+</span>
+                </div>
+
+              </div>
+
+              <!-- Delivery Timeline Selector -->
+              <div class="form-group-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px;">
+                <div>
+                  <label for="form-timeline-select" style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 6px;">Preferred Turnaround Timeline</label>
+                  <select id="form-timeline-select" class="form-input">
+                    <option value="Standard (1 - 2 Weeks)" selected>Standard (1 - 2 Weeks)</option>
+                    <option value="Express Sprint (3 - 5 Days)">Express Sprint (3 - 5 Days)</option>
+                    <option value="Comprehensive (2 - 4 Weeks)">Comprehensive (2 - 4 Weeks)</option>
+                    <option value="Flexible / Phased">Flexible / Phased Roadmap</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label for="form-customisations" style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 6px;">Special Requirements / Add-ons</label>
+                  <input type="text" id="form-customisations" class="form-input" placeholder="e.g. 3D canvas centerpiece, multi-language">
+                </div>
+              </div>
+
+              <!-- Milestone Advance Notice -->
+              <div style="background: rgba(37, 99, 235, 0.06); border-left: 3px solid var(--accent-blue); padding: 14px 18px; border-radius: var(--radius-sm); font-size: 0.84rem; color: var(--text-secondary); line-height: 1.5;">
+                <strong style="color: var(--text-primary);">Milestone Advance Model:</strong> Work commences upon mutually agreed scope and a 50% advance deposit. The final 50% balance is payable only after your review and approval on our staging environment prior to final code handover.
+              </div>
+            </div>
+
+            <!-- =========================================================================
+                 STEP 4: Contact Details
+                 ========================================================================= -->
+            <div class="wizard-panel" data-step="4" id="step-panel-4" style="display: none;">
+              <div style="margin-bottom: 24px;">
+                <span class="section-tag" style="margin-bottom: 8px;">Step 4 of 5</span>
+                <h3 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 6px;">Your Contact Details</h3>
+                <p style="font-size: 0.92rem; color: var(--text-secondary);">Direct contact information to dispatch your formal inquiry receipt and discuss milestone timing.</p>
+              </div>
+
+              <div class="form-group-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                <div>
+                  <label for="form-client-name" style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 6px;">Full Name *</label>
+                  <input type="text" id="form-client-name" class="form-input" placeholder="e.g. Rahul Sharma" required>
+                  <span class="field-error-msg" id="err-client-name" style="color: var(--accent-red); font-size: 0.78rem; display: none; margin-top: 4px;"></span>
+                </div>
+
+                <div>
+                  <label for="form-client-email" style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 6px;">Email Address *</label>
+                  <input type="email" id="form-client-email" class="form-input" placeholder="e.g. rahul@example.com" required>
+                  <span class="field-error-msg" id="err-client-email" style="color: var(--accent-red); font-size: 0.78rem; display: none; margin-top: 4px;"></span>
+                </div>
+              </div>
+
+              <div class="form-group-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px;">
+                <div>
+                  <label for="form-client-phone" style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 6px;">Phone / WhatsApp Number *</label>
+                  <input type="tel" id="form-client-phone" class="form-input" placeholder="e.g. +91 98765 43210" required>
+                  <span class="field-error-msg" id="err-client-phone" style="color: var(--accent-red); font-size: 0.78rem; display: none; margin-top: 4px;"></span>
+                </div>
+
+                <div>
+                  <label for="form-company" style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 6px;">Company / Brand / Organization</label>
+                  <input type="text" id="form-company" class="form-input" placeholder="e.g. Sharma Architecture / Independent">
+                </div>
+              </div>
+
+              <div style="background: var(--bg-alt); padding: 14px 18px; border-radius: var(--radius-md); font-size: 0.82rem; color: var(--text-muted); display: flex; align-items: center; gap: 10px;">
+                <i data-lucide="shield-check" style="width: 16px; height: 16px; color: var(--accent-green); flex-shrink: 0;"></i>
+                <span>Your contact details are kept strictly confidential and used solely for this project brief. Zero spam.</span>
+              </div>
+            </div>
+
+            <!-- =========================================================================
+                 STEP 5: Review & Submit
+                 ========================================================================= -->
+            <div class="wizard-panel" data-step="5" id="step-panel-5" style="display: none;">
+              <div style="margin-bottom: 24px;">
+                <span class="section-tag" style="margin-bottom: 8px;">Step 5 of 5</span>
+                <h3 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 6px;">Review & Submit Your Brief</h3>
+                <p style="font-size: 0.92rem; color: var(--text-secondary);">Verify all details before dispatching to our serverless engine for official receipt generation.</p>
+              </div>
+
+              <!-- Interactive Review Summary Card -->
+              <div class="review-summary-card" id="wizard-review-summary">
+                <!-- Dynamically populated via JS -->
+              </div>
+
+              <!-- Terms Confirmation Checkbox -->
+              <div style="margin-bottom: 24px;">
+                <label style="display: flex; align-items: flex-start; gap: 10px; font-size: 0.86rem; color: var(--text-secondary); cursor: pointer;">
+                  <input type="checkbox" id="terms-agree" checked required style="margin-top: 3px;">
+                  <span>I agree to the fixed-scope estimation model and understand work commences upon 50% milestone advance payment.</span>
+                </label>
+              </div>
+
+              <!-- Server Feedback Banner -->
+              <div id="wizard-server-msg" style="display: none; padding: 14px 18px; border-radius: var(--radius-md); font-size: 0.88rem; margin-bottom: 20px;"></div>
+            </div>
+
+            <!-- Wizard Navigation Controls -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--border-light);">
+              <button type="button" class="btn btn-secondary" id="wizard-btn-prev" style="display: none;">
+                <i data-lucide="arrow-left"></i> Previous Step
+              </button>
+              
+              <div style="margin-left: auto; display: flex; gap: 12px;">
+                <button type="button" class="btn btn-primary" id="wizard-btn-next">
+                  <span>Continue</span>
+                  <i data-lucide="arrow-right"></i>
+                </button>
+                <button type="submit" class="btn btn-primary btn-lg" id="wizard-btn-submit" style="display: none;">
+                  <span id="btn-submit-text">SUBMIT PROJECT BRIEF</span>
+                  <i data-lucide="send" id="btn-submit-icon"></i>
+                </button>
+              </div>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Official Receipt Confirmation Modal -->
+  <div class="modal-backdrop" id="receipt-modal-backdrop" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(11, 15, 25, 0.85); backdrop-filter: blur(12px); z-index: 10000; align-items: center; justify-content: center; padding: 20px;">
+    <div class="modal-card" style="background: var(--bg-card); border: 1px solid var(--border-medium); border-radius: var(--radius-xl); max-width: 620px; width: 100%; padding: clamp(24px, 4vw, 40px); box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3); text-align: center; position: relative;">
+      
+      <div style="width: 64px; height: 64px; border-radius: 50%; background: rgba(16, 185, 129, 0.12); color: var(--accent-green); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 1.8rem; border: 1.5px solid var(--accent-green);">
+        <i data-lucide="check-circle-2"></i>
+      </div>
+
+      <div class="bba-brand-badge" style="justify-content: center; margin-bottom: 12px;">
+        <img src="public/assets/brand/logo.png" alt="BuiltByAtharva" class="bba-logo-img" style="width:36px; height:36px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="bba-logo-fallback" style="width:36px; height:36px; display:none;"><span class="bba-logo-mark">BA</span></div>
+        <div class="bba-wordmark-group" style="text-align: left;">
+          <span class="bba-wordmark-title" style="font-size:1.1rem;">BuiltByAtharva</span>
+          <span class="bba-wordmark-tagline">IDEAS. BUILT.</span>
+        </div>
+      </div>
+
+      <h2 style="font-size: 1.8rem; font-weight: 900; margin-bottom: 8px;">Project Brief Received!</h2>
+      <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 22px;">
+        Thank you for submitting your brief. Your project enquiry has been recorded in our studio engine.
+      </p>
+
+      <div style="background: var(--bg-alt); border: 1px solid var(--border-medium); border-radius: var(--radius-md); padding: 18px; margin-bottom: 24px; text-align: left;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 800; color: var(--text-muted);">Unique Reference ID</span>
+          <span style="font-size: 0.75rem; font-weight: 800; color: var(--accent-green); background: rgba(16, 185, 129, 0.1); padding: 2px 8px; border-radius: var(--radius-full);">SUBMITTED</span>
+        </div>
+        <div style="font-size: 1.5rem; font-family: var(--font-heading); font-weight: 900; color: var(--accent-blue);" id="modal-ref-id">BBA-2026-00000</div>
+        <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;" id="modal-timestamp">Recorded: Today</div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 18px;">
+        <button type="button" class="btn btn-primary" id="btn-download-pdf-receipt">
+          <i data-lucide="download"></i>
+          <span>Download PDF Receipt</span>
+        </button>
+        <button type="button" class="btn btn-secondary" id="btn-print-receipt">
+          <i data-lucide="printer"></i>
+          <span>Print Receipt</span>
+        </button>
+      </div>
+
+      <a id="modal-whatsapp-link" href="https://wa.me/918626074035" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 8px; font-size: 0.875rem; font-weight: 700; color: #25d366; text-decoration: none;">
+        <i data-lucide="message-circle"></i> Fast Track via WhatsApp with Reference ID
+      </a>
+
+      <button type="button" class="modal-close-btn" id="modal-close-btn" aria-label="Close Confirmation Modal" style="position: absolute; top: 18px; right: 18px; background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--text-muted);">
+        <i data-lucide="x"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer" style="background: var(--bg-footer); color: #ffffff; padding: 80px 0 36px;">
+    <div class="container">
+      <div class="footer-grid" style="display: grid; grid-template-columns: 2fr 1fr 1fr 1.2fr; gap: 48px; margin-bottom: 60px;">
+        <div>
+          <a href="index.html" class="bba-brand-badge" style="margin-bottom: 18px;">
+            <img src="public/assets/brand/logo.png" alt="BuiltByAtharva" class="bba-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="bba-logo-fallback" style="display:none;"><span class="bba-logo-mark">BA</span></div>
+            <div class="bba-wordmark-group">
+              <span class="bba-wordmark-title" style="color: #ffffff;">BuiltByAtharva</span>
+              <span class="bba-wordmark-tagline">IDEAS. BUILT.</span>
+            </div>
+          </a>
+          <p style="color: #94a3b8; font-size: 0.92rem; line-height: 1.6; max-width: 340px;">
+            Futuristic Creative Technology Studio founded by <strong>Atharva Mirzapure</strong>.
+          </p>
+        </div>
+        <div>
+          <h4 style="color: #ffffff; font-size: 0.95rem; font-weight: 800; text-transform: uppercase; margin-bottom: 18px;">Studio</h4>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 0.9rem;">
+            <li><a href="work.html" style="color: #94a3b8;">Selected Work</a></li>
+            <li><a href="services.html" style="color: #94a3b8;">Capabilities & Services</a></li>
+            <li><a href="pricing.html" style="color: #94a3b8;">Pricing & Packages</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="color: #ffffff; font-size: 0.95rem; font-weight: 800; text-transform: uppercase; margin-bottom: 18px;">About</h4>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 0.9rem;">
+            <li><a href="about.html" style="color: #94a3b8;">Atharva Mirzapure</a></li>
+            <li><a href="contact.html" style="color: #94a3b8;">Contact Studio</a></li>
+            <li><a href="start-project.html" style="color: #3b82f6;">Start a Project</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="color: #ffffff; font-size: 0.95rem; font-weight: 800; text-transform: uppercase; margin-bottom: 18px;">Direct Connect</h4>
+          <div style="display: flex; flex-direction: column; gap: 10px; font-size: 0.875rem;">
+            <a href="mailto:builtbyatharva27@gmail.com" style="color: #cbd5e1; display: inline-flex; align-items: center; gap: 8px;">
+              <i data-lucide="mail" style="color: var(--accent-blue);"></i> builtbyatharva27@gmail.com
+            </a>
+            <a href="https://wa.me/918626074035" target="_blank" rel="noopener noreferrer" style="color: #cbd5e1; display: inline-flex; align-items: center; gap: 8px;">
+              <i data-lucide="message-circle" style="color: #25d366;"></i> +91 86260 74035
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 <strong>BuiltByAtharva</strong>. Engineered with precision by Atharva Mirzapure.</div>
+        <div>Serverless Submission Engine • 50% Milestone Advance Policy</div>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/918626074035" target="_blank" rel="noopener noreferrer" class="floating-whatsapp-btn">
+    <i data-lucide="message-circle"></i>
+    <span class="whatsapp-btn-text">Chat with Atharva</span>
+  </a>
+
+  <script src="config.js"></script>
+  <script src="brand-config.js"></script>
+  <script src="script.js"></script>
+  <script>
+    // URL Pre-fill Handler (Pre-fills from pricing/services if parameters are present)
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const cat = urlParams.get('category');
+      const tier = urlParams.get('tier');
+      const budget = urlParams.get('budget');
+      const addons = urlParams.get('addons');
+
+      if (cat) {
+        const catSelect = document.getElementById('form-project-type');
+        if (catSelect) {
+          for (let i = 0; i < catSelect.options.length; i++) {
+            if (catSelect.options[i].value.toLowerCase().includes(cat.toLowerCase())) {
+              catSelect.selectedIndex = i;
+              break;
+            }
+          }
+        }
+      }
+
+      if (tier) {
+        const tierSelect = document.getElementById('form-selected-tier');
+        if (tierSelect) {
+          for (let i = 0; i < tierSelect.options.length; i++) {
+            if (tierSelect.options[i].value.toLowerCase().includes(tier.toLowerCase())) {
+              tierSelect.selectedIndex = i;
+              break;
+            }
+          }
+        }
+      }
+
+      if (addons) {
+        const customInput = document.getElementById('form-customisations');
+        if (customInput) customInput.value = addons;
+      }
+    });
+  </script>
+</body>
+</html>

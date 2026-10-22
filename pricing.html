@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing, Packages & Scope Estimator — BuiltByAtharva</title>
+  <meta name="description" content="Transparent pricing for website development, web applications, and AI integrations by Atharva Mirzapure. Clear 50% milestone advance policy and interactive scope estimator.">
+  <meta name="author" content="Atharva Mirzapure">
+
+  <link rel="icon" type="image/png" href="public/assets/brand/logo.png">
+  <link rel="stylesheet" href="styles.css">
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+</head>
+<body>
+
+  <div id="scroll-progress"></div>
+
+  <div class="bg-ambient-layer" aria-hidden="true">
+    <div class="bg-orb orb-blue"></div>
+    <div class="bg-orb orb-orange"></div>
+    <div class="bg-grid-pattern"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-brand bba-brand-badge">
+        <img src="public/assets/brand/logo.png" alt="BuiltByAtharva Logo" class="bba-logo-img" onerror="if(this.src.indexOf('assets/brand/logo.png') === -1){this.src='assets/brand/logo.png';}else{this.style.display='none';this.nextElementSibling.style.display='flex';}">
+        <div class="bba-logo-fallback" style="display:none;"><span class="bba-logo-mark">BA</span></div>
+        <div class="bba-wordmark-group">
+          <span class="bba-wordmark-title">BuiltByAtharva</span>
+          <span class="bba-wordmark-tagline">IDEAS. BUILT.</span>
+        </div>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="work.html" class="nav-link">Work</a></li>
+          <li><a href="services.html" class="nav-link">Services</a></li>
+          <li><a href="pricing.html" class="nav-link active">Pricing</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-cta-wrap" style="display: flex; align-items: center; gap: 14px;">
+        <button type="button" class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle Color Theme">
+          <i data-lucide="sun" class="sun-icon"></i>
+          <i data-lucide="moon" class="moon-icon"></i>
+        </button>
+        <a href="start-project.html" class="btn btn-primary btn-sm">
+          <span>Start a Project</span>
+          <i data-lucide="arrow-right" style="width:16px; height:16px;"></i>
+        </a>
+        <button type="button" class="mobile-toggle" id="mobile-toggle-btn">
+          <i data-lucide="menu"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-menu-drawer" id="mobile-menu-drawer">
+    <div class="mobile-drawer-header">
+      <div class="bba-brand-badge">
+        <img src="public/assets/brand/logo.png" alt="BuiltByAtharva" class="bba-logo-img" style="width:36px; height:36px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="bba-logo-fallback" style="width:36px; height:36px; display:none;"><span class="bba-logo-mark">BA</span></div>
+        <div class="bba-wordmark-group">
+          <span class="bba-wordmark-title" style="font-size:1.1rem;">BuiltByAtharva</span>
+          <span class="bba-wordmark-tagline">IDEAS. BUILT.</span>
+        </div>
+      </div>
+      <button type="button" class="mobile-drawer-close" id="mobile-drawer-close"><i data-lucide="x"></i></button>
+    </div>
+    <ul class="mobile-nav-links">
+      <li><a href="index.html" class="mobile-nav-link"><i data-lucide="home"></i> Home</a></li>
+      <li><a href="work.html" class="mobile-nav-link"><i data-lucide="briefcase"></i> Selected Work</a></li>
+      <li><a href="services.html" class="mobile-nav-link"><i data-lucide="layers"></i> Capabilities & Services</a></li>
+      <li><a href="pricing.html" class="mobile-nav-link active"><i data-lucide="credit-card"></i> Pricing & Packages</a></li>
+      <li><a href="about.html" class="mobile-nav-link"><i data-lucide="user"></i> About Atharva</a></li>
+      <li><a href="contact.html" class="mobile-nav-link"><i data-lucide="mail"></i> Contact Studio</a></li>
+    </ul>
+  </div>
+
+  <main>
+    <!-- Page Hero -->
+    <section class="page-hero">
+      <div class="container">
+        <div class="page-hero-badge">
+          <i data-lucide="credit-card"></i> Transparent Rates & Milestones
+        </div>
+        <h1 class="page-hero-title">Clear, Predictable Studio Pricing</h1>
+        <p class="page-hero-desc">
+          Honest pricing with transparent 50% milestone advance payment terms. No hidden maintenance charges or surprise post-launch billing.
+        </p>
+      </div>
+    </section>
+
+    <!-- SECTION 1: Website Development Packages -->
+    <section class="section-padding" style="padding-top: 10px;">
+      <div class="container">
+        <div style="margin-bottom: 36px;">
+          <span style="font-size: 0.8rem; font-weight: 800; color: var(--accent-blue); text-transform: uppercase; letter-spacing: 0.08em;">Category A</span>
+          <h2 style="font-size: 2.2rem; font-weight: 900; margin-top: 4px;">Website Development Packages</h2>
+          <p style="color: var(--text-secondary); font-size: 1rem;">Engineered with clean semantic HTML5, modern CSS variables, and responsive adaptability.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 28px;">
+          
+          <!-- Starter -->
+          <article class="pricing-card" style="background: var(--bg-card); border: 1px solid var(--border-medium); border-radius: var(--radius-xl); padding: 32px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: var(--shadow-sm);">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                <h3 style="font-size: 1.4rem; font-weight: 800;">Starter</h3>
+              </div>
+              <div style="margin-bottom: 14px;">
+                <span style="font-size: 2.3rem; font-weight: 900; color: var(--text-primary);">₹2,999</span>
+                <span style="font-size: 0.85rem; color: var(--text-muted); display: block;">Turnaround: 2 - 3 Days</span>
+              </div>
+              <p style="font-size: 0.875rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 20px;">
+                Ideal for clean personal portfolios, resumes, and single-page landing showcases.
+              </p>
+              <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 24px;">
+                <li><i data-lucide="check" style="width:14px; height:14px; color:var(--accent-green); vertical-align:middle;"></i> Up to 3 Custom Web Pages</li>
+                <li><i data-lucide="check" style="width:14px; height:14px; color:var(--accent-green); vertical-align:middle;"></i> Fully Mobile & Tablet Responsive</li>
+                <li><i data-lucide="check" style="width:14px; height:14px; color:var(--accent-green); vertical-align:middle;"></i> Contact / Lead Form Integration</li>
+                <li><i data-lucide="check" style="width:14px; height:14px; color:var(--accent-green); vertical-align:middle;"></i> Basic SEO & Social Meta Tags</li>
+                <li><i data-lucide="check" style="width:14px; height:14px; color:var(--accent-green); vertical-align:middle;"></i> Netlify / Vercel Edge Setup</li>
+              </ul>
+            </div>
+            <div>
+              <div style="background: var(--bg-alt); padding: 10px 14px; border-radius: var(--radius-sm); font-size: 0.8rem; font-weight: 700; color: var(--text-primary); text-align: center; margin-bottom: 16px;">
+                50% Advance Required: <span style="color: var(--accent-blue);">₹1,500</span>
+              </div>
+              <a href="start-project.html?category=Website+Development&tier=Starter&budget=₹2,999" class="btn btn-outline btn-full btn-sm">
+                <span>Select Starter</span>
+                <i data-lucide="arrow-right"></i>
+              </a>
+            </div>
+          </article>
+
+          <!-- Standard -->
+          <article class="pricing-card" style="background: var(--bg-card); border: 1px solid var(--border-medium); border-radius: var(--radius-xl); padding: 32px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: var(--shadow-sm);">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                <h3 style="font-size: 1.4rem; font-weight: 800;">Standard</h3>
+              </div>
+              <div style="margin-bottom: 14px;">
+                <span style="font-size: 2.3rem; font-weight: 900; color: var(--text-primary);">₹5,999</span>
+                <span style="font-size: 0.85rem; color: var(--text-muted); display: block;">Turnaround: 3 - 5 Days</span>
+              </div>
+              <p style="font-size: 0.875rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 20px;">
+                Great for small businesses, personal brands, creators, and local service providers.
+              </p>
+              <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 24px;">
+                <li><i data-lucide="check" style="width:14px; height:14px; color:var(--accent-green); vertical-align:middle;"></i> Up to 5 Custom Styled Pages</li>
+                <li><i data-lucide="check" style="width:14px; height:14px; color:var(--accent-green); vertical-align:middle;"></i> Light/Dark UI & Micro-Interactions</li>
+                <li><i data-lucide="check" style="width:14px; height:14px; color:var(--accent-green); vertical-align:middle;"></i> Serverless Email & PDF Receipt</li>
+                <li><i data-lucide="check" style="width:14px; height:14px; color:var(--accent-green); vertical-align:middle;"></i> Social & WhatsApp Integration</li>
+                <li><i data-lucide="check" style="width:14px; height:14px; color:var(--accent-green); vertical-align:middle;"></i> 7 Days Post-Launch Support</li>
+              </ul>
+            </div>
+            <div>
+              <div style="background: var(--bg-alt); padding: 10px 14px; border-radius: var(--radius-sm); font-size: 0.8rem; font-weight: 700; color: var(--text-primary); text-align: center; margin-bottom: 16px;">
+                50% Advance Required: <span style="color: var(--accent-blue);">₹3,000</span>
+              </div>
+              <a href="start-project.html?category=Website+Development&tier=Standard&budget=₹5,999" class="btn btn-outline btn-full btn-sm">
+                <span>Select Standard</span>
+                <i data-lucide="arrow-right"></i>
+              </a>
+            </div>
+          </article>
+
+          <!-- Business (Featured) -->
+          <article class="pricing-card" style="background: var(--bg-card); border: 2px solid var(--accent-blue); border-radius: var(--radius-xl); padding: 32px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 12px 36px var(--accent-blue-glow); position: relative;">
+            <span style="position: absolute; top: -14px; right: 24px; background: var(--accent-blue); color: #ffffff; padding: 4px 14px; border-radius: var(--radius-full); font-size: 0.72rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.08em;">
+              Most Popular
+            </span>
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                <h3 style="font-size: 1.4rem; font-weight: 800;">Business</h3>
+              </div>
+              <div style="margin-bottom: 14px;">
+                <span style="font-size: 2.3rem; font-weight: 900; color: var(--text-primary);">₹9,999</span>
+                <span style="font-size: 0.85rem; color: var(--text-muted); display: block;">Turnaround: 5 - 7 Days</span>
+              </div>
+              <p style="font-size: 0.875rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 20px;">
+                Complete custom digital presence for growing companies, agencies, and studios.
+              </p>
+              <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 24px;">
+                <li><i data-lucide="check" style="width:14px; height:14px; color:var(--accent-green); vertical-align:middle;"></i> Up to 8 Custom Responsive Pages</li>
+                <li><i data-lucide="check" style="width:14px; height:14px; color:var(--accent-green); vertical-align:middle;"></i> Dimensional UI & Subtle GSAP Motion</li>
+                <li><i data-lucide="check" style="width:14px; height:14px; color:var(--accent-green); vertical-align:middle;"></i> Interactive Filters & Calculators</li>
+                <li><i data-lucide="check" style="width:14px; height:14px; color:var(--accent-green); vertical-align:middle;"></i> Full SEO & Lighthouse Speed Tuning</li>
+                <li><i data-lucide="check" style="width:14px; height:14px; color:var(--accent-green); vertical-align:middle;"></i> 14 Days Dedicated Post-Launch Support</li>
+              </ul>
+            </div>
+            <div>
+              <div style="background: rgba(37, 99, 235, 0.08); padding: 10px 14px; border-radius: var(--radius-sm); font-size: 0.8rem; font-weight: 700; color: var(--accent-blue); text-align: center; margin-bottom: 16px;">
+                50% Advance Required: ₹5,000
+              </div>
+              <a href="start-project.html?category=Website+Development&tier=Business&budget=₹9,999" class="btn btn-primary btn-full btn-sm">
+                <span>Select Business</span>
+                <i data-lucide="arrow-right"></i>
+              </a>
+            </div>
+          </article>
+
+          <!-- Business Pro -->
+          <article class="pricing-card" style="background: var(--bg-card); border: 1px solid var(--border-medium); border-radius: var(--radius-xl); padding: 32px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: var(--shadow-sm);">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                <h3 style="font-size: 1.4rem; font-weight: 800;">Business Pro</h3>
+              </div>
+              <div style="margin-bottom: 14px;">
+                <span style="font-size: 2.3rem; font-weight: 900; color: var(--text-primary);">₹14,999+</span>
+                <span style="font-size: 0.85rem; color: var(--text-muted); display: block;">Turnaround: 7 - 10 Days</span>
+              </div>
+              <p style="font-size: 0.875rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 20px;">
+                Advanced multi-section corporate experience with custom workflows and animations.
+              </p>
+              <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 24px;">
+                <li><i data-lucide="check" style="width:14px; height:14px; color:var(--accent-green); vertical-align:middle;"></i> 10+ Custom Structured Pages</li>
+                <li><i data-lucide="check" style="width:14px; height:14px; color:var(--accent-green); vertical-align:middle;"></i> Choreographed GSAP & ScrollTrigger</li>
+                <li><i data-lucide="check" style="width:14px; height:14px; color:var(--accent-green); vertical-align:middle;"></i> Multi-Step Inquiry & Brief Wizards</li>
+                <li><i data-lucide="check" style="width:14px; height:14px; color:var(--accent-green); vertical-align:middle;"></i> Speed & Accessibility Compliance</li>
+                <li><i data-lucide="check" style="width:14px; height:14px; color:var(--accent-green); vertical-align:middle;"></i> Priority 30 Days Post-Launch Support</li>
+              </ul>
+            </div>
+            <div>
+              <div style="background: var(--bg-alt); padding: 10px 14px; border-radius: var(--radius-sm); font-size: 0.8rem; font-weight: 700; color: var(--text-primary); text-align: center; margin-bottom: 16px;">
+                50% Advance Required: <span style="color: var(--accent-blue);">from ₹7,500</span>
+              </div>
+              <a href="start-project.html?category=Website+Development&tier=Business+Pro&budget=₹14,999+" class="btn btn-outline btn-full btn-sm">
+                <span>Select Business Pro</span>
+                <i data-lucide="arrow-right"></i>
+              </a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: Web Applications & AI Packages -->
+    <section class="section-padding" style="background: var(--bg-alt);">
+      <div class="container">
+        <div style="margin-bottom: 36px;">
+          <span style="font-size: 0.8rem; font-weight: 800; color: var(--accent-cyan); text-transform: uppercase; letter-spacing: 0.08em;">Category B</span>
+          <h2 style="font-size: 2.2rem; font-weight: 900; margin-top: 4px;">Web Applications & AI Solutions</h2>
+          <p style="color: var(--text-secondary); font-size: 1rem;">Dynamic client-side tools, dashboards, token trackers, and intelligent AI models.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px;">
+          
+          <!-- Basic App -->
+          <article class="pricing-card" style="background: var(--bg-card); border: 1px solid var(--border-medium); border-radius: var(--radius-xl); padding: 32px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 8px;">Basic Web App</h3>
+              <div style="font-size: 2.1rem; font-weight: 900; margin-bottom: 12px;">₹12,999</div>
+              <p style="font-size: 0.875rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 18px;">
+                Dynamic client-side tool with intuitive UI logic, CRUD data views, and utility workflows.
+              </p>
+              <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 24px;">
+                <li><i data-lucide="check" style="width:14px; height:14px; color:var(--accent-green); vertical-align:middle;"></i> Interactive State Management</li>
+                <li><i data-lucide="check" style="width:14px; height:14px; color:var(--accent-green); vertical-align:middle;"></i> Search, Filter & Sort Controls</li>
+                <li><i data-lucide="check" style="width:14px; height:14px; color:var(--accent-green); vertical-align:middle;"></i> 7 - 10 Days Delivery</li>
+              </ul>
+            </div>
+            <a href="start-project.html?category=Web+Application&tier=Basic+Web+App&budget=₹12,999" class="btn btn-outline btn-full btn-sm">Select Basic App</a>
+          </article>
+
+          <!-- Advanced App -->
+          <article class="pricing-card" style="background: var(--bg-card); border: 1px solid var(--border-medium); border-radius: var(--radius-xl); padding: 32px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 8px;">Advanced Web App</h3>
+              <div style="font-size: 2.1rem; font-weight: 900; margin-bottom: 12px;">₹19,999</div>
+              <p style="font-size: 0.875rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 18px;">
+                Complex interactive dashboard application with real-time UI states, tables, and reporting.
+              </p>
+              <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 24px;">
+                <li><i data-lucide="check" style="width:14px; height:14px; color:var(--accent-green); vertical-align:middle;"></i> Multi-View Dynamic Layouts</li>
+                <li><i data-lucide="check" style="width:14px; height:14px; color:var(--accent-green); vertical-align:middle;"></i> Data Visualizer & Canvas Graphics</li>
+                <li><i data-lucide="check" style="width:14px; height:14px; color:var(--accent-green); vertical-align:middle;"></i> 10 - 14 Days Delivery</li>
+              </ul>
+            </div>
+            <a href="start-project.html?category=Web+Application&tier=Advanced+Web+App&budget=₹19,999" class="btn btn-outline btn-full btn-sm">Select Advanced App</a>
+          </article>
+
+          <!-- AI Bot -->
+          <article class="pricing-card" style="background: var(--bg-card); border: 1px solid var(--border-medium); border-radius: var(--radius-xl); padding: 32px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 8px;">AI Feature / Bot</h3>
+              <div style="font-size: 2.1rem; font-weight: 900; margin-bottom: 12px;">₹3,999+</div>
+              <p style="font-size: 0.875rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 18px;">
+                Integrating modern AI capabilities (OpenAI, Claude) into existing web UI via serverless proxies.
+              </p>
+              <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 24px;">
+                <li><i data-lucide="check" style="width:14px; height:14px; color:var(--accent-green); vertical-align:middle;"></i> Streaming Chatbot Interface</li>
+                <li><i data-lucide="check" style="width:14px; height:14px; color:var(--accent-green); vertical-align:middle;"></i> API Protection Serverless Function</li>
+                <li><i data-lucide="check" style="width:14px; height:14px; color:var(--accent-green); vertical-align:middle;"></i> 3 - 5 Days Delivery</li>
+              </ul>
+            </div>
+            <a href="start-project.html?category=AI+%26+ML+Solution&tier=AI+Feature+Bot&budget=₹3,999+" class="btn btn-outline btn-full btn-sm">Select AI Bot</a>
+          </article>
+
+          <!-- Complete AI Web App -->
+          <article class="pricing-card" style="background: var(--bg-card); border: 1px solid var(--border-medium); border-radius: var(--radius-xl); padding: 32px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 8px;">Complete AI App</h3>
+              <div style="font-size: 2.1rem; font-weight: 900; margin-bottom: 12px;">₹24,999+</div>
+              <p style="font-size: 0.875rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 18px;">
+                Full-scale AI-powered web tool with generative analysis, scoring systems, and custom frontend.
+              </p>
+              <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 24px;">
+                <li><i data-lucide="check" style="width:14px; height:14px; color:var(--accent-green); vertical-align:middle;"></i> Multi-Model Diagnostic Engine</li>
+                <li><i data-lucide="check" style="width:14px; height:14px; color:var(--accent-green); vertical-align:middle;"></i> History Cache & Export Tools</li>
+                <li><i data-lucide="check" style="width:14px; height:14px; color:var(--accent-green); vertical-align:middle;"></i> 12 - 18 Days Delivery</li>
+              </ul>
+            </div>
+            <a href="start-project.html?category=AI+%26+ML+Solution&tier=Complete+AI+Web+App&budget=₹24,999+" class="btn btn-outline btn-full btn-sm">Select AI App</a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: Interactive Dynamic Scope Estimator -->
+    <section class="section-padding" id="estimator">
+      <div class="container">
+        <div class="text-center" style="margin-bottom: 48px;">
+          <div class="section-tag"><i data-lucide="calculator"></i> Custom Estimator</div>
+          <h2 class="section-heading">Interactive Project Scope Estimator</h2>
+          <p class="section-subheading">
+            Customize your base package and select add-on modules to generate an instant scope estimate.
+          </p>
+        </div>
+
+        <div style="background: var(--bg-card); border: 1px solid var(--border-medium); border-radius: var(--radius-xl); padding: clamp(24px, 4vw, 44px); box-shadow: var(--shadow-sm); display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px;" id="estimator-container">
+          
+          <!-- Options Column -->
+          <div>
+            <h4 style="font-size: 1.2rem; font-weight: 800; margin-bottom: 14px;">1. Select Base Package Tier</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px;">
+              <label style="display: flex; align-items: center; gap: 10px; padding: 12px; border: 1px solid var(--border-medium); border-radius: var(--radius-md); cursor: pointer; background: var(--bg-alt);">
+                <input type="radio" name="est-base" value="2999" data-name="Starter Website" checked>
+                <span style="font-size: 0.9rem; font-weight: 700;">Starter (₹2,999)</span>
+              </label>
+              <label style="display: flex; align-items: center; gap: 10px; padding: 12px; border: 1px solid var(--border-medium); border-radius: var(--radius-md); cursor: pointer; background: var(--bg-alt);">
+                <input type="radio" name="est-base" value="5999" data-name="Standard Website">
+                <span style="font-size: 0.9rem; font-weight: 700;">Standard (₹5,999)</span>
+              </label>
+              <label style="display: flex; align-items: center; gap: 10px; padding: 12px; border: 1px solid var(--border-medium); border-radius: var(--radius-md); cursor: pointer; background: var(--bg-alt);">
+                <input type="radio" name="est-base" value="9999" data-name="Business Website">
+                <span style="font-size: 0.9rem; font-weight: 700;">Business (₹9,999)</span>
+              </label>
+              <label style="display: flex; align-items: center; gap: 10px; padding: 12px; border: 1px solid var(--border-medium); border-radius: var(--radius-md); cursor: pointer; background: var(--bg-alt);">
+                <input type="radio" name="est-base" value="12999" data-name="Basic Web App">
+                <span style="font-size: 0.9rem; font-weight: 700;">Basic App (₹12,999)</span>
+              </label>
+            </div>
+
+            <h4 style="font-size: 1.2rem; font-weight: 800; margin-bottom: 14px;">2. Optional Feature Add-Ons</h4>
+            <div style="display: flex; flex-direction: column; gap: 12px;" id="estimator-addons-list">
+              <label style="display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border: 1px solid var(--border-light); border-radius: var(--radius-md); background: var(--bg-alt); cursor: pointer;">
+                <span style="display: flex; align-items: center; gap: 10px; font-size: 0.9rem; font-weight: 600;">
+                  <input type="checkbox" class="est-addon" value="1500" data-name="Extra Web Pages"> Extra Web Pages (+2-3 pages)
+                </span>
+                <strong style="color: var(--accent-blue);">+₹1,500</strong>
+              </label>
+
+              <label style="display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border: 1px solid var(--border-light); border-radius: var(--radius-md); background: var(--bg-alt); cursor: pointer;">
+                <span style="display: flex; align-items: center; gap: 10px; font-size: 0.9rem; font-weight: 600;">
+                  <input type="checkbox" class="est-addon" value="3000" data-name="AI Bot Integration"> AI Chatbot / Prompt Tool
+                </span>
+                <strong style="color: var(--accent-blue);">+₹3,000</strong>
+              </label>
+
+              <label style="display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border: 1px solid var(--border-light); border-radius: var(--radius-md); background: var(--bg-alt); cursor: pointer;">
+                <span style="display: flex; align-items: center; gap: 10px; font-size: 0.9rem; font-weight: 600;">
+                  <input type="checkbox" class="est-addon" value="2000" data-name="Custom 3D / GSAP"> Custom 3D & GSAP Motion
+                </span>
+                <strong style="color: var(--accent-blue);">+₹2,000</strong>
+              </label>
+
+              <label style="display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border: 1px solid var(--border-light); border-radius: var(--radius-md); background: var(--bg-alt); cursor: pointer;">
+                <span style="display: flex; align-items: center; gap: 10px; font-size: 0.9rem; font-weight: 600;">
+                  <input type="checkbox" class="est-addon" value="1000" data-name="WhatsApp Direct Integration"> WhatsApp Direct Chat Integration
+                </span>
+                <strong style="color: var(--accent-blue);">+₹1,000</strong>
+              </label>
+
+              <label style="display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border: 1px solid var(--border-light); border-radius: var(--radius-md); background: var(--bg-alt); cursor: pointer;">
+                <span style="display: flex; align-items: center; gap: 10px; font-size: 0.9rem; font-weight: 600;">
+                  <input type="checkbox" class="est-addon" value="1500" data-name="Express Delivery"> Express Rush Turnaround
+                </span>
+                <strong style="color: var(--accent-blue);">+₹1,500</strong>
+              </label>
+            </div>
+          </div>
+
+          <!-- Total Calculation Column -->
+          <div style="background: var(--bg-alt); border: 1px solid var(--border-medium); border-radius: var(--radius-lg); padding: 32px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <span style="font-size: 0.8rem; font-weight: 800; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 6px;">Live Scope Estimate</span>
+              <div style="font-size: 2.8rem; font-weight: 900; color: var(--accent-blue); line-height: 1;" id="est-total-display">₹2,999</div>
+              
+              <div style="margin: 20px 0; padding: 16px; background: var(--bg-card); border-radius: var(--radius-md); border: 1px solid var(--border-light);">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.875rem;">
+                  <span style="color: var(--text-muted);">Base Package:</span>
+                  <strong id="est-base-name">Starter Website</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.875rem;">
+                  <span style="color: var(--text-muted);">Selected Add-Ons:</span>
+                  <strong id="est-addons-count">0 Add-ons</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.9rem; padding-top: 8px; border-top: 1px solid var(--border-light);">
+                  <span style="font-weight: 700; color: var(--text-primary);">50% Milestone Advance:</span>
+                  <strong style="color: var(--accent-green);" id="est-advance-display">₹1,500</strong>
+                </div>
+              </div>
+
+              <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 24px;">
+                *Estimates depend on agreed brief and scope confirmation. All deliverables include complete code ownership and deployment verification.
+              </p>
+            </div>
+
+            <button type="button" class="btn btn-primary btn-full btn-lg" id="btn-proceed-estimate">
+              <span>Start Project with this Estimate</span>
+              <i data-lucide="arrow-right"></i>
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" style="background: var(--bg-footer); color: #ffffff; padding: 80px 0 36px;">
+    <div class="container">
+      <div class="footer-grid" style="display: grid; grid-template-columns: 2fr 1fr 1fr 1.2fr; gap: 48px; margin-bottom: 60px;">
+        <div>
+          <a href="index.html" class="bba-brand-badge" style="margin-bottom: 18px;">
+            <img src="public/assets/brand/logo.png" alt="BuiltByAtharva" class="bba-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="bba-logo-fallback" style="display:none;"><span class="bba-logo-mark">BA</span></div>
+            <div class="bba-wordmark-group">
+              <span class="bba-wordmark-title" style="color: #ffffff;">BuiltByAtharva</span>
+              <span class="bba-wordmark-tagline">IDEAS. BUILT.</span>
+            </div>
+          </a>
+          <p style="color: #94a3b8; font-size: 0.92rem; line-height: 1.6; max-width: 340px;">
+            Futuristic Creative Technology Studio founded by <strong>Atharva Mirzapure</strong>.
+          </p>
+        </div>
+        <div>
+          <h4 style="color: #ffffff; font-size: 0.95rem; font-weight: 800; text-transform: uppercase; margin-bottom: 18px;">Studio</h4>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 0.9rem;">
+            <li><a href="work.html" style="color: #94a3b8;">Selected Work</a></li>
+            <li><a href="services.html" style="color: #94a3b8;">Capabilities & Services</a></li>
+            <li><a href="pricing.html" style="color: #3b82f6;">Pricing & Packages</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="color: #ffffff; font-size: 0.95rem; font-weight: 800; text-transform: uppercase; margin-bottom: 18px;">About</h4>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 0.9rem;">
+            <li><a href="about.html" style="color: #94a3b8;">Atharva Mirzapure</a></li>
+            <li><a href="contact.html" style="color: #94a3b8;">Contact Studio</a></li>
+            <li><a href="start-project.html" style="color: #94a3b8;">Start a Project</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="color: #ffffff; font-size: 0.95rem; font-weight: 800; text-transform: uppercase; margin-bottom: 18px;">Direct Connect</h4>
+          <div style="display: flex; flex-direction: column; gap: 10px; font-size: 0.875rem;">
+            <a href="mailto:builtbyatharva27@gmail.com" style="color: #cbd5e1; display: inline-flex; align-items: center; gap: 8px;">
+              <i data-lucide="mail" style="color: var(--accent-blue);"></i> builtbyatharva27@gmail.com
+            </a>
+            <a href="https://wa.me/918626074035" target="_blank" rel="noopener noreferrer" style="color: #cbd5e1; display: inline-flex; align-items: center; gap: 8px;">
+              <i data-lucide="message-circle" style="color: #25d366;"></i> +91 86260 74035
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 <strong>BuiltByAtharva</strong>. Engineered with precision by Atharva Mirzapure.</div>
+        <div>Transparent Estimates • 50% Milestone Advance Policy</div>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/918626074035" target="_blank" rel="noopener noreferrer" class="floating-whatsapp-btn">
+    <i data-lucide="message-circle"></i>
+    <span class="whatsapp-btn-text">Chat with Atharva</span>
+  </a>
+
+  <script src="config.js"></script>
+  <script src="brand-config.js"></script>
+  <script src="script.js"></script>
+  <script>
+    // Live Estimator Calculation Logic
+    document.addEventListener('DOMContentLoaded', () => {
+      const baseRadios = document.querySelectorAll('input[name="est-base"]');
+      const addonCheckboxes = document.querySelectorAll('.est-addon');
+      const totalDisplay = document.getElementById('est-total-display');
+      const advanceDisplay = document.getElementById('est-advance-display');
+      const baseNameDisplay = document.getElementById('est-base-name');
+      const addonsCountDisplay = document.getElementById('est-addons-count');
+      const proceedBtn = document.getElementById('btn-proceed-estimate');
+
+      function calculateEstimate() {
+        let selectedBase = 2999;
+        let selectedBaseName = 'Starter Website';
+        baseRadios.forEach(r => {
+          if (r.checked) {
+            selectedBase = parseInt(r.value, 10);
+            selectedBaseName = r.getAttribute('data-name');
+          }
+        });
+
+        let addonsTotal = 0;
+        let selectedAddons = [];
+        addonCheckboxes.forEach(cb => {
+          if (cb.checked) {
+            addonsTotal += parseInt(cb.value, 10);
+            selectedAddons.push(cb.getAttribute('data-name'));
+          }
+        });
+
+        const total = selectedBase + addonsTotal;
+        // Clean round of 50% advance (half of total, rounded up to nearest whole rupee)
+        const advance = Math.round(total / 2);
+
+        if (totalDisplay) totalDisplay.textContent = `₹${total.toLocaleString('en-IN')}`;
+        if (advanceDisplay) advanceDisplay.textContent = `₹${advance.toLocaleString('en-IN')}`;
+        if (baseNameDisplay) baseNameDisplay.textContent = selectedBaseName;
+        if (addonsCountDisplay) addonsCountDisplay.textContent = `${selectedAddons.length} Add-on${selectedAddons.length === 1 ? '' : 's'}`;
+
+        return { selectedBaseName, total, advance, selectedAddons };
+      }
+
+      baseRadios.forEach(r => r.addEventListener('change', calculateEstimate));
+      addonCheckboxes.forEach(cb => cb.addEventListener('change', calculateEstimate));
+      calculateEstimate();
+
+      proceedBtn?.addEventListener('click', () => {
+        const est = calculateEstimate();
+        const params = new URLSearchParams({
+          category: est.selectedBaseName.includes('App') ? 'Web Application' : 'Website Development',
+          tier: est.selectedBaseName,
+          budget: `₹${est.total.toLocaleString('en-IN')}`,
+          addons: est.selectedAddons.join(', ')
+        });
+        window.location.href = `start-project.html?${params.toString()}`;
+      });
+    });
+  </script>
+</body>
+</html>

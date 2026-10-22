@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404: Page Not Found — BuiltByAtharva</title>
+  <meta name="description" content="The page you requested could not be found on BuiltByAtharva.">
+  <link rel="icon" type="image/png" href="public/assets/brand/logo.png">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- Ambient Layer -->
+  <div class="bg-ambient-layer" aria-hidden="true">
+    <div class="bg-orb orb-blue"></div>
+    <div class="bg-grid-pattern"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-brand bba-brand-badge">
+        <img src="public/assets/brand/logo.png" alt="BuiltByAtharva Logo" class="bba-logo-img" onerror="if(this.src.indexOf('assets/brand/logo.png') === -1){this.src='assets/brand/logo.png';}else{this.style.display='none';this.nextElementSibling.style.display='flex';}">
+        <div class="bba-logo-fallback" style="display:none;"><span class="bba-logo-mark">BA</span></div>
+        <div class="bba-wordmark-group">
+          <span class="bba-wordmark-title">BuiltByAtharva</span>
+          <span class="bba-wordmark-tagline">IDEAS. BUILT.</span>
+        </div>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="work.html" class="nav-link">Work</a></li>
+          <li><a href="services.html" class="nav-link">Services</a></li>
+          <li><a href="pricing.html" class="nav-link">Pricing</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-cta-wrap">
+        <a href="start-project.html" class="btn btn-primary btn-sm">
+          <span>Start a Project</span>
+          <i data-lucide="arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="error-page-container">
+    <div class="container" style="max-width: 620px;">
+      <div class="error-code">404</div>
+      <h1 style="font-size: 2.2rem; font-weight: 900; margin-bottom: 14px;">Page Not Found</h1>
+      <p style="font-size: 1.05rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 32px;">
+        The requested digital route does not exist or has been restructured. Let's guide you back to active studio sections.
+      </p>
+
+      <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+        <a href="index.html" class="btn btn-primary">
+          <i data-lucide="home"></i>
+          <span>Return Home</span>
+        </a>
+        <a href="work.html" class="btn btn-secondary">
+          <i data-lucide="briefcase"></i>
+          <span>Explore Selected Work</span>
+        </a>
+        <a href="start-project.html" class="btn btn-outline">
+          <i data-lucide="sparkles"></i>
+          <span>Start a Project</span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer" style="background: var(--bg-footer); color: #ffffff; padding: 40px 0; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+    <div class="container">
+      <div style="font-size: 0.85rem; color: #94a3b8;">
+        &copy; 2026 <strong>BuiltByAtharva</strong>. Engineered with precision by Atharva Mirzapure.
+      </div>
+    </div>
+  </footer>
+
+  <script src="brand-config.js"></script>
+  <script>
+    if (window.lucide) window.lucide.createIcons();
+  </script>
+</body>
+</html>

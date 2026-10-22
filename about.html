@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Atharva Mirzapure — Independent Software Developer & Creative Technologist</title>
+  <meta name="description" content="Learn about Atharva Mirzapure, founder of BuiltByAtharva. Independent software engineer, creative technologist, and digital craftsman building high-performance web systems.">
+  <meta name="author" content="Atharva Mirzapure">
+
+  <link rel="icon" type="image/png" href="public/assets/brand/logo.png">
+  <link rel="stylesheet" href="styles.css">
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+</head>
+<body>
+
+  <div id="scroll-progress"></div>
+
+  <div class="bg-ambient-layer" aria-hidden="true">
+    <div class="bg-orb orb-blue"></div>
+    <div class="bg-orb orb-orange"></div>
+    <div class="bg-grid-pattern"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-brand bba-brand-badge">
+        <img src="public/assets/brand/logo.png" alt="BuiltByAtharva Logo" class="bba-logo-img" onerror="if(this.src.indexOf('assets/brand/logo.png') === -1){this.src='assets/brand/logo.png';}else{this.style.display='none';this.nextElementSibling.style.display='flex';}">
+        <div class="bba-logo-fallback" style="display:none;"><span class="bba-logo-mark">BA</span></div>
+        <div class="bba-wordmark-group">
+          <span class="bba-wordmark-title">BuiltByAtharva</span>
+          <span class="bba-wordmark-tagline">IDEAS. BUILT.</span>
+        </div>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="work.html" class="nav-link">Work</a></li>
+          <li><a href="services.html" class="nav-link">Services</a></li>
+          <li><a href="pricing.html" class="nav-link">Pricing</a></li>
+          <li><a href="about.html" class="nav-link active">About</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-cta-wrap" style="display: flex; align-items: center; gap: 14px;">
+        <button type="button" class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle Color Theme">
+          <i data-lucide="sun" class="sun-icon"></i>
+          <i data-lucide="moon" class="moon-icon"></i>
+        </button>
+        <a href="start-project.html" class="btn btn-primary btn-sm">
+          <span>Start a Project</span>
+          <i data-lucide="arrow-right" style="width:16px; height:16px;"></i>
+        </a>
+        <button type="button" class="mobile-toggle" id="mobile-toggle-btn">
+          <i data-lucide="menu"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-menu-drawer" id="mobile-menu-drawer">
+    <div class="mobile-drawer-header">
+      <div class="bba-brand-badge">
+        <img src="public/assets/brand/logo.png" alt="BuiltByAtharva" class="bba-logo-img" style="width:36px; height:36px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="bba-logo-fallback" style="width:36px; height:36px; display:none;"><span class="bba-logo-mark">BA</span></div>
+        <div class="bba-wordmark-group">
+          <span class="bba-wordmark-title" style="font-size:1.1rem;">BuiltByAtharva</span>
+          <span class="bba-wordmark-tagline">IDEAS. BUILT.</span>
+        </div>
+      </div>
+      <button type="button" class="mobile-drawer-close" id="mobile-drawer-close"><i data-lucide="x"></i></button>
+    </div>
+    <ul class="mobile-nav-links">
+      <li><a href="index.html" class="mobile-nav-link"><i data-lucide="home"></i> Home</a></li>
+      <li><a href="work.html" class="mobile-nav-link"><i data-lucide="briefcase"></i> Selected Work</a></li>
+      <li><a href="services.html" class="mobile-nav-link"><i data-lucide="layers"></i> Capabilities & Services</a></li>
+      <li><a href="pricing.html" class="mobile-nav-link"><i data-lucide="credit-card"></i> Pricing & Packages</a></li>
+      <li><a href="about.html" class="mobile-nav-link active"><i data-lucide="user"></i> About Atharva</a></li>
+      <li><a href="contact.html" class="mobile-nav-link"><i data-lucide="mail"></i> Contact Studio</a></li>
+    </ul>
+  </div>
+
+  <main>
+    <!-- Page Hero -->
+    <section class="page-hero">
+      <div class="container">
+        <div class="page-hero-badge">
+          <i data-lucide="user"></i> Independent Studio Founder
+        </div>
+        <h1 class="page-hero-title">Meet Atharva Mirzapure</h1>
+        <p class="page-hero-desc">
+          Independent Software Developer & Creative Technologist based in India, building digital experiences for ambitious projects worldwide.
+        </p>
+      </div>
+    </section>
+
+    <!-- Bento Grid Developer Profile -->
+    <section class="section-padding" style="padding-top: 10px;">
+      <div class="container">
+        <div class="about-bento-grid">
+          
+          <!-- Bento 1: Identity & Philosophy (Col 8) -->
+          <div class="bento-card bento-col-8">
+            <div style="display: flex; align-items: center; gap: 18px; margin-bottom: 24px;">
+              <img src="public/assets/brand/logo.png" alt="Atharva Mirzapure" class="bba-logo-img" style="width: 72px; height: 72px; border-radius: 50%; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="bba-logo-fallback" style="width: 72px; height: 72px; border-radius: 50%; display: none; font-size: 1.6rem;"><span class="bba-logo-mark">BA</span></div>
+              <div>
+                <h2 style="font-size: 1.8rem; font-weight: 900; margin-bottom: 2px;">Atharva Mirzapure</h2>
+                <div style="font-size: 0.95rem; font-weight: 700; color: var(--accent-blue);">Founder, BuiltByAtharva • IDEAS. BUILT.</div>
+              </div>
+            </div>
+
+            <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 12px;">Craft, performance, and honest engineering.</h3>
+            <p style="font-size: 1rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 16px;">
+              I started BuiltByAtharva with a single commitment: to build websites and web applications that stand apart from the ocean of generic templates. Modern businesses and creators deserve software that feels distinct, loads instantaneously, and works reliably without unnecessary recurring overhead.
+            </p>
+            <p style="font-size: 1rem; color: var(--text-secondary); line-height: 1.7;">
+              I operate as a solo creative technologist. That means when we discuss your project, you're communicating directly with the engineer who will design the UI tokens, write the serverless functions, choreograph the animations, and configure the deployment DNS.
+            </p>
+          </div>
+
+          <!-- Bento 2: Direct Contact Channels (Col 4) -->
+          <div class="bento-card bento-col-4" style="background: radial-gradient(circle at 100% 0%, var(--accent-blue-glow) 0%, var(--bg-card) 70%); display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <span style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--accent-blue); letter-spacing: 0.08em; display: block; margin-bottom: 8px;">Direct Availability</span>
+              <h3 style="font-size: 1.4rem; font-weight: 900; margin-bottom: 16px;">Verified Studio Channels</h3>
+              
+              <div style="display: flex; flex-direction: column; gap: 14px; font-size: 0.9rem; margin-bottom: 24px;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <i data-lucide="mail" style="color: var(--accent-blue); flex-shrink: 0;"></i>
+                  <a href="mailto:builtbyatharva27@gmail.com" style="font-weight: 600; color: var(--text-primary); word-break: break-all;">builtbyatharva27@gmail.com</a>
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <i data-lucide="message-circle" style="color: #25d366; flex-shrink: 0;"></i>
+                  <a href="https://wa.me/918626074035" target="_blank" rel="noopener noreferrer" style="font-weight: 600; color: var(--text-primary);">+91 86260 74035</a>
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <i data-lucide="instagram" style="color: #ec4899; flex-shrink: 0;"></i>
+                  <a href="https://www.instagram.com/built_by_atharva/" target="_blank" rel="noopener noreferrer" style="font-weight: 600; color: var(--text-primary);">@built_by_atharva</a>
+                </div>
+              </div>
+            </div>
+
+            <div style="padding: 14px; background: var(--bg-alt); border-radius: var(--radius-md); font-size: 0.82rem; color: var(--text-muted); line-height: 1.4;">
+              <i data-lucide="clock" style="width: 14px; height: 14px; vertical-align: middle; color: var(--accent-orange);"></i> Expected Response Time: Within 24 hours.
+            </div>
+          </div>
+
+          <!-- Bento 3: Verified Technical Stack (Col 6) -->
+          <div class="bento-card bento-col-6">
+            <span style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--accent-blue); letter-spacing: 0.08em; display: block; margin-bottom: 8px;">Technical Arsenal</span>
+            <h3 style="font-size: 1.35rem; font-weight: 900; margin-bottom: 16px;">Technologies & Tools</h3>
+            
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+              <div>
+                <strong style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; display: block; margin-bottom: 8px;">Frontend Architecture:</strong>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                  <span class="tech-pill">HTML5 Semantic</span>
+                  <span class="tech-pill">Modern CSS3 Variables</span>
+                  <span class="tech-pill">Vanilla JavaScript (ES6+)</span>
+                  <span class="tech-pill">Three.js WebGL</span>
+                  <span class="tech-pill">GSAP Motion</span>
+                  <span class="tech-pill">ScrollTrigger</span>
+                </div>
+              </div>
+
+              <div>
+                <strong style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; display: block; margin-bottom: 8px;">Backend, APIs & Cloud:</strong>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                  <span class="tech-pill">Node.js</span>
+                  <span class="tech-pill">Netlify Functions (Serverless)</span>
+                  <span class="tech-pill">Resend Email API</span>
+                  <span class="tech-pill">PDFKit Generator</span>
+                  <span class="tech-pill">REST APIs</span>
+                  <span class="tech-pill">Git / GitHub</span>
+                </div>
+              </div>
+
+              <div>
+                <strong style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; display: block; margin-bottom: 8px;">AI & Machine Learning Interfaces:</strong>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                  <span class="tech-pill">OpenAI / Claude APIs</span>
+                  <span class="tech-pill">Computer Vision Prototypes</span>
+                  <span class="tech-pill">NLP Heuristics</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bento 4: Studio Principles & Governance (Col 6) -->
+          <div class="bento-card bento-col-6">
+            <span style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--accent-green); letter-spacing: 0.08em; display: block; margin-bottom: 8px;">Studio Code</span>
+            <h3 style="font-size: 1.35rem; font-weight: 900; margin-bottom: 16px;">Core Studio Principles</h3>
+            
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 14px; font-size: 0.92rem; color: var(--text-secondary);">
+              <li style="display: flex; align-items: flex-start; gap: 10px;">
+                <i data-lucide="check-circle-2" style="color: var(--accent-green); flex-shrink: 0; margin-top: 3px;"></i>
+                <span><strong>No Fake Metrics or Bogus Reviews:</strong> Every portfolio piece is documented with honest project status, whether prototype, demo, or production.</span>
+              </li>
+              <li style="display: flex; align-items: flex-start; gap: 10px;">
+                <i data-lucide="check-circle-2" style="color: var(--accent-green); flex-shrink: 0; margin-top: 3px;"></i>
+                <span><strong>Transparent 50% Milestone Policy:</strong> Work begins immediately upon a confirmed 50% advance to secure your development slot.</span>
+              </li>
+              <li style="display: flex; align-items: flex-start; gap: 10px;">
+                <i data-lucide="check-circle-2" style="color: var(--accent-green); flex-shrink: 0; margin-top: 3px;"></i>
+                <span><strong>Complete Code Handover:</strong> You own 100% of the repository, assets, and deployment keys upon final approval and balance payment.</span>
+              </li>
+              <li style="display: flex; align-items: flex-start; gap: 10px;">
+                <i data-lucide="check-circle-2" style="color: var(--accent-green); flex-shrink: 0; margin-top: 3px;"></i>
+                <span><strong>Zero Bloat:</strong> No unnecessary 50MB frameworks when clean vanilla code runs 10x faster.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Bento 5: 7-Step Signature Process (Col 12) -->
+          <div class="bento-card bento-col-12">
+            <span style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--accent-blue); letter-spacing: 0.08em; display: block; margin-bottom: 8px;">Methodology</span>
+            <h3 style="font-size: 1.5rem; font-weight: 900; margin-bottom: 24px;">The 7-Step Engineering Journey</h3>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px;">
+              <div style="padding: 16px; background: var(--bg-alt); border-radius: var(--radius-md); border-top: 3px solid var(--accent-blue);">
+                <span style="font-size: 1.2rem; font-weight: 900; color: var(--accent-blue);">01</span>
+                <h4 style="font-size: 1rem; font-weight: 800; margin: 6px 0;">Tell Me Your Idea</h4>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">Share your vision, project goals, must-have features, and design preferences through our request brief.</p>
+              </div>
+
+              <div style="padding: 16px; background: var(--bg-alt); border-radius: var(--radius-md); border-top: 3px solid var(--accent-cyan);">
+                <span style="font-size: 1.2rem; font-weight: 900; color: var(--accent-cyan);">02</span>
+                <h4 style="font-size: 1rem; font-weight: 800; margin: 6px 0;">Discuss Scope</h4>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">I personally review your submission and connect with you directly via email or WhatsApp to clarify scope.</p>
+              </div>
+
+              <div style="padding: 16px; background: var(--bg-alt); border-radius: var(--radius-md); border-top: 3px solid var(--accent-orange);">
+                <span style="font-size: 1.2rem; font-weight: 900; color: var(--accent-orange);">03</span>
+                <h4 style="font-size: 1rem; font-weight: 800; margin: 6px 0;">Get Your Quote</h4>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">You receive a clear, honest, fixed-scope quotation with exact milestones. No hidden fees or unexpected extras.</p>
+              </div>
+
+              <div style="padding: 16px; background: var(--bg-alt); border-radius: var(--radius-md); border-top: 3px solid #eab308;">
+                <span style="font-size: 1.2rem; font-weight: 900; color: #eab308;">04</span>
+                <h4 style="font-size: 1rem; font-weight: 800; margin: 6px 0;">50% Advance</h4>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">Payment details and QR are shared directly. Work begins immediately upon advance confirmation.</p>
+              </div>
+
+              <div style="padding: 16px; background: var(--bg-alt); border-radius: var(--radius-md); border-top: 3px solid var(--accent-pink);">
+                <span style="font-size: 1.2rem; font-weight: 900; color: var(--accent-pink);">05</span>
+                <h4 style="font-size: 1rem; font-weight: 800; margin: 6px 0;">Handcrafted Build</h4>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">I build your solution with clean code, modern typography, responsive layouts, and visual depth.</p>
+              </div>
+
+              <div style="padding: 16px; background: var(--bg-alt); border-radius: var(--radius-md); border-top: 3px solid var(--accent-violet);">
+                <span style="font-size: 1.2rem; font-weight: 900; color: var(--accent-violet);">06</span>
+                <h4 style="font-size: 1rem; font-weight: 800; margin: 6px 0;">Private Preview</h4>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">You test interactions on your devices, share feedback, and request revisions within agreed scope.</p>
+              </div>
+
+              <div style="padding: 16px; background: var(--bg-alt); border-radius: var(--radius-md); border-top: 3px solid var(--accent-green);">
+                <span style="font-size: 1.2rem; font-weight: 900; color: var(--accent-green);">07</span>
+                <h4 style="font-size: 1rem; font-weight: 800; margin: 6px 0;">Handover & Launch</h4>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">Upon approval and remaining payment, your site is deployed live with clean code handover and domain setup support.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <section class="section-padding" style="background: var(--bg-alt); text-align: center;">
+      <div class="container" style="max-width: 700px;">
+        <h2 style="font-size: 2.2rem; font-weight: 900; margin-bottom: 16px;">Let's engineer your project together</h2>
+        <p style="font-size: 1.05rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 28px;">
+          Reach out directly or complete the guided project brief to receive your personalized scope proposal.
+        </p>
+        <div style="display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;">
+          <a href="start-project.html" class="btn btn-primary btn-lg">
+            <span>Start a Project Brief</span>
+            <i data-lucide="arrow-right"></i>
+          </a>
+          <a href="contact.html" class="btn btn-secondary btn-lg">
+            <span>Contact Studio</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" style="background: var(--bg-footer); color: #ffffff; padding: 80px 0 36px;">
+    <div class="container">
+      <div class="footer-grid" style="display: grid; grid-template-columns: 2fr 1fr 1fr 1.2fr; gap: 48px; margin-bottom: 60px;">
+        <div>
+          <a href="index.html" class="bba-brand-badge" style="margin-bottom: 18px;">
+            <img src="public/assets/brand/logo.png" alt="BuiltByAtharva" class="bba-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="bba-logo-fallback" style="display:none;"><span class="bba-logo-mark">BA</span></div>
+            <div class="bba-wordmark-group">
+              <span class="bba-wordmark-title" style="color: #ffffff;">BuiltByAtharva</span>
+              <span class="bba-wordmark-tagline">IDEAS. BUILT.</span>
+            </div>
+          </a>
+          <p style="color: #94a3b8; font-size: 0.92rem; line-height: 1.6; max-width: 340px;">
+            Futuristic Creative Technology Studio founded by <strong>Atharva Mirzapure</strong>.
+          </p>
+        </div>
+        <div>
+          <h4 style="color: #ffffff; font-size: 0.95rem; font-weight: 800; text-transform: uppercase; margin-bottom: 18px;">Studio</h4>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 0.9rem;">
+            <li><a href="work.html" style="color: #94a3b8;">Selected Work</a></li>
+            <li><a href="services.html" style="color: #94a3b8;">Capabilities & Services</a></li>
+            <li><a href="pricing.html" style="color: #94a3b8;">Pricing & Packages</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="color: #ffffff; font-size: 0.95rem; font-weight: 800; text-transform: uppercase; margin-bottom: 18px;">About</h4>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 0.9rem;">
+            <li><a href="about.html" style="color: #3b82f6;">Atharva Mirzapure</a></li>
+            <li><a href="contact.html" style="color: #94a3b8;">Contact Studio</a></li>
+            <li><a href="start-project.html" style="color: #94a3b8;">Start a Project</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="color: #ffffff; font-size: 0.95rem; font-weight: 800; text-transform: uppercase; margin-bottom: 18px;">Direct Connect</h4>
+          <div style="display: flex; flex-direction: column; gap: 10px; font-size: 0.875rem;">
+            <a href="mailto:builtbyatharva27@gmail.com" style="color: #cbd5e1; display: inline-flex; align-items: center; gap: 8px;">
+              <i data-lucide="mail" style="color: var(--accent-blue);"></i> builtbyatharva27@gmail.com
+            </a>
+            <a href="https://wa.me/918626074035" target="_blank" rel="noopener noreferrer" style="color: #cbd5e1; display: inline-flex; align-items: center; gap: 8px;">
+              <i data-lucide="message-circle" style="color: #25d366;"></i> +91 86260 74035
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 <strong>BuiltByAtharva</strong>. Engineered with precision by Atharva Mirzapure.</div>
+        <div>Solo Craftsmanship • 50% Milestone Advance Policy</div>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/918626074035" target="_blank" rel="noopener noreferrer" class="floating-whatsapp-btn">
+    <i data-lucide="message-circle"></i>
+    <span class="whatsapp-btn-text">Chat with Atharva</span>
+  </a>
+
+  <script src="config.js"></script>
+  <script src="brand-config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Case Study — BuiltByAtharva</title>
+  <meta name="description" content="In-depth engineering case study and technical breakdown by Atharva Mirzapure at BuiltByAtharva.">
+  <meta name="author" content="Atharva Mirzapure">
+
+  <link rel="icon" type="image/png" href="public/assets/brand/logo.png">
+  <link rel="stylesheet" href="styles.css">
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+</head>
+<body>
+
+  <div id="scroll-progress"></div>
+
+  <div class="bg-ambient-layer" aria-hidden="true">
+    <div class="bg-orb orb-blue"></div>
+    <div class="bg-orb orb-orange"></div>
+    <div class="bg-grid-pattern"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-brand bba-brand-badge">
+        <img src="public/assets/brand/logo.png" alt="BuiltByAtharva Logo" class="bba-logo-img" onerror="if(this.src.indexOf('assets/brand/logo.png') === -1){this.src='assets/brand/logo.png';}else{this.style.display='none';this.nextElementSibling.style.display='flex';}">
+        <div class="bba-logo-fallback" style="display:none;"><span class="bba-logo-mark">BA</span></div>
+        <div class="bba-wordmark-group">
+          <span class="bba-wordmark-title">BuiltByAtharva</span>
+          <span class="bba-wordmark-tagline">IDEAS. BUILT.</span>
+        </div>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="work.html" class="nav-link active">Work</a></li>
+          <li><a href="services.html" class="nav-link">Services</a></li>
+          <li><a href="pricing.html" class="nav-link">Pricing</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-cta-wrap" style="display: flex; align-items: center; gap: 14px;">
+        <button type="button" class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle Color Theme">
+          <i data-lucide="sun" class="sun-icon"></i>
+          <i data-lucide="moon" class="moon-icon"></i>
+        </button>
+        <a href="start-project.html" class="btn btn-primary btn-sm">
+          <span>Start a Project</span>
+          <i data-lucide="arrow-right" style="width:16px; height:16px;"></i>
+        </a>
+        <button type="button" class="mobile-toggle" id="mobile-toggle-btn">
+          <i data-lucide="menu"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-menu-drawer" id="mobile-menu-drawer">
+    <div class="mobile-drawer-header">
+      <div class="bba-brand-badge">
+        <img src="public/assets/brand/logo.png" alt="BuiltByAtharva" class="bba-logo-img" style="width:36px; height:36px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="bba-logo-fallback" style="width:36px; height:36px; display:none;"><span class="bba-logo-mark">BA</span></div>
+        <div class="bba-wordmark-group">
+          <span class="bba-wordmark-title" style="font-size:1.1rem;">BuiltByAtharva</span>
+          <span class="bba-wordmark-tagline">IDEAS. BUILT.</span>
+        </div>
+      </div>
+      <button type="button" class="mobile-drawer-close" id="mobile-drawer-close"><i data-lucide="x"></i></button>
+    </div>
+    <ul class="mobile-nav-links">
+      <li><a href="index.html" class="mobile-nav-link"><i data-lucide="home"></i> Home</a></li>
+      <li><a href="work.html" class="mobile-nav-link active"><i data-lucide="briefcase"></i> Selected Work</a></li>
+      <li><a href="services.html" class="mobile-nav-link"><i data-lucide="layers"></i> Capabilities & Services</a></li>
+      <li><a href="pricing.html" class="mobile-nav-link"><i data-lucide="credit-card"></i> Pricing & Packages</a></li>
+      <li><a href="about.html" class="mobile-nav-link"><i data-lucide="user"></i> About Atharva</a></li>
+      <li><a href="contact.html" class="mobile-nav-link"><i data-lucide="mail"></i> Contact Studio</a></li>
+    </ul>
+  </div>
+
+  <main>
+    <!-- Case Study Dynamic Container -->
+    <article class="case-study-hero" id="cs-container">
+      <div class="container">
+        <!-- Breadcrumb & Back -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 12px;">
+          <a href="work.html" style="display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 0.9rem; color: var(--accent-blue);">
+            <i data-lucide="arrow-left" style="width:16px; height:16px;"></i> Back to All Projects
+          </a>
+          <!-- Project Switcher Dropdown -->
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <label for="cs-switcher" style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted);">Switch Project:</label>
+            <select id="cs-switcher" class="form-input" style="padding: 6px 14px; font-size: 0.85rem; border-radius: var(--radius-full); width: auto;">
+              <option value="truth-guard">Truth Guard (AI / Fake News)</option>
+              <option value="smart-opd">Smart OPD Queue (Web App)</option>
+              <option value="agrivision-ai">AgriVision AI (Crop Vision)</option>
+              <option value="ayur-sanjeevani">AyurSanjeevani (Ayurveda Portal)</option>
+              <option value="dermatologist-reminder">Dermatologist Reminder (Clinic)</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="cs-header-content">
+          <div class="page-hero-badge" id="cs-category-badge">AI & ML Solution</div>
+          <h1 class="page-hero-title" style="text-align: left; margin-bottom: 12px;" id="cs-title">Truth Guard</h1>
+          <p class="page-hero-desc" style="text-align: left; margin: 0 0 28px 0; max-width: 820px;" id="cs-subtitle">
+            Multimodal Fake News Detection System evaluating statement credibility using natural language analysis.
+          </p>
+        </div>
+
+        <!-- Meta Grid -->
+        <div class="case-study-meta-grid" id="cs-meta-grid">
+          <div class="case-meta-item">
+            <span>Project Status</span>
+            <strong id="cs-status" style="color: var(--accent-orange);">Research Prototype</strong>
+          </div>
+          <div class="case-meta-item">
+            <span>Engineering Role</span>
+            <strong id="cs-role">Sole Full-Stack Developer</strong>
+          </div>
+          <div class="case-meta-item">
+            <span>Core Technologies</span>
+            <strong id="cs-tech">AI / NLP, JavaScript, CSS3, Edge</strong>
+          </div>
+          <div class="case-meta-item">
+            <span>Verification Standard</span>
+            <strong id="cs-verification" style="color: var(--accent-green);">Benchmark Evaluated</strong>
+          </div>
+        </div>
+
+        <!-- Main Body Grid: 2fr article + 1fr sticky sidebar -->
+        <div class="case-study-content-grid">
+          
+          <!-- Left Article -->
+          <div class="case-study-article" id="cs-article">
+            
+            <!-- Featured Image / Interface Preview -->
+            <div style="background: #0f172a; border-radius: var(--radius-xl); overflow: hidden; margin-bottom: 40px; border: 1px solid var(--border-medium); box-shadow: var(--shadow-md);">
+              <img id="cs-featured-image" src="assets/portfolio-1.jpg" alt="Interface Preview" style="width: 100%; height: auto; display: block;">
+            </div>
+
+            <section>
+              <h3>01. Problem & Objectives</h3>
+              <p id="cs-problem">
+                Misinformation spreads rapidly across digital networks. Users frequently encounter deceptive headlines without accessible tools to evaluate claim confidence or inspect underlying linguistic patterns.
+              </p>
+            </section>
+
+            <section>
+              <h3>02. Engineering Approach & Solution</h3>
+              <p id="cs-solution">
+                Built a distraction-free analysis workspace where users enter claims or headlines. The application parses the input, scores potential deception markers, provides source credibility indicators, and presents clear visual metrics.
+              </p>
+            </section>
+
+            <section>
+              <h3>03. Developer Role & Contributions</h3>
+              <p id="cs-contribution">
+                Atharva Mirzapure designed and programmed the complete frontend experience, responsive metric scorecards, heuristic statement scanner simulation, and deployment pipeline.
+              </p>
+            </section>
+
+            <section>
+              <h3>04. Key Challenges & Architectural Solutions</h3>
+              <p id="cs-challenges">
+                Ensuring sub-second response times without overloading client memory was paramount. Optimized JavaScript execution loops, lazy-loaded components, and isolated the parsing algorithms to ensure fluid 60fps animations.
+              </p>
+            </section>
+
+            <!-- Honest Disclaimer Callout -->
+            <div class="service-scope-boundary" style="border-left-color: var(--accent-orange); margin-bottom: 40px; padding: 20px; border-radius: var(--radius-md);">
+              <strong style="color: var(--text-primary); display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                <i data-lucide="info" style="color: var(--accent-orange);"></i> Honest Prototype Disclaimer
+              </strong>
+              <p style="font-size: 0.9rem; color: var(--text-secondary); margin: 0;" id="cs-disclaimer">
+                This project is an evaluated engineering prototype. In accordance with studio policy, claims are evaluated algorithmically and do not guarantee absolute factual verification without human journalistic review.
+              </p>
+            </div>
+
+            <!-- Embedded Interactive Simulator Container (If Available) -->
+            <div id="cs-simulator-wrap" style="background: var(--bg-card); border: 1px solid var(--border-medium); border-radius: var(--radius-xl); padding: 32px; margin-bottom: 40px; box-shadow: var(--shadow-sm);">
+              <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 18px;">
+                <span style="width: 10px; height: 10px; border-radius: 50%; background: var(--accent-green);"></span>
+                <h4 style="font-size: 1.2rem; font-weight: 800; margin: 0;">Interactive In-Browser Simulation</h4>
+              </div>
+              <div id="cs-simulator-viewport"></div>
+            </div>
+
+          </div>
+
+          <!-- Right Sidebar -->
+          <aside>
+            <div class="case-sidebar-card">
+              <h4 style="font-size: 1.2rem; font-weight: 900; margin-bottom: 14px;">Looking for something similar?</h4>
+              <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 22px;">
+                I build bespoke web applications, interactive dashboards, and AI tools with this level of engineering rigor.
+              </p>
+              <a href="start-project.html" class="btn btn-primary btn-full" style="margin-bottom: 12px;">
+                <span>Start a Project Brief</span>
+                <i data-lucide="arrow-right"></i>
+              </a>
+              <a href="https://wa.me/918626074035" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-full">
+                <i data-lucide="message-circle"></i> Discuss on WhatsApp
+              </a>
+
+              <hr style="border: none; border-top: 1px solid var(--border-light); margin: 24px 0;">
+
+              <div style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.5;">
+                <p><strong>Studio Terms:</strong> 50% milestone advance payment upon agreed quotation. Clean code handover and post-launch support included.</p>
+              </div>
+            </div>
+          </aside>
+
+        </div>
+
+      </div>
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" style="background: var(--bg-footer); color: #ffffff; padding: 80px 0 36px;">
+    <div class="container">
+      <div class="footer-grid" style="display: grid; grid-template-columns: 2fr 1fr 1fr 1.2fr; gap: 48px; margin-bottom: 60px;">
+        <div>
+          <a href="index.html" class="bba-brand-badge" style="margin-bottom: 18px;">
+            <img src="public/assets/brand/logo.png" alt="BuiltByAtharva" class="bba-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="bba-logo-fallback" style="display:none;"><span class="bba-logo-mark">BA</span></div>
+            <div class="bba-wordmark-group">
+              <span class="bba-wordmark-title" style="color: #ffffff;">BuiltByAtharva</span>
+              <span class="bba-wordmark-tagline">IDEAS. BUILT.</span>
+            </div>
+          </a>
+          <p style="color: #94a3b8; font-size: 0.92rem; line-height: 1.6; max-width: 340px;">
+            Futuristic Creative Technology Studio founded by <strong>Atharva Mirzapure</strong>.
+          </p>
+        </div>
+        <div>
+          <h4 style="color: #ffffff; font-size: 0.95rem; font-weight: 800; text-transform: uppercase; margin-bottom: 18px;">Studio</h4>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 0.9rem;">
+            <li><a href="work.html" style="color: #94a3b8;">Selected Work</a></li>
+            <li><a href="services.html" style="color: #94a3b8;">Capabilities & Services</a></li>
+            <li><a href="pricing.html" style="color: #94a3b8;">Pricing & Packages</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="color: #ffffff; font-size: 0.95rem; font-weight: 800; text-transform: uppercase; margin-bottom: 18px;">About</h4>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 0.9rem;">
+            <li><a href="about.html" style="color: #94a3b8;">Atharva Mirzapure</a></li>
+            <li><a href="contact.html" style="color: #94a3b8;">Contact Studio</a></li>
+            <li><a href="start-project.html" style="color: #94a3b8;">Start a Project</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="color: #ffffff; font-size: 0.95rem; font-weight: 800; text-transform: uppercase; margin-bottom: 18px;">Direct Connect</h4>
+          <div style="display: flex; flex-direction: column; gap: 10px; font-size: 0.875rem;">
+            <a href="mailto:builtbyatharva27@gmail.com" style="color: #cbd5e1; display: inline-flex; align-items: center; gap: 8px;">
+              <i data-lucide="mail" style="color: var(--accent-blue);"></i> builtbyatharva27@gmail.com
+            </a>
+            <a href="https://wa.me/918626074035" target="_blank" rel="noopener noreferrer" style="color: #cbd5e1; display: inline-flex; align-items: center; gap: 8px;">
+              <i data-lucide="message-circle" style="color: #25d366;"></i> +91 86260 74035
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 <strong>BuiltByAtharva</strong>. Engineered with precision by Atharva Mirzapure.</div>
+        <div>Verified Portfolios • 50% Milestone Advance Policy</div>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/918626074035" target="_blank" rel="noopener noreferrer" class="floating-whatsapp-btn">
+    <i data-lucide="message-circle"></i>
+    <span class="whatsapp-btn-text">Chat with Atharva</span>
+  </a>
+
+  <script src="config.js"></script>
+  <script src="brand-config.js"></script>
+  <script src="script.js"></script>
+  <script>
+    // Case study renderer using CONFIG.REAL_PROJECTS
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const rawId = urlParams.get('id') || 'truth-guard';
+      
+      const ID_ALIASES = {
+        'opd-queue': 'smart-opd',
+        'smart-opd-queue': 'smart-opd',
+        'truth-scanner': 'truth-guard',
+        'fake-news-detector': 'truth-guard',
+        'dosha-quiz': 'ayur-sanjeevani',
+        'dermatologist': 'dermatologist-reminder',
+        'agrivision': 'agrivision-ai'
+      };
+      const projectId = ID_ALIASES[rawId] || rawId;
+      
+      const switcher = document.getElementById('cs-switcher');
+      if (switcher) {
+        switcher.value = projectId;
+        switcher.addEventListener('change', (e) => {
+          window.location.href = `case-study.html?id=${e.target.value}`;
+        });
+      }
+
+      const projects = window.APP_CONFIG?.REAL_PROJECTS || [];
+      const project = projects.find(p => p.id === projectId) || projects[0];
+
+      if (project) {
+        document.title = `${project.title} — Case Study | BuiltByAtharva`;
+        document.getElementById('cs-category-badge').textContent = project.categoryLabel || 'Engineering Project';
+        document.getElementById('cs-title').textContent = project.title;
+        document.getElementById('cs-subtitle').textContent = project.subtitle || project.shortDesc;
+        document.getElementById('cs-status').textContent = project.status || 'Active Project';
+        document.getElementById('cs-tech').textContent = (project.tech || []).join(', ');
+        document.getElementById('cs-featured-image').src = project.image;
+        document.getElementById('cs-featured-image').alt = `${project.title} Interface Preview`;
+
+        if (project.caseStudy) {
+          document.getElementById('cs-problem').textContent = project.caseStudy.problem || project.shortDesc;
+          document.getElementById('cs-solution').textContent = project.caseStudy.solution || '';
+          document.getElementById('cs-contribution').textContent = project.contribution || 'Architected and built by Atharva Mirzapure.';
+          document.getElementById('cs-challenges').textContent = project.caseStudy.evaluatedResults || 'Tested against benchmark performance standards.';
+          document.getElementById('cs-disclaimer').textContent = project.caseStudy.disclaimer || 'Engineering demonstration built by BuiltByAtharva.';
+        }
+
+        // Simulators
+        const simWrap = document.getElementById('cs-simulator-wrap');
+        const simViewport = document.getElementById('cs-simulator-viewport');
+        if (project.hasSimulator && simViewport) {
+          simWrap.style.display = 'block';
+          if (project.simulatorType === 'opd-queue') {
+            simViewport.innerHTML = `
+              <div style="background:var(--bg-code); padding:20px; border-radius:8px; color:#fff; display:flex; justify-content:space-between; align-items:center;">
+                <div><span style="font-size:0.75rem; color:#94a3b8;">CURRENT CALLING TOKEN</span><div style="font-size:2.8rem; font-weight:900; color:#34d399;">A-104</div></div>
+                <div style="text-align:right;"><span style="font-size:0.75rem; color:#94a3b8;">PATIENTS WAITING</span><div style="font-size:1.8rem; font-weight:800;">3</div></div>
+              </div>
+            `;
+          } else if (project.simulatorType === 'truth-scanner') {
+            simViewport.innerHTML = `
+              <div style="background:var(--bg-alt); padding:20px; border-radius:8px; border:1px solid var(--border-medium);">
+                <span style="font-size:0.8rem; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Sample Tested Statement:</span>
+                <p style="font-size:1rem; font-weight:700; margin:6px 0 14px;">"Government announces ₹10,000 free bonus for all citizens"</p>
+                <div style="display:flex; justify-content:space-between; align-items:center; background:var(--bg-card); padding:12px 18px; border-radius:8px; border:1px solid var(--border-light);">
+                  <span style="font-weight:700; color:var(--accent-red);"><i data-lucide="alert-triangle"></i> High Risk / Phishing Pattern</span>
+                  <span style="font-size:1.2rem; font-weight:900; color:var(--accent-red);">18% Credibility</span>
+                </div>
+              </div>
+            `;
+          } else if (project.simulatorType === 'dosha-quiz') {
+            simViewport.innerHTML = `
+              <div style="background:var(--bg-alt); padding:20px; border-radius:8px; border:1px solid var(--border-medium);">
+                <span style="font-size:0.8rem; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Ayurvedic Dosha Scoring Model:</span>
+                <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:10px;">
+                  <div style="background:var(--bg-card); padding:12px; border-radius:6px; text-align:center;"><span style="font-weight:800; color:#3b82f6;">Vata (Air)</span><div style="font-size:1.2rem; font-weight:900;">38%</div></div>
+                  <div style="background:var(--bg-card); padding:12px; border-radius:6px; text-align:center;"><span style="font-weight:800; color:#ff7843;">Pitta (Fire)</span><div style="font-size:1.2rem; font-weight:900;">45%</div></div>
+                  <div style="background:var(--bg-card); padding:12px; border-radius:6px; text-align:center;"><span style="font-weight:800; color:#10b981;">Kapha (Earth)</span><div style="font-size:1.2rem; font-weight:900;">17%</div></div>
+                </div>
+              </div>
+            `;
+          }
+        } else if (simWrap) {
+          simWrap.style.display = 'none';
+        }
+
+        if (window.lucide) window.lucide.createIcons();
+      }
+    });
+  </script>
+</body>
+</html>

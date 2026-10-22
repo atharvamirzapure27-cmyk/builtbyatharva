@@ -59,10 +59,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }, { passive: true });
 
-  // 5. Initialize Three.js 3D Futuristic Centerpiece
+  // 5. Initialize Cinematic Launch Intro (if on index page)
+  initCinematicIntro();
+
+  // 6. Initialize Three.js 3D Futuristic Centerpiece
   const threeScene = initThreeJSHero();
 
-  // 6. Initialize GSAP & ScrollTrigger Animations
+  // 7. Initialize GSAP & ScrollTrigger Animations
   if (window.gsap && window.ScrollTrigger) {
     gsap.registerPlugin(ScrollTrigger);
 
@@ -77,18 +80,236 @@ document.addEventListener('DOMContentLoaded', () => {
     initGSAPAnimations();
   }
 
-  // 7. Initialize Studio Components
+  // 8. Initialize Studio Components
   initCustomCursor();
   initNavigation();
+  initPortfolioFilters();
   initTerminalWorkstation();
   initKineticTypography();
   initCompactServices();
+  initServiceDetailModal();
   initCompactCapabilities();
   initPricingAndEstimator();
   initRealPortfolioStudio();
   initFormWizard();
-  initPrintBrief();
+  initReceiptActions();
   initWhatsAppLinks();
+
+  /* ==========================================================================
+     CINEMATIC LAUNCH INTRO SEQUENCE
+     ========================================================================== */
+  function initCinematicIntro() {
+    const introEl = document.getElementById('cinematic-intro');
+    if (!introEl) return;
+
+    const skipBtn = document.getElementById('intro-skip-btn');
+    const progressBar = document.getElementById('intro-progress-bar');
+    const canvas = document.getElementById('intro-particles-canvas');
+    const brandChars = introEl.querySelectorAll('.intro-char');
+    const taglineText = document.getElementById('intro-tagline-text');
+    const statement = document.getElementById('intro-statement');
+    const replayBtns = [
+      document.getElementById('nav-replay-intro-btn'),
+      document.getElementById('footer-replay-intro-btn')
+    ];
+
+    let particleAnimId = null;
+    let introTimeline = null;
+
+    // Check if user already saw intro in this session or prefers reduced motion
+    const introAlreadySeen = sessionStorage.getItem('bba_intro_seen') === 'true';
+    if (introAlreadySeen || isReducedMotion) {
+      introEl.style.display = 'none';
+      introEl.style.pointerEvents = 'none';
+    } else {
+      playIntro();
+    }
+
+    // Replay intro buttons
+    replayBtns.forEach(btn => {
+      btn?.addEventListener('click', (e) => {
+        e.preventDefault();
+        sessionStorage.removeItem('bba_intro_seen');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        playIntro();
+      });
+    });
+
+    function playIntro() {
+      introEl.style.display = 'flex';
+      introEl.style.opacity = '1';
+      introEl.style.pointerEvents = 'all';
+      document.body.style.overflow = 'hidden';
+
+      // 1. Initialize canvas particle constellation
+      initIntroParticles();
+
+      // 2. Play GSAP sequence if GSAP loaded
+      if (window.gsap && !isReducedMotion) {
+        if (introTimeline) introTimeline.kill();
+        introTimeline = gsap.timeline({
+          onComplete: () => dismissIntro()
+        });
+
+        // Set initial states
+        gsap.set(brandChars, { opacity: 0, y: 15 });
+        gsap.set(taglineText, { opacity: 0, scale: 0.9 });
+        gsap.set(statement, { opacity: 0, y: 10 });
+        if (progressBar) gsap.set(progressBar, { width: '0%' });
+
+        introTimeline
+          .to(brandChars, {
+            opacity: 1,
+            y: 0,
+            duration: 0.5,
+            stagger: 0.035,
+            ease: 'back.out(1.7)'
+          })
+          .to(taglineText, {
+            opacity: 1,
+            scale: 1,
+            duration: 0.6,
+            ease: 'power3.out'
+          }, '-=0.1')
+          .to(statement, {
+            opacity: 1,
+            y: 0,
+            duration: 0.5,
+            ease: 'power2.out'
+          }, '-=0.2')
+          .to(progressBar, {
+            width: '100%',
+            duration: 2.2,
+            ease: 'power1.inOut'
+          }, 0)
+          .to(introEl, {
+            opacity: 0,
+            duration: 0.7,
+            ease: 'power2.inOut',
+            delay: 0.3
+          });
+      } else {
+        // Fallback timer if GSAP not loaded
+        let progress = 0;
+        const interval = setInterval(() => {
+          progress += 5;
+          if (progressBar) progressBar.style.width = `${progress}%`;
+          if (progress >= 100) {
+            clearInterval(interval);
+            dismissIntro();
+          }
+        }, 100);
+      }
+    }
+
+    function dismissIntro() {
+      sessionStorage.setItem('bba_intro_seen', 'true');
+      document.body.style.overflow = '';
+      if (particleAnimId) cancelAnimationFrame(particleAnimId);
+
+      if (window.gsap) {
+        gsap.to(introEl, {
+          opacity: 0,
+          duration: 0.5,
+          ease: 'power2.out',
+          onComplete: () => {
+            introEl.style.display = 'none';
+            introEl.style.pointerEvents = 'none';
+          }
+        });
+      } else {
+        introEl.style.opacity = '0';
+        setTimeout(() => {
+          introEl.style.display = 'none';
+          introEl.style.pointerEvents = 'none';
+        }, 400);
+      }
+    }
+
+    // Skip Button Handler
+    skipBtn?.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (introTimeline) introTimeline.kill();
+      dismissIntro();
+    });
+
+    // ESC Key to Skip
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && introEl.style.display !== 'none') {
+        if (introTimeline) introTimeline.kill();
+        dismissIntro();
+      }
+    });
+
+    // Lightweight 2D canvas constellation particles
+    function initIntroParticles() {
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const resizeCanvas = () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      };
+      resizeCanvas();
+
+      const particles = [];
+      const count = Math.min(50, Math.floor(window.innerWidth / 30));
+
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          vx: (Math.random() - 0.5) * 0.7,
+          vy: (Math.random() - 0.5) * 0.7,
+          radius: Math.random() * 2 + 0.8,
+          alpha: Math.random() * 0.6 + 0.3,
+          color: Math.random() > 0.5 ? '#00f2ff' : '#8b5cf6'
+        });
+      }
+
+      function draw() {
+        if (introEl.style.display === 'none') return;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Draw connections
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 100) {
+              ctx.strokeStyle = `rgba(0, 242, 255, ${0.16 * (1 - dist / 100)})`;
+              ctx.lineWidth = 0.8;
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.stroke();
+            }
+          }
+        }
+
+        // Draw particles
+        for (let p of particles) {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.globalAlpha = p.alpha;
+          ctx.fill();
+
+          p.x += p.vx;
+          p.y += p.vy;
+
+          if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+          if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+        }
+        ctx.globalAlpha = 1.0;
+
+        particleAnimId = requestAnimationFrame(draw);
+      }
+      draw();
+    }
+  }
 
   /* ==========================================================================
      1. THEME MANAGER (LIGHT / DARK DUAL THEME WITH LOCALSTORAGE)
@@ -136,7 +357,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     2. THREE.JS FUTURISTIC CYBER-CORE CENTERPIECE
+     2. THREE.JS FUTURISTIC CYBER-CORE CENTERPIECE (3-RING SPATIAL DEPTH)
      ========================================================================== */
   function initThreeJSHero() {
     const canvas = document.getElementById('hero-3d-canvas');
@@ -153,7 +374,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
 
-    if (isReducedMotion || !window.THREE || !isWebGLAvailable() || window.innerWidth <= 768) {
+    if (isReducedMotion || !window.THREE || !isWebGLAvailable()) {
       if (fallbackGraphic) fallbackGraphic.style.display = 'block';
       canvas.style.display = 'none';
       return null;
@@ -162,13 +383,16 @@ document.addEventListener('DOMContentLoaded', () => {
     let scene, camera, renderer, coreGroup, animFrameId;
     let isVisible = true;
     let targetX = 0, targetY = 0;
-    let coreMesh, wireframeMesh, ringOuter, ringInner, particles;
+    let coreMesh, wireframeMesh, ringOuter, ringInner, ringViolet, particles;
     let dirLightBlue, dirLightOrange, ambientLight;
+    let spinVelocityX = 0.004, spinVelocityY = 0.006;
 
     try {
       scene = new THREE.Scene();
+      const isMobile = window.innerWidth <= 768;
+      
       camera = new THREE.PerspectiveCamera(45, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
-      camera.position.z = 6.2;
+      camera.position.z = isMobile ? 8.2 : 6.2;
 
       renderer = new THREE.WebGLRenderer({
         canvas,
@@ -177,17 +401,17 @@ document.addEventListener('DOMContentLoaded', () => {
         powerPreference: "high-performance"
       });
       renderer.setSize(canvas.clientWidth, canvas.clientHeight);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, isMobile ? 1.5 : 2));
 
-      // Dual ambient & directional lighting
+      // Dual ambient & directional atmospheric lighting
       ambientLight = new THREE.AmbientLight(0xffffff, 0.85);
       scene.add(ambientLight);
 
-      dirLightBlue = new THREE.DirectionalLight(0x3b82f6, 1.8);
+      dirLightBlue = new THREE.DirectionalLight(0x00f2ff, 2.0);
       dirLightBlue.position.set(5, 5, 5);
       scene.add(dirLightBlue);
 
-      dirLightOrange = new THREE.DirectionalLight(0xff7843, 1.5);
+      dirLightOrange = new THREE.DirectionalLight(0xff7843, 1.6);
       dirLightOrange.position.set(-5, -4, 4);
       scene.add(dirLightOrange);
 
@@ -202,60 +426,72 @@ document.addEventListener('DOMContentLoaded', () => {
         emissive: isDark ? 0x0f172a : 0x1e3a8a,
         shininess: 120,
         transparent: true,
-        opacity: 0.88,
+        opacity: 0.90,
         flatShading: true
       });
       coreMesh = new THREE.Mesh(coreGeo, coreMat);
       coreGroup.add(coreMesh);
 
-      // 2. Outer Wireframe Cage
-      const wireframeGeo = new THREE.IcosahedronGeometry(1.35, 1);
+      // 2. Outer Wireframe Cage (Cyan Glow)
+      const wireframeGeo = new THREE.IcosahedronGeometry(1.36, 1);
       const wireframeMat = new THREE.MeshBasicMaterial({
-        color: isDark ? 0x22d3ee : 0x06b6d4,
+        color: isDark ? 0x00f2ff : 0x06b6d4,
         wireframe: true,
         transparent: true,
-        opacity: isDark ? 0.45 : 0.25
+        opacity: isDark ? 0.5 : 0.3
       });
       wireframeMesh = new THREE.Mesh(wireframeGeo, wireframeMat);
       coreGroup.add(wireframeMesh);
 
-      // 3. Concentric Orbital Ring 1 (Electric Blue)
-      const ringOuterGeo = new THREE.TorusGeometry(1.9, 0.035, 16, 80);
+      // 3. Concentric Orbital Ring 1 (Neon Cyan)
+      const ringOuterGeo = new THREE.TorusGeometry(1.9, 0.035, 16, 90);
       const ringOuterMat = new THREE.MeshBasicMaterial({
-        color: 0x3b82f6,
+        color: 0x00f2ff,
         transparent: true,
-        opacity: 0.7
+        opacity: 0.75
       });
       ringOuter = new THREE.Mesh(ringOuterGeo, ringOuterMat);
       ringOuter.rotation.x = Math.PI / 3;
       coreGroup.add(ringOuter);
 
-      // 4. Concentric Orbital Ring 2 (Orange Accent)
-      const ringInnerGeo = new THREE.TorusGeometry(2.2, 0.025, 16, 80);
+      // 4. Concentric Orbital Ring 2 (Electric Orange/Magenta)
+      const ringInnerGeo = new THREE.TorusGeometry(2.25, 0.025, 16, 90);
       const ringInnerMat = new THREE.MeshBasicMaterial({
         color: 0xff7843,
         transparent: true,
-        opacity: 0.6
+        opacity: 0.65
       });
       ringInner = new THREE.Mesh(ringInnerGeo, ringInnerMat);
       ringInner.rotation.y = Math.PI / 4;
       coreGroup.add(ringInner);
 
-      // 5. Floating Ambient Particles
-      const particleCount = 45;
+      // 5. Concentric Orbital Ring 3 (Cyber Violet Accent)
+      const ringVioletGeo = new THREE.TorusGeometry(2.55, 0.02, 16, 90);
+      const ringVioletMat = new THREE.MeshBasicMaterial({
+        color: 0x8b5cf6,
+        transparent: true,
+        opacity: 0.6
+      });
+      ringViolet = new THREE.Mesh(ringVioletGeo, ringVioletMat);
+      ringViolet.rotation.z = Math.PI / 2.5;
+      ringViolet.rotation.x = -Math.PI / 6;
+      coreGroup.add(ringViolet);
+
+      // 6. Floating Ambient Cyber Particles (120 particles)
+      const particleCount = isMobile ? 60 : 120;
       const particleGeo = new THREE.BufferGeometry();
       const positions = new Float32Array(particleCount * 3);
       for (let i = 0; i < particleCount * 3; i += 3) {
-        positions[i] = (Math.random() - 0.5) * 7;
-        positions[i + 1] = (Math.random() - 0.5) * 7;
-        positions[i + 2] = (Math.random() - 0.5) * 5;
+        positions[i] = (Math.random() - 0.5) * 8.5;
+        positions[i + 1] = (Math.random() - 0.5) * 8.5;
+        positions[i + 2] = (Math.random() - 0.5) * 6;
       }
       particleGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
       const particleMat = new THREE.PointsMaterial({
-        size: 0.055,
-        color: isDark ? 0x38bdf8 : 0x2563eb,
+        size: 0.06,
+        color: isDark ? 0x00f2ff : 0x2563eb,
         transparent: true,
-        opacity: 0.75
+        opacity: 0.8
       });
       particles = new THREE.Points(particleGeo, particleMat);
       coreGroup.add(particles);
@@ -266,10 +502,16 @@ document.addEventListener('DOMContentLoaded', () => {
       const handleMouseMove = (e) => {
         const halfX = window.innerWidth / 2;
         const halfY = window.innerHeight / 2;
-        targetX = (e.clientX - halfX) * 0.0005;
-        targetY = (e.clientY - halfY) * 0.0005;
+        targetX = (e.clientX - halfX) * 0.0006;
+        targetY = (e.clientY - halfY) * 0.0006;
       };
       window.addEventListener('mousemove', handleMouseMove, { passive: true });
+
+      // Interactive Click/Touch Pulse
+      canvas.addEventListener('click', () => {
+        spinVelocityX = 0.025;
+        spinVelocityY = 0.035;
+      });
 
       // Pause rendering when hero is offscreen
       const heroObserver = new IntersectionObserver((entries) => {
@@ -286,12 +528,17 @@ document.addEventListener('DOMContentLoaded', () => {
         animFrameId = requestAnimationFrame(animate);
         if (!isVisible) return;
 
-        coreMesh.rotation.x += 0.004;
-        coreMesh.rotation.y += 0.006;
-        wireframeMesh.rotation.x -= 0.002;
-        wireframeMesh.rotation.y -= 0.003;
-        ringOuter.rotation.z += 0.008;
-        ringInner.rotation.x += 0.006;
+        // Smoothly decay spin velocity towards resting state
+        spinVelocityX += (0.004 - spinVelocityX) * 0.05;
+        spinVelocityY += (0.006 - spinVelocityY) * 0.05;
+
+        coreMesh.rotation.x += spinVelocityX;
+        coreMesh.rotation.y += spinVelocityY;
+        wireframeMesh.rotation.x -= spinVelocityX * 0.5;
+        wireframeMesh.rotation.y -= spinVelocityY * 0.5;
+        ringOuter.rotation.z += 0.009;
+        ringInner.rotation.x += 0.007;
+        ringViolet.rotation.y += 0.005;
         particles.rotation.y += 0.001;
 
         // Smooth Parallax Damping
@@ -305,6 +552,8 @@ document.addEventListener('DOMContentLoaded', () => {
       // Responsive Resize
       window.addEventListener('resize', () => {
         if (!canvas) return;
+        const mobile = window.innerWidth <= 768;
+        camera.position.z = mobile ? 8.2 : 6.2;
         camera.aspect = canvas.clientWidth / canvas.clientHeight;
         camera.updateProjectionMatrix();
         renderer.setSize(canvas.clientWidth, canvas.clientHeight);
@@ -316,8 +565,8 @@ document.addEventListener('DOMContentLoaded', () => {
           const dark = newTheme === 'dark';
           coreMesh.material.color.setHex(dark ? 0x1d4ed8 : 0x2563eb);
           coreMesh.material.emissive.setHex(dark ? 0x0f172a : 0x1e3a8a);
-          wireframeMesh.material.color.setHex(dark ? 0x22d3ee : 0x06b6d4);
-          particleMat.color.setHex(dark ? 0x38bdf8 : 0x2563eb);
+          wireframeMesh.material.color.setHex(dark ? 0x00f2ff : 0x06b6d4);
+          particleMat.color.setHex(dark ? 0x00f2ff : 0x2563eb);
           ambientLight.intensity = dark ? 0.75 : 0.95;
           dirLightBlue.intensity = dark ? 2.0 : 1.4;
           dirLightOrange.intensity = dark ? 1.6 : 1.2;
@@ -502,6 +751,260 @@ document.addEventListener('DOMContentLoaded', () => {
       // Smooth scroll to form
       const formSection = document.getElementById('start-project');
       formSection?.scrollIntoView({ behavior: 'smooth' });
+    });
+  }
+
+  /* ==========================================================================
+     SERVICE DETAIL MODAL (HIDDEN PRICE REVEAL ON INTERACTION)
+     ========================================================================== */
+  function initServiceDetailModal() {
+    const modal = document.getElementById('service-detail-modal');
+    if (!modal) return;
+
+    const closeBtns = document.querySelectorAll('#service-modal-close-corner, #modal-close-btn, .bba-modal-close-btn');
+    const modalTitle = document.getElementById('modal-service-title');
+    const modalCategory = document.getElementById('modal-service-category');
+    const modalDesc = document.getElementById('modal-service-description');
+    const modalAudience = document.getElementById('modal-service-audience');
+    const modalDeliverables = document.getElementById('modal-service-deliverables');
+    const modalPrerequisites = document.getElementById('modal-service-prerequisites');
+    const modalTimeline = document.getElementById('modal-service-timeline');
+    const modalCaseStudy = document.getElementById('modal-service-case-study');
+    const modalPrice = document.getElementById('modal-service-price');
+    const modalCtaBrief = document.getElementById('modal-cta-brief');
+    const modalCtaWhatsapp = document.getElementById('modal-cta-whatsapp');
+    const modalIconWrap = document.getElementById('modal-service-icon');
+
+    const SERVICES_DATA = {
+      'web-apps': {
+        title: "Web Applications & Dashboards",
+        category: "Reactive Systems",
+        icon: "layout-template",
+        description: "Interactive tools, patient queue management systems, administrative dashboards, client portals, and reactive state systems with responsive feedback.",
+        audience: "Clinics, logistics operators, startups, financial consultants, and operations teams requiring bespoke internal or client-facing web tools.",
+        deliverables: [
+          "Responsive multi-device interface with real-time UI state updates",
+          "Interactive data calculators, token dispensers, or queue monitors",
+          "Clean modular JavaScript with optional client-side offline storage",
+          "Serverless API proxy architecture with rate-limiting & error handling",
+          "Exportable data summaries, instant PDF receipts, or print-ready views",
+          "Comprehensive cross-browser testing & accessibility verification"
+        ],
+        prerequisites: "Functional workflow description, required data fields, input/output specifications, and branding guidelines.",
+        timeline: "7 - 14 Business Days",
+        caseStudyUrl: "case-study.html?id=smart-opd",
+        caseStudyTitle: "Smart OPD Queue Tracker →",
+        priceRange: "₹9,999 - ₹19,999+",
+        formCategory: "Web Application",
+        defaultTier: "Business Pro"
+      },
+      'websites': {
+        title: "Website Development",
+        category: "Core Engineering",
+        icon: "globe",
+        description: "High-performance websites, personal brand showcases, and conversion landing pages engineered with clean semantic HTML5, modern CSS, and lightweight JavaScript.",
+        audience: "Founders, creators, doctors, consultants, restaurants, and growing businesses needing a fast, credible digital identity.",
+        deliverables: [
+          "100% Mobile, Tablet & Desktop Responsive Layouts",
+          "Futuristic Dimensional UI with Light/Dark Theme Support",
+          "Direct Serverless Email & Lead Capture Integration",
+          "On-Page SEO Meta Tags & Custom OpenGraph Social Cards",
+          "Global Edge Deployment on Netlify/Vercel with Instant SSL",
+          "Clean Modular Code Handover & Complete Ownership"
+        ],
+        prerequisites: "Brand logo, basic copy/content outline, reference URLs or preferred aesthetic inspiration.",
+        timeline: "3 - 5 Business Days",
+        caseStudyUrl: "case-study.html?id=ayur-sanjeevani",
+        caseStudyTitle: "AyurSanjeevani Portal →",
+        priceRange: "₹2,999 - ₹9,999",
+        formCategory: "Business Website",
+        defaultTier: "Standard"
+      },
+      'ai-solutions': {
+        title: "AI & Machine Learning Solutions",
+        category: "Applied Intelligence",
+        icon: "cpu",
+        description: "Functional AI prototypes, multimodal fake news detection, automated image classification pipelines, diagnostic heuristic tools, and conversational LLM integrations.",
+        audience: "Researchers, modern enterprises, healthcare professionals, and innovative startups looking to integrate applied artificial intelligence into production-ready web interfaces.",
+        deliverables: [
+          "Interactive web UI integrating machine learning inference endpoints",
+          "Credibility scoring heuristics, confidence visualizers & metric badges",
+          "Multi-model analysis (Text, Image & Cross-modal semantic alignment)",
+          "Interactive embedded simulator for instant browser-based client testing",
+          "Clear positioning documentation, research disclaimers & evaluation metrics",
+          "Edge serverless API middleware protecting private AI model keys"
+        ],
+        prerequisites: "Project objective, input dataset or API credentials (if custom), sample test scenarios, and expected output format.",
+        timeline: "10 - 20 Business Days",
+        caseStudyUrl: "case-study.html?id=truth-guard",
+        caseStudyTitle: "Truth Guard Multimodal AI →",
+        priceRange: "₹9,999 - ₹24,999+",
+        formCategory: "AI & ML Solution",
+        defaultTier: "Business Pro"
+      },
+      'redesign': {
+        title: "Website Redesign & UI/UX Elevation",
+        category: "Interface Evolution",
+        icon: "refresh-cw",
+        description: "Modernizing outdated, slow, or template-heavy websites into fast, responsive, and visually magnetic digital experiences that inspire trust and drive conversions.",
+        audience: "Established businesses, clinics, independent consultants, and agencies whose current websites feel slow, dated, or fail to convert visitors.",
+        deliverables: [
+          "Comprehensive UX & performance audit of your existing website",
+          "Modern design system overhaul (editorial typography, custom gradients, refined spacing)",
+          "Complete code refactoring to eliminate render-blocking template bloat",
+          "Mobile-first responsive optimization across phone, tablet, and desktop viewports",
+          "Smooth micro-interactions and scroll-triggered visual rhythm",
+          "Preservation of existing SEO rankings and URL redirect mapping"
+        ],
+        prerequisites: "URL of current website, brand assets, pain points with current design, and 2-3 reference sites you admire.",
+        timeline: "5 - 10 Business Days",
+        caseStudyUrl: "work.html",
+        caseStudyTitle: "Explore Studio Portfolio →",
+        priceRange: "₹5,999 - ₹14,999",
+        formCategory: "Website Redesign",
+        defaultTier: "Standard"
+      },
+      'ecommerce': {
+        title: "E-Commerce & Digital Catalogs",
+        category: "Digital Commerce",
+        icon: "shopping-bag",
+        description: "High-speed digital storefronts, curated product catalogs, and direct WhatsApp ordering workflows that turn casual browsers into paying customers without high platform fees.",
+        audience: "Boutique brands, specialty food & beverage, artisans, local manufacturers, and creators launching direct-to-consumer catalogs.",
+        deliverables: [
+          "Fast, visual product catalog with category filtering and instant search",
+          "Direct WhatsApp checkout order-builder generating pre-formatted carts",
+          "Single-click customer inquiry with SKU reference tracking",
+          "Lightweight client-side cart state with zero monthly marketplace subscriptions",
+          "High-resolution image optimization and lazy-loading for lightning-fast catalog browsing",
+          "Google Analytics and conversion event tracking setup"
+        ],
+        prerequisites: "Product list with titles, prices, descriptions, high-resolution photos, and business WhatsApp number.",
+        timeline: "5 - 12 Business Days",
+        caseStudyUrl: "work.html",
+        caseStudyTitle: "Explore Showcase →",
+        priceRange: "₹5,999 - ₹14,999",
+        formCategory: "E-commerce Website",
+        defaultTier: "Business"
+      },
+      'automation': {
+        title: "Automation & Workflow Integration",
+        category: "Operational Efficiency",
+        icon: "workflow",
+        description: "Automated single-page A4 PDF receipt generation, transactional email pipelines via Resend, webhook notification systems, and bespoke API bridges.",
+        audience: "Service firms, consultants, clinics, and digital agencies looking to eliminate manual paperwork and automate client communication.",
+        deliverables: [
+          "Custom serverless functions (Netlify / Vercel Edge) handling form submissions",
+          "Automated PDF receipt generator embedding client details and official brand assets",
+          "Transactional notification dispatch via Resend API with domain DKIM setup",
+          "Direct WhatsApp consultation message formatting and URL routing",
+          "Anti-spam honeypot filtering and server-side input sanitization",
+          "Comprehensive automated test suite verifying edge API contracts"
+        ],
+        prerequisites: "Workflow description, email sender requirements, required receipt template layout, and desired triggers.",
+        timeline: "3 - 7 Business Days",
+        caseStudyUrl: "case-study.html?id=smart-opd",
+        caseStudyTitle: "View Architecture →",
+        priceRange: "₹3,999 - ₹9,999+",
+        formCategory: "Automation & Integration",
+        defaultTier: "Standard"
+      },
+      'maintenance': {
+        title: "Ongoing Studio Support & Maintenance",
+        category: "Continuity Care",
+        icon: "shield-check",
+        description: "Dedicated developer availability for content updates, security patches, performance audits, minor feature expansions, and technical peace of mind.",
+        audience: "Previous and current studio clients who want their web applications and sites to remain fast, secure, and updated without hiring a full-time engineer.",
+        deliverables: [
+          "Monthly code health, link validation, and security check",
+          "Up to 3 hours of monthly content updates, text tweaks, or banner additions",
+          "Lighthouse performance re-testing and cache optimization",
+          "Priority WhatsApp assistance directly with Atharva Mirzapure",
+          "Staging preview verification before deploying updates to production"
+        ],
+        prerequisites: "Access to existing codebase, hosting repository, and list of required updates.",
+        timeline: "Ongoing Monthly Retainer",
+        caseStudyUrl: "services.html",
+        caseStudyTitle: "Studio Capabilities →",
+        priceRange: "Starting from ₹999 / month",
+        formCategory: "Website Redesign",
+        defaultTier: "Starter"
+      }
+    };
+
+    // Attach click listeners to all buttons and cards with data-service-id
+    const triggers = document.querySelectorAll('.open-service-modal-btn, .service-discovery-card');
+    triggers.forEach(trigger => {
+      trigger.addEventListener('click', (e) => {
+        // If the user clicked an explicit anchor link inside the card (like an external link), do not hijack
+        if (e.target.tagName === 'A' && !e.target.classList.contains('open-service-modal-btn')) return;
+
+        let serviceId = trigger.getAttribute('data-service-id');
+        if (!serviceId) {
+          const btn = trigger.querySelector('.open-service-modal-btn');
+          if (btn) serviceId = btn.getAttribute('data-service-id');
+        }
+        if (!serviceId) {
+          const parent = trigger.closest('[data-service-id]');
+          if (parent) serviceId = parent.getAttribute('data-service-id');
+        }
+
+        if (!serviceId || !SERVICES_DATA[serviceId]) return;
+        const s = SERVICES_DATA[serviceId];
+
+        // Populate fields
+        if (modalTitle) modalTitle.textContent = s.title;
+        if (modalCategory) modalCategory.textContent = s.category;
+        if (modalDesc) modalDesc.textContent = s.description;
+        if (modalAudience) modalAudience.textContent = s.audience;
+        if (modalPrerequisites) modalPrerequisites.textContent = s.prerequisites;
+        if (modalTimeline) modalTimeline.textContent = s.timeline;
+        if (modalPrice) modalPrice.textContent = s.priceRange;
+
+        if (modalIconWrap) {
+          modalIconWrap.innerHTML = `<i data-lucide="${s.icon}"></i>`;
+        }
+
+        if (modalDeliverables) {
+          modalDeliverables.innerHTML = s.deliverables.map(d => `
+            <li style="display: flex; align-items: flex-start; gap: 8px; font-size: 0.9rem; color: var(--text-secondary);">
+              <i data-lucide="check-circle" style="width: 16px; height: 16px; color: var(--accent-green); flex-shrink: 0; margin-top: 2px;"></i>
+              <span>${escapeHtml(d)}</span>
+            </li>
+          `).join('');
+        }
+
+        if (modalCaseStudy) {
+          modalCaseStudy.href = s.caseStudyUrl;
+          modalCaseStudy.textContent = s.caseStudyTitle;
+        }
+
+        if (modalCtaBrief) {
+          modalCtaBrief.href = `start-project.html?service=${encodeURIComponent(s.formCategory)}&tier=${encodeURIComponent(s.defaultTier)}`;
+        }
+
+        if (modalCtaWhatsapp) {
+          const text = encodeURIComponent(`Hi Atharva, I'm interested in discussing your ${s.title} service.`);
+          modalCtaWhatsapp.href = `https://wa.me/918626074035?text=${text}`;
+        }
+
+        if (window.lucide) window.lucide.createIcons();
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    closeBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
     });
   }
 
@@ -1052,39 +1555,121 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ==========================================================================
      9. PROJECT REQUEST FORM WIZARD & SERVERLESS BACKEND
      ========================================================================== */
+  // Shared Official PDF Receipt State across Form Wizard and Receipt Actions
+  let currentReceiptPdfBlob = null;
+  let currentReceiptFilename = 'BuiltByAtharva-Project-Enquiry-Receipt.pdf';
+  let currentReferenceId = '';
+
+  function base64ToBlob(base64, mimeType = 'application/pdf') {
+    const byteCharacters = atob(base64);
+    const byteNumbers = new Uint8Array(byteCharacters.length);
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteNumbers[i] = byteCharacters.charCodeAt(i);
+    }
+    return new Blob([byteNumbers], { type: mimeType });
+  }
+
   function initFormWizard() {
     let currentStep = 1;
-    const totalSteps = 4;
+    const totalSteps = 5;
 
     const wizardPanels = document.querySelectorAll('.wizard-panel');
-    const wizardStepItems = document.querySelectorAll('.wizard-step-item');
-    const btnNext = document.getElementById('btn-next-step');
-    const btnPrev = document.getElementById('btn-prev-step');
-    const btnSubmit = document.getElementById('btn-submit-project');
-    const form = document.getElementById('project-request-form');
-    const summaryBox = document.getElementById('review-summary-box');
-    const successModal = document.getElementById('success-modal');
-    const closeModalBtn = document.getElementById('close-modal-btn');
+    const wizardStepItems = document.querySelectorAll('.wizard-5step-item');
+    const btnNext = document.getElementById('wizard-btn-next');
+    const btnPrev = document.getElementById('wizard-btn-prev');
+    const btnSubmit = document.getElementById('wizard-btn-submit');
+    const form = document.getElementById('project-brief-form');
+    const summaryBox = document.getElementById('wizard-review-summary');
+    const successModal = document.getElementById('receipt-modal-backdrop');
+    const closeModalBtn = document.getElementById('modal-close-btn');
+    const charCounter = document.getElementById('desc-char-counter');
+    const descTextarea = document.getElementById('form-project-desc');
+    const adaptiveTypeName = document.getElementById('adaptive-type-name');
 
-    // Category Selector in Step 2
-    const categoryCards = document.querySelectorAll('.type-select-card');
-    categoryCards.forEach(card => {
+    if (!form && !wizardPanels.length) return;
+
+    // Character Counter for Brief
+    descTextarea?.addEventListener('input', () => {
+      const len = descTextarea.value.length;
+      if (charCounter) charCounter.textContent = `${len} / 4000`;
+    });
+
+    // Step 1: Project Type Selection
+    const typeCards = document.querySelectorAll('.project-type-card');
+    typeCards.forEach(card => {
       card.addEventListener('click', () => {
-        categoryCards.forEach(c => c.classList.remove('selected'));
+        typeCards.forEach(c => c.classList.remove('selected'));
         card.classList.add('selected');
-        const type = card.getAttribute('data-type');
+        const selectedType = card.getAttribute('data-type') || 'Business Website';
         const hiddenTypeInput = document.getElementById('form-project-type');
-        if (hiddenTypeInput) hiddenTypeInput.value = type;
+        if (hiddenTypeInput) hiddenTypeInput.value = selectedType;
+        if (adaptiveTypeName) adaptiveTypeName.textContent = selectedType;
       });
     });
 
-    // Step Navigation Handlers
+    // Step 3: Scope Tier Selection
+    const tierCards = document.querySelectorAll('.scope-tier-card');
+    tierCards.forEach(card => {
+      card.addEventListener('click', () => {
+        tierCards.forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+        const selectedTier = card.getAttribute('data-tier') || 'Standard';
+        const selectedPrice = card.getAttribute('data-price') || '₹5,999';
+        const hiddenTierInput = document.getElementById('form-selected-tier');
+        const hiddenBudgetInput = document.getElementById('form-budget');
+        if (hiddenTierInput) hiddenTierInput.value = selectedTier;
+        if (hiddenBudgetInput) hiddenBudgetInput.value = selectedPrice;
+      });
+    });
+
+    // Step 3: Timeline & Customisations
+    const timelineSelect = document.getElementById('form-timeline-select');
+    timelineSelect?.addEventListener('change', () => {
+      const hiddenTimeline = document.getElementById('form-timeline');
+      if (hiddenTimeline) hiddenTimeline.value = timelineSelect.value;
+    });
+
+    // Check URL parameters for preselection (?service=...&tier=...)
+    const urlParams = new URLSearchParams(window.location.search);
+    const serviceParam = urlParams.get('service') || urlParams.get('type') || urlParams.get('category');
+    const tierParam = urlParams.get('tier');
+
+    if (serviceParam) {
+      typeCards.forEach(card => {
+        const type = (card.getAttribute('data-type') || '').toLowerCase();
+        const cat = (card.getAttribute('data-category') || '').toLowerCase();
+        const paramLower = serviceParam.toLowerCase();
+        if (type.includes(paramLower) || cat.includes(paramLower) || paramLower.includes(type)) {
+          typeCards.forEach(c => c.classList.remove('selected'));
+          card.classList.add('selected');
+          const hiddenTypeInput = document.getElementById('form-project-type');
+          if (hiddenTypeInput) hiddenTypeInput.value = card.getAttribute('data-type');
+          if (adaptiveTypeName) adaptiveTypeName.textContent = card.getAttribute('data-type');
+        }
+      });
+    }
+
+    if (tierParam) {
+      tierCards.forEach(card => {
+        const tier = (card.getAttribute('data-tier') || '').toLowerCase();
+        if (tier === tierParam.toLowerCase()) {
+          tierCards.forEach(c => c.classList.remove('selected'));
+          card.classList.add('selected');
+          const hiddenTierInput = document.getElementById('form-selected-tier');
+          const hiddenBudgetInput = document.getElementById('form-budget');
+          if (hiddenTierInput) hiddenTierInput.value = card.getAttribute('data-tier');
+          if (hiddenBudgetInput) hiddenBudgetInput.value = card.getAttribute('data-price');
+        }
+      });
+    }
+
+    // Navigation Controls
     btnNext?.addEventListener('click', () => {
       if (validateStep(currentStep)) {
         if (currentStep < totalSteps) {
           currentStep++;
           updateWizardUI();
-          if (currentStep === 4) {
+          if (currentStep === 5) {
             populateReviewSummary();
           }
         }
@@ -1103,14 +1688,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const stepNum = parseInt(p.getAttribute('data-step') || '1', 10);
         if (stepNum === currentStep) {
           p.classList.add('active');
+          p.style.display = 'block';
         } else {
           p.classList.remove('active');
+          p.style.display = 'none';
         }
       });
 
       wizardStepItems.forEach(item => {
         const stepNum = parseInt(item.getAttribute('data-step') || '1', 10);
-        if (stepNum <= currentStep) {
+        if (stepNum === currentStep) {
+          item.classList.add('active');
+        } else if (stepNum < currentStep) {
           item.classList.add('active');
         } else {
           item.classList.remove('active');
@@ -1121,6 +1710,12 @@ document.addEventListener('DOMContentLoaded', () => {
       if (btnNext) btnNext.style.display = currentStep < totalSteps ? 'inline-flex' : 'none';
       if (btnSubmit) btnSubmit.style.display = currentStep === totalSteps ? 'inline-flex' : 'none';
 
+      // Scroll smoothly to wizard top
+      const wizardBox = document.querySelector('.project-wizard-container');
+      if (wizardBox && currentStep > 1) {
+        wizardBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+
       if (window.lucide) window.lucide.createIcons();
     }
 
@@ -1129,23 +1724,9 @@ document.addEventListener('DOMContentLoaded', () => {
       let isValid = true;
 
       if (step === 1) {
-        const name = (document.getElementById('form-client-name')?.value || '').trim();
-        const phone = (document.getElementById('form-client-phone')?.value || '').trim();
-        const email = (document.getElementById('form-client-email')?.value || '').trim();
-
-        if (!name || name.length < 2) {
-          showError('err-client-name', 'Please enter your full name (at least 2 characters).');
-          isValid = false;
-        }
-
-        if (!phone || phone.length < 7) {
-          showError('err-client-phone', 'Please enter a valid phone or WhatsApp number.');
-          isValid = false;
-        }
-
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!email || !emailRegex.test(email)) {
-          showError('err-client-email', 'Please enter a valid email address.');
+        const selectedType = document.querySelector('.project-type-card.selected');
+        if (!selectedType) {
+          alert('Please select a project type to continue.');
           isValid = false;
         }
       }
@@ -1155,12 +1736,42 @@ document.addEventListener('DOMContentLoaded', () => {
         const desc = (document.getElementById('form-project-desc')?.value || '').trim();
 
         if (!title || title.length < 3) {
-          showError('err-project-title', 'Please provide a short project title or name.');
+          showError('err-project-title', 'Please provide a working title for your project (at least 3 characters).');
           isValid = false;
         }
 
         if (!desc || desc.length < 10) {
-          showError('err-project-desc', 'Please briefly describe your project goals (at least 10 characters).');
+          showError('err-project-desc', 'Please briefly describe your requirements and goals (at least 10 characters).');
+          isValid = false;
+        }
+      }
+
+      if (step === 3) {
+        const selectedTier = document.querySelector('.scope-tier-card.selected');
+        if (!selectedTier) {
+          alert('Please select a package tier to align scope and budget.');
+          isValid = false;
+        }
+      }
+
+      if (step === 4) {
+        const name = (document.getElementById('form-client-name')?.value || '').trim();
+        const email = (document.getElementById('form-client-email')?.value || '').trim();
+        const phone = (document.getElementById('form-client-phone')?.value || '').trim();
+
+        if (!name || name.length < 2) {
+          showError('err-client-name', 'Please enter your full name (at least 2 characters).');
+          isValid = false;
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!email || !emailRegex.test(email)) {
+          showError('err-client-email', 'Please enter a valid email address to receive your receipt.');
+          isValid = false;
+        }
+
+        if (!phone || phone.replace(/\D/g, '').length < 7) {
+          showError('err-client-phone', 'Please enter a valid phone or WhatsApp number.');
           isValid = false;
         }
       }
@@ -1187,83 +1798,126 @@ document.addEventListener('DOMContentLoaded', () => {
     function populateReviewSummary() {
       if (!summaryBox) return;
 
+      const checkedFeatures = Array.from(document.querySelectorAll('input[name="req_features"]:checked'))
+        .map(cb => cb.value);
+
       const data = {
-        name: document.getElementById('form-client-name')?.value || '',
-        phone: document.getElementById('form-client-phone')?.value || '',
-        email: document.getElementById('form-client-email')?.value || '',
-        company: document.getElementById('form-company')?.value || 'Personal / None',
-        type: document.getElementById('form-project-type')?.value || 'Website Development',
+        type: document.getElementById('form-project-type')?.value || 'Business Website',
         tier: document.getElementById('form-selected-tier')?.value || 'Standard',
+        budget: document.getElementById('form-budget')?.value || '₹5,999',
+        timeline: document.getElementById('form-timeline')?.value || 'Standard (1 - 2 Weeks)',
         title: document.getElementById('form-project-title')?.value || '',
+        goal: document.getElementById('form-primary-goal')?.value || 'Establish strong digital credibility',
         desc: document.getElementById('form-project-desc')?.value || '',
-        custom: document.getElementById('form-customisations')?.value || 'None specified',
-        timeline: document.getElementById('form-timeline')?.value || 'Standard',
-        budget: document.getElementById('form-budget')?.value || 'Standard'
+        existingUrl: document.getElementById('form-existing-url')?.value || '',
+        refUrl: document.getElementById('form-reference-url')?.value || '',
+        customisations: document.getElementById('form-customisations')?.value || '',
+        name: document.getElementById('form-client-name')?.value || '',
+        email: document.getElementById('form-client-email')?.value || '',
+        phone: document.getElementById('form-client-phone')?.value || '',
+        company: document.getElementById('form-company')?.value || 'Independent'
       };
 
       summaryBox.innerHTML = `
-        <div class="review-grid">
-          <div class="review-item">
-            <span class="review-item-label">Client Name</span>
-            <span class="review-item-val">${escapeHtml(data.name)}</span>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 20px;">
+          <div style="background: var(--bg-alt); padding: 14px; border-radius: var(--radius-md);">
+            <span style="font-size: 0.72rem; text-transform: uppercase; color: var(--text-muted); font-weight: 800; display: block; margin-bottom: 4px;">Client Name</span>
+            <strong style="color: var(--text-primary); font-size: 0.95rem;">${escapeHtml(data.name)}</strong>
           </div>
-          <div class="review-item">
-            <span class="review-item-label">Contact Email</span>
-            <span class="review-item-val">${escapeHtml(data.email)}</span>
+          <div style="background: var(--bg-alt); padding: 14px; border-radius: var(--radius-md);">
+            <span style="font-size: 0.72rem; text-transform: uppercase; color: var(--text-muted); font-weight: 800; display: block; margin-bottom: 4px;">Contact Email</span>
+            <strong style="color: var(--text-primary); font-size: 0.95rem;">${escapeHtml(data.email)}</strong>
           </div>
-          <div class="review-item">
-            <span class="review-item-label">Phone / WhatsApp</span>
-            <span class="review-item-val">${escapeHtml(data.phone)}</span>
+          <div style="background: var(--bg-alt); padding: 14px; border-radius: var(--radius-md);">
+            <span style="font-size: 0.72rem; text-transform: uppercase; color: var(--text-muted); font-weight: 800; display: block; margin-bottom: 4px;">Phone / WhatsApp</span>
+            <strong style="color: var(--text-primary); font-size: 0.95rem;">${escapeHtml(data.phone)}</strong>
           </div>
-          <div class="review-item">
-            <span class="review-item-label">Company / Brand</span>
-            <span class="review-item-val">${escapeHtml(data.company)}</span>
-          </div>
-          <div class="review-item">
-            <span class="review-item-label">Service & Base Tier</span>
-            <span class="review-item-val" style="color:var(--accent-blue);">${escapeHtml(data.type)} (${escapeHtml(data.tier)})</span>
-          </div>
-          <div class="review-item">
-            <span class="review-item-label">Budget Range</span>
-            <span class="review-item-val" style="color:var(--accent-green);">${escapeHtml(data.budget)}</span>
-          </div>
-          <div class="review-item" style="grid-column: span 2;">
-            <span class="review-item-label">Project Title & Scope</span>
-            <span class="review-item-val" style="display:block; margin-bottom:4px;">${escapeHtml(data.title)}</span>
-            <p style="font-size:0.875rem; color:var(--text-secondary); line-height:1.5;">${escapeHtml(data.desc)}</p>
+          <div style="background: var(--bg-alt); padding: 14px; border-radius: var(--radius-md);">
+            <span style="font-size: 0.72rem; text-transform: uppercase; color: var(--text-muted); font-weight: 800; display: block; margin-bottom: 4px;">Company / Brand</span>
+            <strong style="color: var(--text-primary); font-size: 0.95rem;">${escapeHtml(data.company)}</strong>
           </div>
         </div>
+
+        <div style="background: var(--bg-alt); padding: 16px; border-radius: var(--radius-md); margin-bottom: 16px; border-left: 3px solid var(--accent-blue);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 8px;">
+            <span style="font-size: 0.8rem; font-weight: 800; color: var(--accent-blue); text-transform: uppercase;">Selected Architecture & Package</span>
+            <strong style="font-size: 1.1rem; color: var(--text-primary);">${escapeHtml(data.budget)}</strong>
+          </div>
+          <div style="font-size: 1rem; font-weight: 800; color: var(--text-primary); margin-bottom: 4px;">
+            ${escapeHtml(data.type)} &mdash; <span style="color: var(--accent-blue);">${escapeHtml(data.tier)} Package</span>
+          </div>
+          <div style="font-size: 0.82rem; color: var(--text-secondary);">
+            Turnaround: ${escapeHtml(data.timeline)} &bull; 50% Milestone Advance Policy
+          </div>
+        </div>
+
+        <div style="background: var(--bg-alt); padding: 16px; border-radius: var(--radius-md); margin-bottom: 16px;">
+          <span style="font-size: 0.72rem; text-transform: uppercase; color: var(--text-muted); font-weight: 800; display: block; margin-bottom: 4px;">Working Title & Scope</span>
+          <strong style="display: block; font-size: 1rem; color: var(--text-primary); margin-bottom: 6px;">${escapeHtml(data.title)}</strong>
+          <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 8px;">${escapeHtml(data.desc)}</p>
+          ${checkedFeatures.length > 0 ? `
+            <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px;">
+              ${checkedFeatures.map(f => `<span style="font-size: 0.72rem; background: var(--bg-card); padding: 3px 8px; border-radius: var(--radius-full); border: 1px solid var(--border-light); color: var(--text-primary);"><i data-lucide="check" style="width: 10px; height: 10px; display: inline-block;"></i> ${escapeHtml(f)}</span>`).join('')}
+            </div>
+          ` : ''}
+        </div>
       `;
+
+      if (window.lucide) window.lucide.createIcons();
     }
 
-    // Serverless Form Submission to /api/submit-project
+    // Form Submission Handler
     form?.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      if (!validateStep(1) || !validateStep(2)) {
+      if (!validateStep(1) || !validateStep(2) || !validateStep(3) || !validateStep(4)) {
         currentStep = 1;
         updateWizardUI();
         return;
       }
 
-      if (btnSubmit) {
-        btnSubmit.disabled = true;
-        btnSubmit.innerHTML = `<i data-lucide="loader-2" class="spin"></i> Dispatching Brief...`;
-        if (window.lucide) window.lucide.createIcons();
+      const termsCheck = document.getElementById('terms-agree');
+      if (termsCheck && !termsCheck.checked) {
+        alert('Please accept the fixed-scope estimation model and milestone advance terms to proceed.');
+        return;
       }
+
+      const submitBtn = document.getElementById('wizard-btn-submit');
+      const submitText = document.getElementById('btn-submit-text');
+      const submitIcon = document.getElementById('btn-submit-icon');
+      const serverMsg = document.getElementById('wizard-server-msg');
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        if (submitText) submitText.textContent = 'DISPATCHING BRIEF & PDF...';
+        if (submitIcon) {
+          submitIcon.setAttribute('data-lucide', 'loader-2');
+          submitIcon.classList.add('spin');
+          if (window.lucide) window.lucide.createIcons();
+        }
+      }
+
+      if (serverMsg) {
+        serverMsg.style.display = 'none';
+        serverMsg.textContent = '';
+      }
+
+      const checkedFeatures = Array.from(document.querySelectorAll('input[name="req_features"]:checked'))
+        .map(cb => cb.value)
+        .join(', ');
 
       const payload = {
         client_name: document.getElementById('form-client-name')?.value || '',
         contact_phone: document.getElementById('form-client-phone')?.value || '',
         client_email: document.getElementById('form-client-email')?.value || '',
         company_name: document.getElementById('form-company')?.value || '',
-        project_type: document.getElementById('form-project-type')?.value || 'Website Development',
+        project_type: document.getElementById('form-project-type')?.value || 'Business Website',
         selected_tier: document.getElementById('form-selected-tier')?.value || 'Standard',
-        estimated_cost: document.getElementById('form-estimated-cost')?.value || '₹5,999',
+        estimated_cost: document.getElementById('form-budget')?.value || '₹5,999',
         project_title: document.getElementById('form-project-title')?.value || '',
         project_description: document.getElementById('form-project-desc')?.value || '',
-        existing_website: document.getElementById('form-existing-website')?.value || '',
-        special_customisations: document.getElementById('form-customisations')?.value || '',
+        existing_website: document.getElementById('form-existing-url')?.value || '',
+        special_customisations: [document.getElementById('form-customisations')?.value || '', checkedFeatures ? `Features: ${checkedFeatures}` : ''].filter(Boolean).join(' | '),
         reference_website: document.getElementById('form-reference-url')?.value || '',
         desired_timeline: document.getElementById('form-timeline')?.value || '',
         budget_expectation: document.getElementById('form-budget')?.value || '',
@@ -1284,84 +1938,126 @@ document.addEventListener('DOMContentLoaded', () => {
         const result = await response.json().catch(() => ({}));
 
         if (response.ok && result.success) {
-          openModal(successModal);
+          currentReferenceId = result.referenceId || 'BBA-2026-CONFIRMED';
+          currentReceiptFilename = result.pdfFilename || `BuiltByAtharva-Enquiry-${currentReferenceId}.pdf`;
+          if (result.pdfBase64) {
+            currentReceiptPdfBlob = base64ToBlob(result.pdfBase64, 'application/pdf');
+          }
+
+          // Populate success modal elements
+          const refEl = document.getElementById('modal-ref-id');
+          if (refEl) refEl.textContent = currentReferenceId;
+
+          const timeEl = document.getElementById('modal-timestamp');
+          if (timeEl) {
+            const timeStr = result.submissionSummary?.submissionTime || new Date().toLocaleString();
+            timeEl.textContent = `Recorded: ${timeStr}`;
+          }
+
+          const waLink = document.getElementById('modal-whatsapp-link');
+          if (waLink) {
+            const msg = encodeURIComponent(`Hi Atharva, I just submitted project brief ref: ${currentReferenceId}. Looking forward to discussing!`);
+            waLink.href = `https://wa.me/918626074035?text=${msg}`;
+          }
+
+          if (successModal) {
+            successModal.style.display = 'flex';
+          }
+
           form.reset();
           currentStep = 1;
           updateWizardUI();
+
+          if (window.lucide) window.lucide.createIcons();
         } else if (result.isConfigError) {
-          // Configuration notice when RESEND_API_KEY is not yet added in Netlify
-          alert(`Configuration Notice: ${result.error}\n\nAtharva will configure RESEND_API_KEY in Netlify Site Configuration > Environment Variables. You can also connect directly via WhatsApp (+91 8626074035) or email (builtbyatharva27@gmail.com).`);
+          if (serverMsg) {
+            serverMsg.style.display = 'block';
+            serverMsg.style.background = 'rgba(239, 68, 68, 0.1)';
+            serverMsg.style.color = 'var(--accent-red)';
+            serverMsg.textContent = `Configuration Notice: ${result.error}. Connect directly via WhatsApp: +91 8626074035.`;
+          }
+          alert(`Configuration Notice: ${result.error}\n\nAtharva will configure RESEND_API_KEY in Netlify Site Configuration. You can also connect directly via WhatsApp (+91 8626074035).`);
         } else if (result.validationErrors && result.validationErrors.length > 0) {
+          if (serverMsg) {
+            serverMsg.style.display = 'block';
+            serverMsg.style.background = 'rgba(239, 68, 68, 0.1)';
+            serverMsg.style.color = 'var(--accent-red)';
+            serverMsg.innerHTML = `<strong>Please correct the following:</strong><br>&bull; ${result.validationErrors.join('<br>&bull; ')}`;
+          }
           alert(`Please check the following details:\n\n• ${result.validationErrors.join('\n• ')}`);
         } else {
-          alert(`Submission Notice: ${result.error || 'Unable to submit at this time.'}\n\nPlease reach out directly to builtbyatharva27@gmail.com or WhatsApp +91 8626074035.`);
+          alert(`Notice: ${result.error || 'Unable to submit at this time.'}\n\nPlease connect with Atharva directly at builtbyatharva27@gmail.com or WhatsApp +91 8626074035.`);
         }
-      } catch (networkErr) {
-        console.error("Submission Network Error:", networkErr);
+      } catch (err) {
+        console.error("Submission error:", err);
         alert("Network error: Could not reach the serverless endpoint. Please connect with Atharva directly at builtbyatharva27@gmail.com or WhatsApp +91 8626074035.");
       } finally {
-        if (btnSubmit) {
-          btnSubmit.disabled = false;
-          btnSubmit.innerHTML = `SUBMIT PROJECT REQUEST <i data-lucide="send"></i>`;
-          if (window.lucide) window.lucide.createIcons();
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          if (submitText) submitText.textContent = 'SUBMIT PROJECT BRIEF';
+          if (submitIcon) {
+            submitIcon.setAttribute('data-lucide', 'send');
+            submitIcon.classList.remove('spin');
+            if (window.lucide) window.lucide.createIcons();
+          }
         }
       }
     });
 
-    closeModalBtn?.addEventListener('click', () => closeModal(successModal));
+    closeModalBtn?.addEventListener('click', () => {
+      if (successModal) successModal.style.display = 'none';
+    });
   }
 
   /* ==========================================================================
-     10. PRINT PROJECT BRIEF
+     10. OFFICIAL A4 PDF ENQUIRY RECEIPT ACTIONS (DOWNLOAD & PRINT)
      ========================================================================== */
-  function initPrintBrief() {
-    const printBtns = [
-      document.getElementById('btn-print-brief'),
-      document.getElementById('success-download-brief-btn')
+  function initReceiptActions() {
+    const downloadBtns = [
+      document.getElementById('btn-download-pdf-receipt'),
+      document.getElementById('btn-download-receipt-pdf')
     ];
-    const printArea = document.getElementById('printable-brief-area');
+    const printBtns = [
+      document.getElementById('btn-print-receipt'),
+      document.getElementById('btn-print-receipt-pdf')
+    ];
+
+    downloadBtns.forEach(btn => {
+      btn?.addEventListener('click', () => {
+        if (!currentReceiptPdfBlob) {
+          alert('Your official receipt is being generated. Please submit your project brief first.');
+          return;
+        }
+
+        const url = URL.createObjectURL(currentReceiptPdfBlob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = currentReceiptFilename || `BuiltByAtharva-Enquiry-${currentReferenceId || 'Receipt'}.pdf`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(() => URL.revokeObjectURL(url), 2000);
+      });
+    });
 
     printBtns.forEach(btn => {
       btn?.addEventListener('click', () => {
-        if (!printArea) return;
+        if (!currentReceiptPdfBlob) {
+          alert('Your official receipt is being generated. Please submit your project brief first.');
+          return;
+        }
 
-        const name = document.getElementById('form-client-name')?.value || 'Client';
-        const phone = document.getElementById('form-client-phone')?.value || 'N/A';
-        const email = document.getElementById('form-client-email')?.value || 'N/A';
-        const company = document.getElementById('form-company')?.value || 'N/A';
-        const type = document.getElementById('form-project-type')?.value || 'Website';
-        const tier = document.getElementById('form-selected-tier')?.value || 'Standard';
-        const title = document.getElementById('form-project-title')?.value || 'Project Brief';
-        const desc = document.getElementById('form-project-desc')?.value || 'N/A';
-        const budget = document.getElementById('form-budget')?.value || 'N/A';
-        const timeline = document.getElementById('form-timeline')?.value || 'N/A';
-
-        printArea.innerHTML = `
-          <div class="print-header">
-            <div class="print-brand">BuiltByAtharva • Project Brief</div>
-            <p>Founder: Atharva Mirzapure | Email: builtbyatharva27@gmail.com | WhatsApp: +91 86260 74035</p>
-          </div>
-          <div class="print-grid">
-            <div class="print-field"><label>Client Name</label><span>${escapeHtml(name)}</span></div>
-            <div class="print-field"><label>Email Address</label><span>${escapeHtml(email)}</span></div>
-            <div class="print-field"><label>Phone / WhatsApp</label><span>${escapeHtml(phone)}</span></div>
-            <div class="print-field"><label>Company / Brand</label><span>${escapeHtml(company)}</span></div>
-            <div class="print-field"><label>Service Category</label><span>${escapeHtml(type)}</span></div>
-            <div class="print-field"><label>Package Tier</label><span>${escapeHtml(tier)}</span></div>
-            <div class="print-field"><label>Budget Expectation</label><span>${escapeHtml(budget)}</span></div>
-            <div class="print-field"><label>Timeline Target</label><span>${escapeHtml(timeline)}</span></div>
-          </div>
-          <div style="margin-top:20px;">
-            <label style="font-weight:bold; font-size:11pt; display:block; margin-bottom:6px;">Project Title & Objectives:</label>
-            <h3 style="margin-bottom:8px;">${escapeHtml(title)}</h3>
-            <p style="font-size:10pt; line-height:1.6;">${escapeHtml(desc)}</p>
-          </div>
-          <div class="print-policy">
-            <strong>Payment Terms:</strong> 50% advance payment is required before development begins once the scope and quotation are agreed upon. Payment details and UPI QR code will be shared personally by Atharva.
-          </div>
-        `;
-
-        window.print();
+        const url = URL.createObjectURL(currentReceiptPdfBlob);
+        const printWin = window.open(url, '_blank');
+        if (!printWin) {
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = currentReceiptFilename || `BuiltByAtharva-Enquiry-${currentReferenceId || 'Receipt'}.pdf`;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+        }
+        setTimeout(() => URL.revokeObjectURL(url), 30000);
       });
     });
   }
@@ -1386,11 +2082,11 @@ document.addEventListener('DOMContentLoaded', () => {
      ========================================================================== */
   function initNavigation() {
     const navbar = document.getElementById('navbar');
-    const mobileToggle = document.getElementById('mobile-toggle-btn');
-    const mobileDrawer = document.getElementById('mobile-drawer');
+    const mobileToggle = document.getElementById('mobile-toggle-btn') || document.getElementById('mobile-toggle');
+    const mobileDrawer = document.getElementById('mobile-menu-drawer') || document.getElementById('mobile-drawer');
     const drawerBackdrop = document.getElementById('drawer-backdrop');
-    const drawerCloseBtn = document.getElementById('drawer-close-btn');
-    const drawerLinks = document.querySelectorAll('.drawer-link');
+    const drawerCloseBtn = document.getElementById('mobile-drawer-close') || document.getElementById('drawer-close-btn');
+    const drawerLinks = document.querySelectorAll('.mobile-nav-link, .drawer-link');
     const navLinks = document.querySelectorAll('.nav-link');
 
     // Scrolled class on navbar
@@ -1405,19 +2101,28 @@ document.addEventListener('DOMContentLoaded', () => {
     // Mobile Drawer toggles
     mobileToggle?.addEventListener('click', () => {
       mobileDrawer?.classList.add('active');
-      drawerBackdrop?.classList.add('active');
+      if (drawerBackdrop) drawerBackdrop.classList.add('active');
       document.body.style.overflow = 'hidden';
     });
 
     const closeDrawer = () => {
       mobileDrawer?.classList.remove('active');
-      drawerBackdrop?.classList.remove('active');
+      if (drawerBackdrop) drawerBackdrop.classList.remove('active');
       document.body.style.overflow = '';
     };
 
     drawerCloseBtn?.addEventListener('click', closeDrawer);
     drawerBackdrop?.addEventListener('click', closeDrawer);
     drawerLinks.forEach(l => l.addEventListener('click', closeDrawer));
+
+    // Highlight current page in navigation
+    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+    navLinks.forEach(link => {
+      const href = link.getAttribute('href');
+      if (href === currentPath || (currentPath === '' && href === 'index.html')) {
+        link.classList.add('active');
+      }
+    });
 
     // Active Section ScrollSpy
     const sections = document.querySelectorAll('section[id]');
@@ -1439,6 +2144,32 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     }, { passive: true });
+  }
+
+  /* ==========================================================================
+     13. PORTFOLIO CATEGORY FILTERS (WORK.HTML)
+     ========================================================================== */
+  function initPortfolioFilters() {
+    const filterBtns = document.querySelectorAll('#work-filters .filter-btn');
+    const cards = document.querySelectorAll('#portfolio-grid .portfolio-card');
+    if (!filterBtns.length || !cards.length) return;
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.getAttribute('data-filter');
+
+        cards.forEach(card => {
+          const cat = card.getAttribute('data-category');
+          if (filter === 'all' || cat === filter) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
   }
 
   /* ==========================================================================

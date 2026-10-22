@@ -1,157 +1,110 @@
-# BuiltByAtharva V6 — Futuristic Software Studio
+# BuiltByAtharva — Futuristic Creative Technology & Software Studio
 
 > **IDEAS. BUILT.**  
 > Independent Software Development & Creative Engineering Studio by **Atharva Mirzapure**.
 
 ---
 
-## 🌟 Overview & Transformation (V6)
+## 🌟 Overview & Master Studio Redesign
 
-BuiltByAtharva V6 transforms the personal studio website into an advanced, futuristic, interactive software-engineering experience. It showcases high-performance web applications, 3D interactive interfaces, AI-powered tools, and bespoke digital solutions with zero agency middlemen and 100% direct client communication.
+BuiltByAtharva is an advanced, futuristic, interactive creative technology studio website. It showcases high-performance web applications, interactive 3D spatial experiences, AI-powered tools, and bespoke digital solutions with zero agency middlemen and 100% direct client communication.
+
+- **Brand**: BuiltByAtharva
+- **Tagline**: IDEAS. BUILT.
+- **Production Host**: Netlify
+- **Live URL**: [https://builtbyatharva.netlify.app/](https://builtbyatharva.netlify.app/)
+- **GitHub Repository**: [https://github.com/atharvamirzapure27-cmyk/builtbyatharva](https://github.com/atharvamirzapure27-cmyk/builtbyatharva)
+- **Local Dev Server**: `http://localhost:8080/`
 
 ---
 
-## 🚀 Key Features Implemented in V6
+## 🚀 Key Architecture & Features
 
-### 1. Dual-Theme Futuristic Design System
-- **Dark Theme (Default)**: Near-black & deep graphite surfaces (`#07090e`, `#111726`), luminous neon borders, electric blue (`#3b82f6`), cyber cyan (`#22d3ee`), vivid orange (`#ff7843`), and violet accents.
-- **Light Theme**: Soft off-white & pale blue surfaces (`#ffffff`, `#f8fafc`, `#f1f5f9`), deep charcoal typography (`#0f172a`), refined dimensional drop shadows, and vibrant accent highlights.
-- **Theme Persistence**: Instant toggle in navigation bar and mobile drawer. Automatically saves choice in `localStorage` (`bba-theme`) and respects system `prefers-color-scheme` on first visit.
-- **Zero Flash of Wrong Theme**: Pre-render inline script in `<head>` ensures theme is applied before painting.
+### 1. Cinematic Launch Sequence
+- **Brand Reveal**: Kinetic intro with logo reveal, cyber scanline animation, and audio-visual cues.
+- **Session Persistence**: Plays on initial visit; skippable via `Esc` key or "Skip Intro" button; replayable anytime via the "Replay Intro" button. Respects `prefers-reduced-motion`.
 
-### 2. Advanced Developer-Style Hero
-- Distinctive kinetic **BA** brand mark with animated scanline shine.
-- Large kinetic typography: `BUILTBYATHARVA` + `IDEAS. BUILT.`
-- Cycling kinetic slogan: `// DESIGN. DEVELOP. DEPLOY.`
-- Honest personal introduction to **Atharva Mirzapure**.
-- **Interactive Developer Terminal Workstation**:
-  - macOS/Linux style chrome controls (`red`, `yellow`, `green` dots).
-  - Tab switcher: `studio.ts`, `services.json`, `stack.config.js` with syntax-highlighted code buffers.
-  - Live status indicator: `● ENGINE ONLINE • 0 ERRORS • 100% HANDCRAFTED`.
-  - Orbiting technical stack pills.
+### 2. Three.js 3D Spatial Cyber-Core
+- **Centerpiece**: Polyhedral icosahedron core enclosed in a dynamic wireframe cage and 3 concentric orbital rings spinning on independent axes.
+- **Interactive**: Mouse/touch reactive parallax with smooth damping.
+- **GPU Optimized**: Auto-pauses animation loop when scrolled out of viewport using `IntersectionObserver`.
+- **Graceful Fallback**: CSS/SVG fallback when WebGL is unavailable or on low-power devices.
 
-### 3. Three.js 3D Cyber-Core Centerpiece
-- Geometric polyhedral centerpiece: faceted icosahedron core, outer wireframe cage, and dual concentric orbital rings rotating on separate axes.
-- Floating ambient particle field.
-- Pointer-responsive parallax with smooth damping.
-- **Theme-Adaptive**: Lighting and materials dynamically switch between dark neon luminescence and light crystalline refraction.
-- **Battery & GPU Optimization**: Pauses rendering loop via `IntersectionObserver` when the hero is scrolled out of the viewport.
-- Graceful CSS/SVG fallback when WebGL is unavailable or on small mobile screens.
+### 3. Multi-Page Architecture & Clean Navigation
+- **Homepage (`index.html`)**: Cinematic intro, 3D cyber-core hero, quick service discovery, featured projects, dynamic stats, testimonials, and FAQ.
+- **Services (`services.html`)**: Clean service cards with initial prices hidden to encourage interactive scope exploration. Clicking any card opens a rich modal with detailed deliverables, scope limits, timelines, and pre-selected CTA.
+- **Pricing & Estimator (`pricing.html`)**: Complete transparent pricing tables, feature comparison matrix, and an interactive real-time cost estimator with 50% advance notice.
+- **Work & Case Studies (`work.html` & `case-study.html`)**: Deep-dive portfolio with interactive in-browser simulators (Truth Guard Credibility Scanner, Smart OPD Queue Generator, Ayurvedic Dosha Diagnosis, AgriVision AI Leaf Pathology).
+- **About (`about.html`)**: Founder biography, design philosophy, direct engineering manifesto, and technical stack.
+- **Contact (`contact.html`)**: Direct verified WhatsApp, email, quick booking calendar, and location information.
+- **Start Project Brief Wizard (`start-project.html`)**: Adaptive 5-step inquiry builder with live summary and instant PDF receipt download.
+- **Custom 404 (`404.html`)**: Futuristic terminal-themed missing route handler with quick navigation back to base.
 
-### 4. Simplified Compact Service Cards & Detail Modals
-- **Compact Default State**: Cards display **only** the service title, futuristic icon, category mini-badge, and `Explore Scope →` indicator. All prices, long paragraphs, and feature lists are hidden initially to prevent visual clutter.
-- **Rich Service Detail Modal**: Clicking any card opens a dedicated modal displaying:
-  - Full in-depth service overview
-  - Included features checklist with check icons
-  - Example project types & deliverables
-  - Technologies applied
-  - Starting rates / price ranges (e.g., Starter ₹2,999 to Business Pro ₹14,999+)
-  - Delivery timelines (e.g., 2 to 10 days)
-  - Transparent scope limitations
-  - **"Start This Project" CTA**: Pre-selects the chosen service and package in the form wizard and smoothly scrolls to `#start-project`.
+### 4. Adaptive 5-Step Project Wizard
+- **Step 1**: Project Type Selection (Website, Web Application, AI / ML Solution, UI/UX & Interactive 3D).
+- **Step 2**: Adaptive Dynamic Questions & Custom Features tailored to the selected project type.
+- **Step 3**: Budget Range & Timeline Selection with clear 50% advance terms.
+- **Step 4**: Client Contact Validation (RFC 5322 email, international phone/WhatsApp format, anti-spam honeypot).
+- **Step 5**: Comprehensive Review & Instant Submission with live PDF receipt generation.
 
-### 5. Dedicated Pricing & Centralized Interactive Estimator
-- **Preserved Exact Pricing**:
-  - **Starter**: ₹2,999 (2-3 Days, Up to 3 Pages, Responsive, Form, SEO, Vercel)
-  - **Standard**: ₹5,999 (3-5 Days, Up to 5 Pages, Premium UI, Form Delivery, SEO, 7 Days Support)
-  - **Business (Most Popular)**: ₹9,999 (5-7 Days, Up to 8 Pages, Dimensional UI, GSAP Motion, 14 Days Support)
-  - **Business Pro**: ₹14,999+ (7-10 Days, 10+ Pages, Interactive Workflows, 30 Days Support)
-  - **Web Applications**: Basic App ₹12,999 | Advanced App ₹19,999
-  - **AI & ML Solutions**: AI Feature / Bot ₹3,999+ | Complete AI Web App ₹24,999+
-- **Interactive Scope Estimator**: Live category selector, base tier selector, and add-on checkboxes with real-time total calculation and 50% advance notice. "Apply Estimate to Request Form" carries values into the brief builder.
-- **50% Advance Notice**: Prominently stated across pricing cards and estimator.
+### 5. Single-Page A4 PDF Receipt Generator (`lib/pdf-receipt.js`)
+- Server-side PDFKit generator strictly formatted to fit a single A4 page with zero multi-page overflow.
+- Embeds authentic studio logo, unique reference ID (`BBA-YYYYMMDD-XXXX`), submission timestamp, client details, project scope, budget, and next steps.
+- Downloadable directly in-browser or delivered with confirmation emails.
 
-### 6. Authentic Portfolio & Studio Preview Modals
-- Showcases genuine projects by Atharva Mirzapure:
-  1. **Truth Guard**: Multimodal fake news detection system. Accurately describes natural language credibility scoring and benchmark linguistic evaluations, distinguishing machine metrics from journalistic fact verification. Includes embedded live credibility scanner simulation!
-  2. **Dermatologist Visit Reminder System**: Clinic appointment scheduling and follow-up notification tracker. Distinguishes simulated notification queues from third-party live carrier delivery.
-  3. **AgriVision AI**: Crop leaf disease detection and agricultural telemetry portal. Accurately describes computer vision pathology image analysis.
-  4. **AyurSanjeevani**: Herbal wellness portal with an embedded 3-stage Ayurvedic Dosha diagnosis quiz simulator.
-  5. **Smart OPD Queue System**: Hospital waiting room token generator and dynamic wait-time calculator. Includes embedded live interactive token dispenser simulation!
-- **Studio Lightbox Modal**:
-  - **Case Study Tab**: Overview, problem solved, what Atharva built, key features, technology pills, status, and prototype disclaimer.
-  - **Interactive Preview Tab**: Responsive device viewport switcher (Desktop, Tablet, Mobile) with embedded interactive simulators or sandboxed iframes.
-
-### 7. Multi-Step Project Request Form
-- 4-step brief wizard:
-  1. **Contact Details**: Name, Phone/WhatsApp, Email, Company.
-  2. **Project Details**: Category, Title, Goals & Description, Reference link.
-  3. **Requirements & Timeline**: Desired customizations, Timeline, Budget.
-  4. **Review**: Comprehensive summary with printable brief download and 50% advance notice.
-- Anti-spam honeypot field (`website_hp`).
-
-### 8. Production Netlify Serverless Backend (`netlify/functions/submit-project.js`)
-- Node.js serverless function running on Netlify Functions (`/.netlify/functions/submit-project` and rewritten from `/api/submit-project`).
+### 6. Production Netlify Serverless Backend (`netlify/functions/submit-project.js`)
+- Dual-path routing: native `/.netlify/functions/submit-project` and rewrite `/api/submit-project`.
 - Backward-compatible adapter maintained at `api/submit-project.js`.
-- Server-side request sanitization & validation (RFC 5322 email validation, field size limits, anti-spam honeypot, duplicate rate limiting).
-- Dispatches notification emails to configured contact email (`builtbyatharva27@gmail.com`) using **Resend** Node.js SDK.
-- Branded, professional HTML email template detailing client info, project financials, timeline, and one-click email/WhatsApp response buttons.
-- Safe configuration alerts when `RESEND_API_KEY` is pending.
+- Security: RFC 5322 regex validation, 50KB payload ceiling, honeypot anti-spam defense, in-memory IP rate limiting, and CORS headers.
+- Email delivery via **Resend** Node.js SDK:
+  - Formatted HTML business notification dispatched to `CONTACT_EMAIL` (`builtbyatharva27@gmail.com`).
+  - Optional client auto-reply confirmation (`RESEND_CLIENT_CONFIRMATION=true` when custom domain is verified).
 
-### 9. Correct Verified WhatsApp Integration
-- Number: **`+91 86260 74035`** (international format: `918626074035`).
-- Correct `wa.me/918626074035?text=...` links throughout the site.
-- Old incorrect number (`93220 40915`) completely purged from all files.
+### 7. Verified Studio Contacts
+- **Founder**: Atharva Mirzapure
+- **Email**: [builtbyatharva27@gmail.com](mailto:builtbyatharva27@gmail.com)
+- **WhatsApp**: [+91 86260 74035](https://wa.me/918626074035) (International format: `918626074035`)
 
 ---
 
-## 🛠️ Local Development & Running the Studio
-
-### Prerequisites
-- Node.js v18+ (tested on Node v22.22.0)
-- npm v10+
+## 🛠️ Local Development & Testing
 
 ### Installation
 ```bash
 npm install
 ```
 
-### Starting the Local Development Server
+### Start Development Server
 ```bash
 npm run dev
-# Or
+# or
 node dev-server.js
 ```
-The studio will run locally at:  
-👉 **`http://localhost:8080`**
+The studio runs locally at **`http://localhost:8080`**.
 
-### Running Serverless API Unit Tests
+### Run Automated Test Suite
 ```bash
-npm run test-api
+# Run all tests (audit + backend + PDF)
+npm test
+
+# Run HTML/SEO/asset audit (9 pages, 39 images, 0 broken links)
+npm run test:audit
+
+# Run API, Rate Limit, Honeypot, Resend Mock & PDF tests
+npm run test:api
+
+# Syntax check all JavaScript files
+npm run check
 ```
-Runs comprehensive test suite verifying:
-- CORS Preflight (200)
-- Method restriction (405 on GET)
-- Empty body and field validations (400)
-- RFC 5322 email and phone format checks (400)
-- 50KB payload size limits (413)
-- Anti-spam honeypot defense (400)
-- Missing `RESEND_API_KEY` configuration safety (503)
-- Duplicate submission throttling (429)
-- Backward-compatible adapter functionality
 
 ---
 
-## ☁️ Deployment to Netlify
+## ☁️ Environment Configuration (Netlify)
 
-1. Push your changes to your GitHub repository connected to Netlify.
-2. In your Netlify Dashboard:
-   - Go to **Site Configuration** > **Environment variables**.
-   - Add the following variables:
-     - `RESEND_API_KEY`: Your Resend API key (`re_...` from [resend.com/api-keys](https://resend.com/api-keys)).
-     - `CONTACT_EMAIL`: (Optional) Business email address for receiving leads (defaults to `builtbyatharva27@gmail.com`).
-     - `RESEND_FROM_EMAIL`: (Optional) Verified sender domain (defaults to `BuiltByAtharva Studio <onboarding@resend.dev>` for testing).
-     - `RESEND_CLIENT_CONFIRMATION`: (Optional) Set to `true` once you verify a custom domain in Resend to send auto-reply receipts to clients.
-3. Netlify automatically detects `netlify.toml`, deploys the static website, and publishes the serverless function to `/.netlify/functions/submit-project` (with `/api/submit-project` rewrite).
-
----
-
-## 📞 Verified Studio Contact
-
-- **Founder**: Atharva Mirzapure
-- **Email**: [builtbyatharva27@gmail.com](mailto:builtbyatharva27@gmail.com)
-- **WhatsApp**: [+91 86260 74035](https://wa.me/918626074035)
-- **Instagram**: [@built_by_atharva](https://www.instagram.com/built_by_atharva/)
-- **Live URL**: [https://builtbyatharva.vercel.app](https://builtbyatharva.vercel.app)
+In Netlify Dashboard (**Site Configuration** > **Environment variables**):
+- `RESEND_API_KEY`: Your Resend API key (`re_...` from [resend.com/api-keys](https://resend.com/api-keys)).
+- `CONTACT_EMAIL`: (Optional) Lead notification recipient (defaults to `builtbyatharva27@gmail.com`).
+- `RESEND_FROM_EMAIL`: (Optional) Verified sender address (defaults to `BuiltByAtharva Studio <onboarding@resend.dev>`).
+- `RESEND_CLIENT_CONFIRMATION`: (Optional) Set to `true` after verifying a custom domain in Resend to enable automated client receipts.
 
 *BuiltByAtharva — IDEAS. BUILT.*
